@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+body{
+    margin: 0;
+    font-family: 'DM sans';
+    height: 100vh;
+}
+/* footer */
+.footer{
+    background-color:#2A9D8F ;
+    height: 115px;
+    color: #264653;
+}
+
+.footer .container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.footer .container h4{
+    font-size: 20px;
+        margin: 0;
+}
+
+.footer .footerRow{
+    display: flex;
+    flex-direction: row;
+    width: 250px;
+    justify-content: flex-end;
+    width: 1700px;
+    margin-top: 20px;
+}
+
+.footer .footerColuna{
+    display: flex;
+    flex-direction: column;
+}
+
+.footer .footerTitulo{
+    display: flex;
+    width: 100px;
+}
+
+.footer .footerGrande{
+    display: flex;
+}
+/* header */
+.container{
+    display: flex;
+    width: 80%;
+    margin: auto;
+}
+.header .container {
+    justify-content: space-around;
+    display: flex;
+    height: 150px ;
+}
+
+.header{
+    border-bottom:solid#2A9D8F 2px;
+    height: 135px;
+    background-color: #2A9D8F;
+
+}
+.header .nav{
+    width:1250px;
+    height: 100px
+}
+
+.header .nav .list:hover{
+    cursor: pointer;
+    font-size: 24px ;
+    font-weight: bolder;
+}
+
+.header .nav .list{
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+    
+}
+
+
+.header .nav .botaoLog{
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    height: 35px;
+    border-radius: 14px;
+    background-color: #264653;
+    align-items: flex-start;
+}
+
+.header .nav .botaoLog:hover{
+    cursor: pointer;
+    font-size: 22px ;
+    font-weight: bolder;
+    scale: 1.1;
+}
+
+#alturaList{
+    margin-top: 2px;
+}
+
+
+.header .nav {
+    color: white;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.banner{
+    display: flex;
+    width:100% ;
+    justify-content: flex-start;
+    height: 707px;
+    background:  #264653;
+background: linear-gradient(180deg, rgba(38, 70, 83, 1) 23%, rgba(42, 157, 143, 1) 80%);
+}
+
+.cor{
+    color: #B7E4C7;
+    font-weight: bolder;
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+}
+
+.header .container .nav img{
+    width: 200px;
+}
+/* login */
+.login .banner .container{
+    border: solid #264653 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 460px;
+    padding: 20px;
+    background-color: #028170;
+    height: 360px;
+    border: none;
+    border-radius: 16px;
+    align-items: center;
+}
+
+.login .banner .container input{
+    outline: none;
+    padding: 4px;
+    font-size: 12px;
+    border-radius: 8px;
+    border: #264653;
+    width: 300px;
+}
+
+.login .banner .container button{
+    width: 100px;
+    padding: 4px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #264653;
+    font-size: 16px;
+}
+
+.login .banner .container button:hover{
+    cursor: pointer;
+    scale: 1.2;
+}
+
+.login .banner .container img{
+    width: 200px;
+}
+
+.login .banner .container input:focus{
+    scale: 1.1;
+    transition: 0.2;
+}
+
+/* cadastro */
+.cadastro .banner .container{
+    border: solid #264653 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 460px;
+    padding: 20px;
+    background-color: #028170;
+    height: 500px;
+    border: none;
+    border-radius: 16px;
+    align-items: center;
+}
+
+.cadastro .banner .container input{
+    outline: none;
+    padding: 4px;
+    font-size: 12px;
+    border-radius: 8px;
+    border: #264653;
+    width: 300px;
+}
+.cadastro .banner .container button{
+    width: 120px;
+    padding: 6px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 20px;
+    font-weight: bolder;
+    color: #264653;
+    font-size: 16px;
+    
+}
+.cadastro .banner .container img{
+    width: 200px;
+}
+
+.cadastro .banner .container button:hover{
+    cursor: pointer;
+    scale: 1.2;
+}
+
+.cadastro .banner .container input:focus{
+    scale: 1.1;
+    transition: 0.2;
+}
