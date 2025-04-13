@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href=".//css/style.css">
+    <link rel="icon" href="/assets/icon/favicon-32x32.png">
+</head>
+
+<body>
+
+    <div class="borda">
+        <div class="calculadora">
+            <h2>Calcule o quanto você vai economizar!</h2>
+
+            <div class="campo">
+                <p>Total de bueiros no bairro</p>
+                <input type="number" name="" id="ipt_qtdBueiros">
+            </div>
+
+            <div class="campo">
+                <p>Porcentagem estimada de bueiros sujos (%)</p>
+                <input type="number" name="" id="ipt_porcentagem">
+            </div>
+
+            <div class="campo">
+                <p>Custo médio de limpeza por bueiro (R$)
+                <p>
+                    <input type="number" name="" id="ipt_custoLimpeza">
+            </div>
+
+            <button onclick="calcular()" class="botao">Calcular</button>
+            
+        </div>
+
+        <div class="resultado">
+            <div id="div_exibir">Insira os dados!</div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+    function calcular() {
+        var total = Number(ipt_qtdBueiros.value)
+        var porcentagem = Number(ipt_porcentagem.value)
+        var custo = Number(ipt_custoLimpeza.value)
+
+        if (porcentagem < 0 || porcentagem > 100 || total <= 0 || custo <= 0) {
+            alert("Preencha os campos corretamente!")
+            return
+        }
+
+        var gasto_total = total * custo
+        var bueiros_sujos = (porcentagem / 100) * total
+        var gasto_efetivo = bueiros_sujos * custo
+        var economia = gasto_total - gasto_efetivo
+
+        div_exibir.innerHTML =
+            `
+            Gasto atual (todos os bueiros): <strong>R$ ${gasto_total.toFixed(2)}</strong><br>
+            Gasto com sistema inteligente: <strong>R$ ${gasto_efetivo.toFixed(2)}</strong><br>
+            Economia total: <strong style="color:green;">R$ ${economia.toFixed(2)}</strong>
+            `
+    }
+</script>

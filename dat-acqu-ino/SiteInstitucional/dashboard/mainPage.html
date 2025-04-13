@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela principal</title>
+    <link rel="icon" href="../assets/icon/favicon.ico">
+    <link rel="stylesheet" href="../css/dashboards.css">
+    <script src="path/to/chartjs/dist/chart.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    
+
+</head>
+<body>
+
+    <div class="div-pai">
+
+        <div class="div-sidebar">
+            <div class="div-img">
+                <img src="../assets/img/ecodrain.png" alt="Logomarca da EcoDrain">
+            </div>
+            
+            <div class="div-botoes">
+                <div class="div-btComImg">
+                    <img src="../assets/img/main-menu.png" alt="Imagem do ícone da main page">
+                    <button>Tela principal</button>
+                </div>
+                <div class="div-btComImg">
+                    <img src="../assets/img/drainage.png" alt="">
+                    <button>Localização</button>
+                </div>
+            </div>
+        </div>
+        <header>
+            <div class="header-container">
+                <h2>TELA DE DASHBOARD</h2>
+
+                <div class="div-pai-perfil">
+                    <div class="div-linha"></div>
+                    <div class="div-todo-perfil">
+                        <div class="div-filho-perfil">
+                            <img src="../assets/img/profile.png" alt="imagem de perfil" class="img-perfil">
+                            <img src="../assets/img/seta-baixo.png" alt="ver opções" class="img-seta">
+                        </div>
+                        <div class="div-opcoes">
+                            <div class="div-opcao-sair">
+                                <span>Sair</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="container">
+            <div class="container-alertas">
+                <div class="div-h2-alertas">
+                    <h2>Alertas dos bueiros registrados</h2>
+                </div>
+
+                    <div class="div-3-alertas">
+                        <div class="alerta div-normal">Nível normal</div>
+                        <div class="alerta div-atencao">Nível de atenção</div>
+                        <div class="alerta div-risco">Nível de risco</div>
+                    </div>
+            </div>
+
+            <div class="div-metrica-principal">
+                <canvas id="metricaPrincipal"></canvas>
+            </div>
+    
+    
+        </div>
+
+    </div>
+</body>
+</html>
+
+<script>
+   const ctx = document.getElementById('metricaPrincipal');
+
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago'],
+    datasets: [
+      {
+        label: 'Bairro 1',
+        data: [12, 19, 3, 5, 2, 3, 7, 9],
+        backgroundColor: 'rgb(90, 245, 227)',
+        borderWidth: 1
+      },
+      {
+        label: 'Bairro 2',
+        data: [10, 15, 5, 8, 3, 6, 4, 7],
+        backgroundColor: 'rgb(30, 208, 186)',
+        borderWidth: 1
+      },
+      {
+        label: 'Bairro 3',
+        data: [10, 15, 5, 8, 3, 6, 4, 7],
+        backgroundColor: 'rgb(42, 157, 143)',
+        borderWidth: 1
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          color: '#ffffff'
+        },
+        grid: {
+          color: 'rgba(255, 255, 255, 0.2)'
+        }
+      },
+      x: {
+        ticks: {
+          color: '#ffffff'
+        },
+        grid: {
+          color: 'rgba(255, 255, 255, 0.2)'
+        }
+      }
+    },
+    plugins: {
+      legend: {
+        labels: {
+          color: '#ffffff'
+        }
+      }
+    }
+  }
+});
+
+</script>

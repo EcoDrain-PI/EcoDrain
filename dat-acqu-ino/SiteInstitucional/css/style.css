@@ -1,0 +1,88 @@
+* {
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.borda {
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.calculadora {
+    width: 100%;
+    height: 419px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+.calculadora .campo {
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+}
+
+.calculadora input {
+    border-radius: 10px;
+    font-size: 19px;
+    border-color: #d9d9d9;
+}
+
+.calculadora p {
+    margin: 5px;
+    font-size: 19px;
+    color: #154754;
+}
+
+.calculadora h2 {
+    color: #154754;
+}
+
+#div_exibir {
+    padding: 10px;
+    height: 400px;
+    width: 159%;
+    font-size: 19px;
+    background-image: url(/assets/img/ecodrain-teste.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: #d9d9d9;
+    
+    color: #154754;
+}
+
+.botao {
+    margin-top: 10px;
+    width: 20%;
+    height: 30px;
+    color: #154754;
+    background-color: #009f92;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Menu com Botão e Imagem</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f4f4f4;
+    }
+
+    .custom-select {
+      width: 100px;
+      position: relative;
+    }
+
+    .selected-option {
+      background-color: #2A9D8F;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .options {
+      display: none;
+      position: absolute;
+      background: #2A9D8F;
+      width: 100%;
+      margin-top: 5px;
+      border-radius: 15px;
+      z-index: 100;
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 10px;
+      background-color: #2A9D8F;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+
+    .option-btn:hover {
+      background-color: #21867b;
+    }
+
+    .custom-select .img-perfil {
+      width: 35px;
+      height: 35px;
+    }
+
+    .custom-select .img-seta {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="custom-select">
+    <div class="selected-option" onclick="toggleOptions()">
+      <img src="../assets/img/profile.png" alt="imagem de perfil" class="img-perfil">
+      <img src="../assets/img/seta-baixo.png" alt="ver opções" class="img-seta">
+    </div>
+
+    <div class="options" id="options-box">
+      <button class="option-btn" onclick="logout()">Sair</button>
+    </div>
+  </div>
+
+  <script>
+    function toggleOptions() {
+      const box = document.getElementById('options-box');
+      box.style.display = box.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function logout() {
+      alert('Você clicou em sair!');
+      // Aqui você pode colocar a lógica de logout de verdade
+      // Exemplo: window.location.href = "/logout";
+    }
+
+    // Fecha o menu se clicar fora
+    document.addEventListener('click', function (e) {
+      const customSelect = document.querySelector('.custom-select');
+      if (!customSelect.contains(e.target)) {
+        document.getElementById('options-box').style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
