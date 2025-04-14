@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="path/to/chartjs/dist/chart.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+  background-color: #1e1e2f;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.div-select {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.div-select label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+select {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  background-color: #2e2e3e;
+  color: #ffffff;
+}
+
+canvas {
+  max-width: 100%;
+  background-color: #2e2e3e;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="div-select">
+        <label for="selectTipo">Tipo de gráfico:</label>
+        <select id="selectTipo">
+          <option value="bar">Gráfico de Barras</option>
+          <option value="bubble">Gráfico de Bolhas</option>
+          <option value="line">Gráfico de Linhas</option>
+          <option value="radar">Gráfico de Radar</option>
+        </select>
+      </div>
+      
+      <canvas id="metricaPrincipal"></canvas>
+      
+</body>
+</html>
+
+<script>
+    const ctx = document.getElementById('metricaPrincipal');
+const selectTipo = document.getElementById('selectTipo');
+
+// Dados padrão (pode ser adaptado conforme o tipo do gráfico)
+const labels = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago'];
+const dadosBase = [
+  [200, 190, 150, 170, 190, 210, 230, 250],
+  [120, 140, 160, 130, 150, 170, 190, 210],
+  [100, 110, 120, 130, 140, 150, 160, 170]
+];
+
+// Função para montar os datasets conforme o tipo
+function montarDatasets(tipo) {
+  if (tipo === 'bubble') {
+    // Bolhas precisam de {x, y, r}
+    return [
+      {
+        label: 'Bairro 1',
+        data: dadosBase[0].map((v, i) => ({ x: i, y: v, r: 10 })),
+        backgroundColor: 'rgba(90, 245, 227, 0.6)'
+      }
+    ];
+  } else {
+    return [
+      {
+        label: 'Bairro 1',
+        data: dadosBase[0],
+        backgroundColor: 'rgba(90, 245, 227, 0.6)',
+        borderColor: 'rgb(0, 0, 0)',
+        fill: tipo !== 'line'
+      },
+      {
+        label: 'Bairro 2',
+        data: dadosBase[1],
+        backgroundColor: 'rgba(30, 208, 186, 0.6)',
+        borderColor: 'rgb(0, 0, 0)',
+        fill: tipo !== 'line'
+      },
+      {
+        label: 'Bairro 3',
+        data: dadosBase[2],
+        backgroundColor: 'rgba(42, 157, 143, 0.6)',
+        borderColor: 'rgb(0, 0, 0)',
+        fill: tipo !== 'line'
+      }
+    ];
+  }
+}
+
+// Variável para armazenar o gráfico atual
+let graficoAtual;
+
+// Função para criar o gráfico
+function criarGrafico(tipo) {
+  if (graficoAtual) {
+    graficoAtual.destroy(); // Destroi o gráfico atual antes de criar outro
+  }
+
+  graficoAtual = new Chart(ctx, {
+    type: tipo,
+    data: {
+      labels: tipo !== 'bubble' ? labels : undefined,
+      datasets: montarDatasets(tipo)
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
+
+// Inicializa com gráfico de barras
+criarGrafico('bar');
+
+// Atualiza o gráfico quando o tipo é trocado no select
+selectTipo.addEventListener('change', () => {
+  const novoTipo = selectTipo.value;
+  criarGrafico(novoTipo);
+});
+
+</script>

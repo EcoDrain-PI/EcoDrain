@@ -264,7 +264,7 @@ header .header-container {
 }
 
 
-.container .div-head-metricas .div-select select {
+.div-metrica-principal .div-head-metricas .div-select select {
     padding: 8px 12px;
     border-radius: 5px;
     background-color: #2A9D8F;
@@ -273,55 +273,18 @@ header .header-container {
     font-size: 16px;
 }
 
-.container .div-head-metricas .div-select option {
+.div-metrica-principal .div-head-metricas .div-select option {
     color: white;
     background-color: #2A9D8F; /* Funciona em alguns navegadores */
 }
 
-.container .div-head-metricas {
+.div-metrica-principal .div-head-metricas {
+    
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
 }
 
 .div-texto {
     color: white;
     font-size: 20px;
-    border-bottom: 1px solid white;
-}
-
-.container .metricas-secundarias {
-    /* background-color: crimson; */
-    width: 1040px;
-    height: 75%;
-    padding: 10px;
-    margin-top: 80px;
-    /* border-radius: 15px; */
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); */
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-wrap: wrap; /* Para quando a tela ficar menos, uma métrica fique em baixo da outra */
-}
-
-.container .metricas-secundarias .metrica-secun {
-    background-color: #264F4A;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-    width: 450px;
-    height: 100%;
-    padding: 10px;
-
-}
-/* .div-selec{
-    display: flex;
-} */
-
-.container .div-centralizar-metrica {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 290px;
-    height: 290px;
 }

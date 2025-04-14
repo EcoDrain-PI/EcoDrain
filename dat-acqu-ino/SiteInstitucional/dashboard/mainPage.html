@@ -1,138 +1,317 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tela principal</title>
-    <link rel="icon" href="../assets/icon/favicon.ico">
-    <link rel="stylesheet" href="../css/dashboards.css">
-    <script src="path/to/chartjs/dist/chart.umd.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tela principal</title>
+  <link rel="icon" href="../assets/icon/favicon.ico">
+  <link rel="stylesheet" href="../css/dashboards.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
 
 </head>
+
 <body>
 
-    <div class="div-pai">
+  <div class="div-pai">
+    <!-- Sidebar -->
+    <div class="div-sidebar">
+      <div class="div-img">
+        <img src="../assets/img/ecodrain.png" alt="Logomarca da EcoDrain">
+      </div>
 
-        <div class="div-sidebar">
-            <div class="div-img">
-                <img src="../assets/img/ecodrain.png" alt="Logomarca da EcoDrain">
-            </div>
-            
-            <div class="div-botoes">
-                <div class="div-btComImg">
-                    <img src="../assets/img/main-menu.png" alt="Imagem do ícone da main page">
-                    <button>Tela principal</button>
-                </div>
-                <div class="div-btComImg">
-                    <img src="../assets/img/drainage.png" alt="">
-                    <button>Localização</button>
-                </div>
-            </div>
+      <div class="div-botoes">
+        <div class="div-btComImg">
+          <img src="../assets/img/main-menu.png" alt="Imagem do ícone da main page">
+          <button>Tela principal</button>
         </div>
-        <header>
-            <div class="header-container">
-                <h2>TELA DE DASHBOARD</h2>
-
-                <div class="div-pai-perfil">
-                    <div class="div-linha"></div>
-                    <div class="div-todo-perfil">
-                        <div class="div-filho-perfil">
-                            <img src="../assets/img/profile.png" alt="imagem de perfil" class="img-perfil">
-                            <img src="../assets/img/seta-baixo.png" alt="ver opções" class="img-seta">
-                        </div>
-                        <div class="div-opcoes">
-                            <div class="div-opcao-sair">
-                                <span>Sair</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <div class="container">
-            <div class="container-alertas">
-                <div class="div-h2-alertas">
-                    <h2>Alertas dos bueiros registrados</h2>
-                </div>
-
-                    <div class="div-3-alertas">
-                        <div class="alerta div-normal">Nível normal</div>
-                        <div class="alerta div-atencao">Nível de atenção</div>
-                        <div class="alerta div-risco">Nível de risco</div>
-                    </div>
-            </div>
-
-            <div class="div-metrica-principal">
-                <canvas id="metricaPrincipal"></canvas>
-            </div>
-    
-    
+        <div class="div-restricoes">
+          <div class="div-btComImg">
+            <img src="../assets/img/drainage.png" alt="">
+            <button>Localização</button>
+          </div>
         </div>
+      </div>
+    </div>
+    <!-- Cabeçalho -->
+    <header>
+      <div class="header-container">
+        <h2>TELA DE DASHBOARD</h2>
+
+        <div class="div-pai-perfil">
+          <div class="div-linha"></div>
+          <div class="div-todo-perfil">
+            <div class="div-filho-perfil">
+              <img src="../assets/img/profile.png" alt="imagem de perfil" class="img-perfil">
+              <img src="../assets/img/seta-baixo.png" alt="ver opções" class="img-seta">
+            </div>
+            <div class="div-opcoes">
+              <div class="div-opcao-sair">
+                <span>Sair</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+
+      <!-- Alertas -->
+      <div class="container-alertas">
+        <div class="div-h2-alertas">
+          <h2>Alertas dos bueiros registrados</h2>
+        </div>
+
+        <div class="div-3-alertas">
+          <div class="alerta div-normal">Nível normal</div>
+          <div class="alerta div-atencao">Nível de atenção</div>
+          <div class="alerta div-risco">Nível de risco</div>
+        </div>
+      </div>
+
+      <!-- A métrica principal e o seu cabeçalho (gráfico de barras gerais) -->
+      <div class="div-metrica-principal">
+        <!-- Cabeçalho -->
+        <div class="div-head-metricas">
+          <div class="div-texto">
+            Dados gerais do alerta
+          </div>
+          <div class="div-select">
+            <select id="selectAno1">
+              <option value="2025">Ano de 2025</option>
+              <option value="2024">Ano de 2024</option>
+              <option value="2024">Ano de 2023</option>
+            </select>
+          </div>
+          <!-- MÉTRICA PRINCIPAL -->
+        </div>
+        <canvas id="metricaPrincipal"></canvas>
+      </div>
+
+      <!-- Métricas secundárias (de rosca e de bolhas) -->
+      <div class="metricas-secundarias">
+
+        <!-- MÉTRICA DE BOLHA -->
+        <div class="metrica-secun">
+          <div class="div-head-metricas">
+            <div class="div-texto">
+              Dados gerais do alerta
+            </div>
+            <div class="div-select">
+              <select id="selectAno2">
+                <option value="2025">Ano de 2025</option>
+                <option value="2024">Ano de 2024</option>
+                <option value="2024">Ano de 2023</option>
+              </select>
+            </div>
+          </div>
+          <canvas id="can-metrica-bolha-principal"></canvas>
+        </div>
+
+
+        <div class="metrica-secun">
+          <div class="div-head-metricas">
+            <div class="div-texto">
+              Dados gerais do alerta
+            </div>
+            <div class="div-select">
+              <select id="selectAno3">
+                <option value="2025">Ano de 2025</option>
+                <option value="2024">Ano de 2024</option>
+                <option value="2024">Ano de 2023</option>
+              </select>
+            </div>
+          </div>
+          <div class="div-centralizar-metrica">
+            <canvas id="can-metrica-rosca-principal"></canvas>
+          </div>
+        </div>
+      </div>
 
     </div>
+
+  </div>
 </body>
+
 </html>
 
 <script>
-   const ctx = document.getElementById('metricaPrincipal');
 
-new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago'],
-    datasets: [
-      {
-        label: 'Bairro 1',
-        data: [12, 19, 3, 5, 2, 3, 7, 9],
-        backgroundColor: 'rgb(90, 245, 227)',
-        borderWidth: 1
-      },
-      {
-        label: 'Bairro 2',
-        data: [10, 15, 5, 8, 3, 6, 4, 7],
-        backgroundColor: 'rgb(30, 208, 186)',
-        borderWidth: 1
-      },
-      {
-        label: 'Bairro 3',
-        data: [10, 15, 5, 8, 3, 6, 4, 7],
-        backgroundColor: 'rgb(42, 157, 143)',
-        borderWidth: 1
-      }
-    ]
-  },
-  options: {
-    responsive: true,
-    scales: {
-      y: {
-        beginAtZero: true,
-        ticks: {
-          color: '#ffffff'
+  //  MÉTRICA DE BARRAS (PRINCIPAL)
+  
+  const MetricaBarrasGerais = document.getElementById('metricaPrincipal');
+
+  new Chart(MetricaBarrasGerais, {
+    type: 'bar',
+    data: {
+      labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago'],
+      datasets: [
+        {
+          label: 'Bairro 1',
+          data: [12, 19, 3, 5, 2, 3, 7, 9],
+          backgroundColor: 'rgb(90, 245, 227)',
+          borderWidth: 1,
+          borderColor: 'rgb(0, 0, 0)'
         },
-        grid: {
-          color: 'rgba(255, 255, 255, 0.2)'
-        }
-      },
-      x: {
-        ticks: {
-          color: '#ffffff'
+        {
+          label: 'Bairro 2',
+          data: [10, 15, 5, 8, 3, 6, 4, 7],
+          backgroundColor: 'rgb(30, 208, 186)',
+          borderWidth: 1,
+          borderColor: 'rgb(0, 0, 0)'
         },
-        grid: {
-          color: 'rgba(255, 255, 255, 0.2)'
+        {
+          label: 'Bairro 3',
+          data: [10, 15, 5, 8, 3, 6, 4, 7],
+          backgroundColor: 'rgb(42, 157, 143)',
+          borderWidth: 1,
+          borderColor: 'rgb(0, 0, 0)'
         }
-      }
+      ]
     },
-    plugins: {
-      legend: {
-        labels: {
-          color: '#ffffff'
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            color: '#ffffff'
+          },
+          grid: {
+            color: 'rgba(255, 255, 255, 0.2)'
+          }
+        },
+        x: {
+          ticks: {
+            color: '#ffffff'
+          },
+          grid: {
+            color: 'rgba(255, 255, 255, 0.2)'
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          labels: {
+            color: '#ffffff'
+          }
         }
       }
     }
-  }
+  });
+
+
+  //  MÉTRICA DE BOLHA (PRINCIPAL)
+
+  const MetricaDeBolha = document.getElementById('can-metrica-bolha-principal');
+
+  new Chart(MetricaDeBolha, {
+    type: 'bubble',
+    data: {
+      datasets: [{
+        label: 'Caixa de drenagem1',
+        data: [
+          { x: 24, y: 22, r: 10 },
+          { x: 25, y: 20, r: 10 },
+          { x: 15, y: 15, r: 10 },
+          { x: 20, y: 35, r: 10 },
+          { x: 22, y: 32, r: 10 }
+        ],
+        backgroundColor: 'rgb(90, 245, 227)'
+      },
+
+      {
+        label: 'Caixa de drenagem2',
+        data: [
+          { x: 20, y: 20, r: 10 },
+          { x: 16, y: 20, r: 10 },
+          { x: 15, y: 15, r: 10 },
+          { x: 16, y: 20, r: 10 },
+          { x: 14, y: 22, r: 10 },
+          { x: 18, y: 30, r: 10 },
+          { x: 18, y: 27, r: 10 }
+        ],
+        backgroundColor: 'rgb(42, 157, 143)'
+      }
+
+
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: { // Todo a estilização da vertical ("Y" do plano cartesiano)
+          beginAtZero: true,
+          ticks: {
+            color: '#ffffff' // Cor do texto que está em baixo
+          },
+          grid: {
+            color: 'rgba(255, 255, 255, 0.2)'
+          }
+        },
+        x: { // Todo a estilização da horizontal ("X" do plano cartesiano)
+          ticks: {
+            color: '#ffffff'
+          },
+          grid: {
+            color: 'rgba(255, 255, 255, 0.2)'
+          }
+        }
+      },
+      plugins: { // Estilização dos textos das labels  (informações dos retângulos)
+        legend: {
+          labels: {
+            color: '#ffffff' //A cor dos textos labels (informações dos retângulos)
+          }
+        }
+      }
+    }
+  });
+
+  //MÉTRICA DE ROSCA (PRINCIPAL) 
+
+  const MetricaRoscaPrincipal = document.getElementById('can-metrica-rosca-principal');
+
+  new Chart(MetricaRoscaPrincipal, {
+    type: 'doughnut',
+    data: { 
+      labels: [
+        'Alerta normal',
+        'Alerta atenção',
+        'Alerta risco'
+      ],
+      datasets: [{
+        label: [
+          'Alerta normal',
+          'Alerta atenção',
+          'Alerta risco'
+        ],
+        data: [100, 150, 50],
+        backgroundColor: [
+          'rgb(90, 245, 227)',
+          'rgb(30, 208, 186)',
+          'rgb(42, 157, 143)',
+        ],
+         borderColor: '#000000',
+         borderWidth: 1,
+         hoverOffset: 3,
+      }],
+      
+    
+  },
+  options: {
+      plugins: {
+        legend: {
+          labels: {
+            color: '#ffffff'
+          }
+        }
+      }
+    }
 });
+
+
 
 </script>

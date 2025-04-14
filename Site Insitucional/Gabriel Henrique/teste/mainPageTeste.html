@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela principal</title>
+    <link rel="icon" href="../assets/icon/favicon.ico">
+    <link rel="stylesheet" href="../css/dashboards.css">
+    <script src="path/to/chartjs/dist/chart.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    
+
+</head>
+<body>
+
+    <div class="div-pai">
+          <!-- Sidebar -->
+        <div class="div-sidebar">
+            <div class="div-img">
+                <img src="../assets/img/ecodrain.png" alt="Logomarca da EcoDrain">
+            </div>
+            
+            <div class="div-botoes">
+                <div class="div-btComImg">
+                    <img src="../assets/img/main-menu.png" alt="Imagem do ícone da main page">
+                    <button>Tela principal</button>
+                </div>
+                <div class="div-btComImg">
+                    <img src="../assets/img/drainage.png" alt="">
+                    <button>Localização</button>
+                </div>
+            </div>
+        </div>
+        <!-- Cabeçalho -->
+        <header>
+            <div class="header-container">
+                <h2>TELA DE DASHBOARD</h2>
+
+                <div class="div-pai-perfil">
+                    <div class="div-linha"></div>
+                    <div class="div-todo-perfil">
+                        <div class="div-filho-perfil">
+                            <img src="../assets/img/profile.png" alt="imagem de perfil" class="img-perfil">
+                            <img src="../assets/img/seta-baixo.png" alt="ver opções" class="img-seta">
+                        </div>
+                        <div class="div-opcoes">
+                            <div class="div-opcao-sair">
+                                <span>Sair</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="container">
+
+          <!-- Alertas -->
+            <div class="container-alertas">
+                <div class="div-h2-alertas">
+                    <h2>Alertas dos bueiros registrados</h2>
+                </div>
+
+                    <div class="div-3-alertas">
+                        <div class="alerta div-normal">Nível normal</div>
+                        <div class="alerta div-atencao">Nível de atenção</div>
+                        <div class="alerta div-risco">Nível de risco</div>
+                    </div>
+                </div>
+
+              <!-- A métrica principal e o seu cabeçalho (gráfico de barras gerais) -->
+            <!-- CONTINUAÇÃO DO SEU HTML ATÉ: -->
+          <div class="div-metrica-principal">
+            <!-- Cabeçalho -->
+            <div class="div-head-metricas">
+              <div class="div-texto">Dados gerais do alerta</div>
+
+              <div class="div-select">
+                <select id="selectAno">
+                  <option value="2025">Ano de 2025</option>
+                  <option value="2024">Ano de 2024</option>
+                  <option value="2023">Ano de 2023</option>
+                </select>
+              </div>
+
+              <div class="div-select">
+                <select id="selectTipo">
+                  <option value="bar">Gráfico de Barras</option>
+                  <option value="line">Gráfico de Linhas</option>
+                  <option value="bubble">Gráfico de Bolhas</option>
+                </select>
+              </div>
+            </div>
+
+  <!-- Canvas do gráfico -->
+  <canvas id="metricaPrincipal"></canvas>
+</div>
+
+    
+        </div>
+
+    </div>
+</body>
+</html>
+
+<script>
+  const ctx = document.getElementById('metricaPrincipal');
+  const selectAno = document.getElementById('selectAno');
+  const selectTipo = document.getElementById('selectTipo');
+  
+  // Dados por ano e bairro
+  const dadosPorAno = {
+    2025: [
+      [200, 190, 150, 170, 190, 210, 230, 250],
+      [120, 140, 160, 130, 150, 170, 190, 210],
+      [100, 110, 120, 130, 140, 150, 160, 170]
+    ],
+    2024: [
+      [100, 90, 80, 70, 60, 50, 40, 30],
+      [70, 60, 50, 40, 30, 20, 10, 5],
+      [60, 50, 40, 30, 20, 10, 5, 2]
+    ],
+    2023: [
+      [150, 160, 170, 160, 150, 160, 170, 180],
+      [140, 130, 120, 110, 105, 115, 125, 135],
+      [130, 140, 150, 140, 130, 120, 110, 105]
+    ]
+  };
+  
+  // Labels dos meses
+  const labels = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago'];
+  
+  // Função para montar os datasets dinamicamente
+  function montarDatasets(tipo, dados) {
+    if (tipo === 'bubble') {
+      return [{
+        label: 'Bairro 1',
+        data: dados[0].map((valor, i) => ({ x: i, y: valor, r: 10 })),
+        backgroundColor: 'rgba(90, 245, 227, 0.6)'
+      }];
+    } else {
+      return [
+        {
+          label: 'Bairro 1',
+          data: dados[0],
+          backgroundColor: 'rgb(90, 245, 227)',
+          borderColor: 'black',
+          fill: tipo !== 'line'
+        },
+        {
+          label: 'Bairro 2',
+          data: dados[1],
+          backgroundColor: 'rgb(30, 208, 186)',
+          borderColor: 'black',
+          fill: tipo !== 'line'
+        },
+        {
+          label: 'Bairro 3',
+          data: dados[2],
+          backgroundColor: 'rgb(42, 157, 143)',
+          borderColor: 'black',
+          fill: tipo !== 'line'
+        }
+      ];
+    }
+  }
+  
+  // Variável para armazenar o gráfico atual
+  let graficoAtual;
+  
+  // Função para criar ou atualizar o gráfico
+  function criarGrafico(tipo, ano) {
+    const dados = dadosPorAno[ano];
+  
+    if (graficoAtual) graficoAtual.destroy();
+  
+    graficoAtual = new Chart(ctx, {
+      type: tipo,
+      data: {
+        labels: tipo !== 'bubble' ? labels : undefined,
+        datasets: montarDatasets(tipo, dados)
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { color: '#ffffff' },
+            grid: { color: 'rgba(255, 255, 255, 0.2)' }
+          },
+          x: {
+            ticks: { color: '#ffffff' },
+            grid: { color: 'rgba(255, 255, 255, 0.2)' }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: { color: '#ffffff' }
+          }
+        }
+      }
+    });
+  }
+  
+  // Inicia com gráfico de barras do ano 2025
+  criarGrafico('bar', '2025');
+  
+  // Eventos de mudança
+  selectAno.addEventListener('change', () => {
+    criarGrafico(selectTipo.value, selectAno.value);
+  });
+  selectTipo.addEventListener('change', () => {
+    criarGrafico(selectTipo.value, selectAno.value);
+  });
+  </script>
+  
