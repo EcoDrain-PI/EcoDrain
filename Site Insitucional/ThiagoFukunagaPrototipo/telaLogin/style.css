@@ -2,8 +2,9 @@
 body{
     margin: 0;
     font-family: 'DM sans';
-    height: 100vh;
+    height: 100%;
 }
+
 /* footer */
 .footer{
     background-color:#2A9D8F ;
@@ -45,29 +46,30 @@ body{
     display: flex;
 }
 /* header */
+
 .container{
     display: flex;
-    width: 80%;
+    width: 100%;
     margin: auto;
 }
 .header .container {
     justify-content: space-around;
     display: flex;
-    height: 150px ;
+    height: 100% ;
 }
 
 .header{
     border-bottom:solid#2A9D8F 2px;
-    height: 135px;
+    height: 14%;
     background-color: #2A9D8F;
 
 }
 .header .nav{
-    width:1250px;
-    height: 100px
+    width:100%;
+    
 }
 
-.header .nav .list:hover{
+li:hover{
     cursor: pointer;
     font-size: 24px ;
     font-weight: bolder;
@@ -95,7 +97,7 @@ body{
     cursor: pointer;
     font-size: 22px ;
     font-weight: bolder;
-    scale: 1.1;
+    scale: 1.05;
 }
 
 #alturaList{
@@ -117,115 +119,148 @@ body{
     display: flex;
     width:100% ;
     justify-content: flex-start;
-    height: 707px;
+    height: 89.2vh;
     background:  #264653;
-background: linear-gradient(180deg, rgba(38, 70, 83, 1) 23%, rgba(42, 157, 143, 1) 80%);
+
 }
 
+
+
 .cor{
-    color: #B7E4C7;
+    color: #264653;
     font-weight: bolder;
     margin-bottom: 10px;
     margin-top: 10px;
 
 }
 
-.header .container .nav img{
+.header  .container  .imgNav{
+    display: flex;
+    align-items: center;
+    margin-left: 80px;
+}
+
+.header  .container  .imgNav img{
     width: 200px;
 }
+
+
 /* login */
-.login .banner .container{
-    border: solid #264653 2px;
+.login  .container{
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 460px;
-    padding: 20px;
-    background-color: #028170;
-    height: 360px;
+    width: 30%;
+    background-color: white;
+    height: 60%;
     border: none;
-    border-radius: 16px;
-    align-items: center;
-}
-
-.login .banner .container input{
-    outline: none;
-    padding: 4px;
-    font-size: 12px;
     border-radius: 8px;
-    border: #264653;
-    width: 300px;
+    align-items: center;
+    box-shadow: 0px 0px 10px white;
 }
 
-.login .banner .container button{
-    width: 100px;
-    padding: 4px;
-    border-radius: 10px;
-    border: none;
+.login .container input{
+    outline: none;
+    padding: 6px;
+    font-size: 16px;
+    border-radius: 4px;
+    border:solid #264653 1px;
+    width: 400px;
+    height: 30px;
+}
+
+.login .container button{
+    padding: 8px;
+    border-radius: 6px;
+    border: solid 1px #264653;
+    background-color: dodgerblue;
     margin-top: 20px;
     font-weight: bold;
-    color: #264653;
-    font-size: 16px;
+    color: #000000;
+    font-size: 18px;
+    width: 100%;
+    height: 45px;
 }
 
-.login .banner .container button:hover{
+.login  .container button:hover{
     cursor: pointer;
-    scale: 1.2;
+    scale: 1.05;
+    
 }
 
-.login .banner .container img{
+.login  .container img{
     width: 200px;
+    align-self: center;
 }
 
-.login .banner .container input:focus{
-    scale: 1.1;
+.login  .container input:focus{
+    scale: 1.05;
     transition: 0.2;
 }
 
+.login .container .credenciais{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
 /* cadastro */
-.cadastro .banner .container{
-    border: solid #264653 2px;
+.cadastro  .container{
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 460px;
-    padding: 20px;
-    background-color: #028170;
-    height: 500px;
+    width: 35%;
+    background-color: white;
+    height: 78%;
     border: none;
-    border-radius: 16px;
+    border-radius: 8px;
     align-items: center;
+    box-shadow: 0px 0px 10px white;
 }
 
-.cadastro .banner .container input{
+.cadastro .container input{
     outline: none;
-    padding: 4px;
-    font-size: 12px;
-    border-radius: 8px;
-    border: #264653;
-    width: 300px;
-}
-.cadastro .banner .container button{
-    width: 120px;
     padding: 6px;
-    border-radius: 10px;
-    border: none;
-    margin-top: 20px;
-    font-weight: bolder;
-    color: #264653;
     font-size: 16px;
+    border-radius: 4px;
+    border:solid #264653 1px;
+    width: 400px;
+    height: 30px;
+}
+
+.cadastro .container button{
+    padding: 8px;
+    border-radius: 6px;
+    border: solid 1px #264653;
+    background-color: dodgerblue;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #000000;
+    font-size: 18px;
+    width: 100%;
+    height: 45px;
+}
+
+.cadastro  .container button:hover{
+    cursor: pointer;
+    scale: 1.05;
     
 }
-.cadastro .banner .container img{
+
+.cadastro  .container img{
     width: 200px;
+    align-self: center;
 }
 
-.cadastro .banner .container button:hover{
-    cursor: pointer;
-    scale: 1.2;
-}
-
-.cadastro .banner .container input:focus{
-    scale: 1.1;
+.cadastro  .container input:focus{
+    scale: 1.05;
     transition: 0.2;
+}
+
+.cadastro .container .credenciais{
+    display: flex;
+    flex-direction: column;
 }
