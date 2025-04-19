@@ -154,41 +154,42 @@ a{
     width: 360px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     transition: box-shadow 0.3s ease; 
+    margin-bottom: 5%;
+    margin-top: 7%;
   }
-
-  /* centralizando a calculadora */
-  .calculadora_container{
-    display:flex;
+  
+  /* Centralizando a calculadora */
+  .calculadora_container {
+    display: flex;
     justify-content: center;
     margin-bottom: 3%;
   }
-
-  .calculadora_container img{
+  
+  .calculadora_container img {
     width: 300px;
     margin: 200px;
-
   }
-
-/* Título */
+  
+  /* Título */
   .calculadora h2 {
     text-align: center;
     color: #2a2a2a;
     font-size: 22px;
     margin-bottom: 25px;
-}
-
-/* Texto das perguntas */
-.calculadora p {
+  }
+  
+  /* Texto das perguntas */
+  .calculadora p {
     font-size: 14px;
     color: #4a4a4a;
     margin-bottom: 6px;
-}
-
+  }
+  
   .calculadora:hover {
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
   }
-
-/* Campos de entrada */
+  
+  /* Campos de entrada */
   input[type="number"] {
     width: 100%;
     padding: 12px 14px;
@@ -200,15 +201,14 @@ a{
     transition: border-color 0.3s;
     box-sizing: border-box;
   }
-
+  
   input[type="number"]:focus {
     border-color: #2bb673;
     outline: none;
-}
-
-
-/* Botão */
-.calculadora button {
+  }
+  
+  /* Botão */
+  .calculadora button {
     width: 100%;
     padding: 13px;
     border: none;
@@ -219,18 +219,18 @@ a{
     font-size: 15px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.1s ease;
-}
-
-.calculadora button:hover {
+  }
+  
+  .calculadora button:hover {
     background-color: #239b5b;
     transform: translateY(-1px);
-}
-
-.calculadora button:active {
+  }
+  
+  .calculadora button:active {
     transform: scale(0.98);
-}
-
-#div_resultado {
+  }
+  
+  #div_resultado {
     margin-top: 25px;
     padding: 16px;
     background-color: #f8f8f8;
@@ -239,22 +239,23 @@ a{
     font-size: 14px;
     color: #333;
     line-height: 1.6;
-}
-
-#div_resultado strong {
+  }
+  
+  #div_resultado strong {
     color: #2b8740;
-}
+  }
 
 /*----------------------------------login------------------------------*/
-.banner{
+.banner {
   display: flex;
-  width:100% ;
+  width: 100%;
   justify-content: flex-start;
   height: 707px;
-  background:  #264653;
-background: linear-gradient(180deg, rgba(38, 70, 83, 1) 23%, rgba(42, 157, 143, 1) 80%);
+  background: #264653;
+  background: linear-gradient(180deg, rgba(38, 70, 83, 1) 23%, rgba(42, 157, 143, 1) 80%);
 }
-.login .banner .container{
+
+.login .banner .container {
   border: solid #264653 2px;
   display: flex;
   flex-direction: column;
@@ -268,7 +269,7 @@ background: linear-gradient(180deg, rgba(38, 70, 83, 1) 23%, rgba(42, 157, 143, 
   align-items: center;
 }
 
-.login .banner .container input{
+.login .banner .container input {
   outline: none;
   padding: 4px;
   font-size: 12px;
@@ -277,7 +278,7 @@ background: linear-gradient(180deg, rgba(38, 70, 83, 1) 23%, rgba(42, 157, 143, 
   width: 300px;
 }
 
-.login .banner .container button{
+.login .banner .container button {
   width: 100px;
   padding: 4px;
   border-radius: 10px;
@@ -288,28 +289,28 @@ background: linear-gradient(180deg, rgba(38, 70, 83, 1) 23%, rgba(42, 157, 143, 
   font-size: 16px;
 }
 
-.login .banner .container button:hover{
+.login .banner .container button:hover {
   cursor: pointer;
   scale: 1.2;
 }
 
-.login .banner .container img{
+.login .banner .container img {
   width: 200px;
 }
 
-.login .banner .container input:focus{
+.login .banner .container input:focus {
   scale: 1.1;
   transition: 0.2;
 }
 
-#Cadastrar-se{
-color: white;
-font-size: 20px;
-margin-top: 20px;
+#Cadastrar-se {
+  color: white;
+  font-size: 20px;
+  margin-top: 20px;
 }
 
 /*----------------------------------cadastro------------------------------*/
-.cadastro .banner .container{
+.cadastro .banner .container {
   border: solid #264653 2px;
   display: flex;
   flex-direction: column;
@@ -323,7 +324,7 @@ margin-top: 20px;
   align-items: center;
 }
 
-.cadastro .banner .container input{
+.cadastro .banner .container input {
   outline: none;
   padding: 4px;
   font-size: 12px;
@@ -331,7 +332,8 @@ margin-top: 20px;
   border: #264653;
   width: 300px;
 }
-.cadastro .banner .container button{
+
+.cadastro .banner .container button {
   width: 120px;
   padding: 6px;
   border-radius: 10px;
@@ -340,71 +342,73 @@ margin-top: 20px;
   font-weight: bolder;
   color: #264653;
   font-size: 16px;
-  
 }
-.cadastro .banner .container img{
+
+.cadastro .banner .container img {
   width: 200px;
 }
 
-.cadastro .banner .container button:hover{
+.cadastro .banner .container button:hover {
   cursor: pointer;
   scale: 1.2;
 }
 
-.cadastro .banner .container input:focus{
+.cadastro .banner .container input:focus {
   scale: 1.1;
   transition: 0.2;
 }
 
-
 /*--------------------------------------footer--------------------------------------*/
-  .footer {
-    background-color: #008f82;
-    color: #ffffff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 60px;
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .footer .esquerda {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 20px; 
-    margin-left: 50px;
-  }
-  
-  .footer .footerlogo {
-    height: 50px;  
-  }
-  
-  .footer .redes {
-    display: flex;
-    flex-direction: row;
-    margin: 5px; 
-    height: 30px;
-  }
-  
-  .footer .redes p {
-    cursor: pointer;  
-  }
-  
-  .footer .menu {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-  }
+.footer {
+  background-color: #008f82;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-  
-  .footer .direita {
-    display: flex;
-    flex-direction: column;
-    text-align: right;
-    margin-right: 50px;
-  }
-  
-  
+.footer .esquerda {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  margin-left: 50px;
+}
+
+.footer .footerlogo {
+  height: 50px;
+}
+
+.footer .redes {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+  height: 30px;
+}
+
+.footer .redes p {
+  cursor: pointer;
+}
+
+.footer .menu {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.footer .menu .coluna {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.footer .direita {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  margin-right: 50px;
+}
