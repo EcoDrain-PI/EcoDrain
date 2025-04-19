@@ -246,7 +246,9 @@ header .header-container {
 }
 
 .container-alertas .div-3-alertas .div-risco {
-    background-color: #25964D;
+    /* background-color: #25964D; */
+    background-color: crimson; 
+
     color: white;
 }
 
@@ -293,6 +295,7 @@ header .header-container {
 
 .container .metricas-secundarias {
     /* background-color: crimson; */
+    
     width: 1040px;
     height: 75%;
     padding: 10px;
