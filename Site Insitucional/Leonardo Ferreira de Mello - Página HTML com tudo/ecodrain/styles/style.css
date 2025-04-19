@@ -148,41 +148,42 @@ a{
     width: 360px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     transition: box-shadow 0.3s ease; 
+    margin-bottom: 5%;
+    margin-top: 7%;
   }
-
-  /* centralizando a calculadora */
-  .calculadora_container{
-    display:flex;
+  
+  /* Centralizando a calculadora */
+  .calculadora_container {
+    display: flex;
     justify-content: center;
     margin-bottom: 3%;
   }
-
-  .calculadora_container img{
+  
+  .calculadora_container img {
     width: 300px;
     margin: 200px;
-
   }
-
-/* Título */
+  
+  /* Título */
   .calculadora h2 {
     text-align: center;
     color: #2a2a2a;
     font-size: 22px;
     margin-bottom: 25px;
-}
-
-/* Texto das perguntas */
-.calculadora p {
+  }
+  
+  /* Texto das perguntas */
+  .calculadora p {
     font-size: 14px;
     color: #4a4a4a;
     margin-bottom: 6px;
-}
-
+  }
+  
   .calculadora:hover {
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
   }
-
-/* Campos de entrada */
+  
+  /* Campos de entrada */
   input[type="number"] {
     width: 100%;
     padding: 12px 14px;
@@ -194,15 +195,14 @@ a{
     transition: border-color 0.3s;
     box-sizing: border-box;
   }
-
+  
   input[type="number"]:focus {
     border-color: #2bb673;
     outline: none;
-}
-
-
-/* Botão */
-.calculadora button {
+  }
+  
+  /* Botão */
+  .calculadora button {
     width: 100%;
     padding: 13px;
     border: none;
@@ -213,18 +213,18 @@ a{
     font-size: 15px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.1s ease;
-}
-
-.calculadora button:hover {
+  }
+  
+  .calculadora button:hover {
     background-color: #239b5b;
     transform: translateY(-1px);
-}
-
-.calculadora button:active {
+  }
+  
+  .calculadora button:active {
     transform: scale(0.98);
-}
-
-#div_resultado {
+  }
+  
+  #div_resultado {
     margin-top: 25px;
     padding: 16px;
     background-color: #f8f8f8;
@@ -233,11 +233,11 @@ a{
     font-size: 14px;
     color: #333;
     line-height: 1.6;
-}
-
-#div_resultado strong {
+  }
+  
+  #div_resultado strong {
     color: #2b8740;
-}
+  }
 
 /*----------------------------------login------------------------------*/
 .banner{
