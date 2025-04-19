@@ -240,15 +240,16 @@ a{
   }
 
 /*----------------------------------login------------------------------*/
-.banner{
+.banner {
   display: flex;
-  width:100% ;
+  width: 100%;
   justify-content: flex-start;
   height: 707px;
-  background:  #264653;
-background: linear-gradient(180deg, rgba(38, 70, 83, 1) 23%, rgba(42, 157, 143, 1) 80%);
+  background: #264653;
+  background: linear-gradient(180deg, rgba(38, 70, 83, 1) 23%, rgba(42, 157, 143, 1) 80%);
 }
-.login .banner .container{
+
+.login .banner .container {
   border: solid #264653 2px;
   display: flex;
   flex-direction: column;
@@ -262,7 +263,7 @@ background: linear-gradient(180deg, rgba(38, 70, 83, 1) 23%, rgba(42, 157, 143, 
   align-items: center;
 }
 
-.login .banner .container input{
+.login .banner .container input {
   outline: none;
   padding: 4px;
   font-size: 12px;
@@ -271,7 +272,7 @@ background: linear-gradient(180deg, rgba(38, 70, 83, 1) 23%, rgba(42, 157, 143, 
   width: 300px;
 }
 
-.login .banner .container button{
+.login .banner .container button {
   width: 100px;
   padding: 4px;
   border-radius: 10px;
@@ -282,28 +283,28 @@ background: linear-gradient(180deg, rgba(38, 70, 83, 1) 23%, rgba(42, 157, 143, 
   font-size: 16px;
 }
 
-.login .banner .container button:hover{
+.login .banner .container button:hover {
   cursor: pointer;
   scale: 1.2;
 }
 
-.login .banner .container img{
+.login .banner .container img {
   width: 200px;
 }
 
-.login .banner .container input:focus{
+.login .banner .container input:focus {
   scale: 1.1;
   transition: 0.2;
 }
 
-#Cadastrar-se{
-color: white;
-font-size: 20px;
-margin-top: 20px;
+#Cadastrar-se {
+  color: white;
+  font-size: 20px;
+  margin-top: 20px;
 }
 
 /*----------------------------------cadastro------------------------------*/
-.cadastro .banner .container{
+.cadastro .banner .container {
   border: solid #264653 2px;
   display: flex;
   flex-direction: column;
@@ -317,7 +318,7 @@ margin-top: 20px;
   align-items: center;
 }
 
-.cadastro .banner .container input{
+.cadastro .banner .container input {
   outline: none;
   padding: 4px;
   font-size: 12px;
@@ -325,7 +326,8 @@ margin-top: 20px;
   border: #264653;
   width: 300px;
 }
-.cadastro .banner .container button{
+
+.cadastro .banner .container button {
   width: 120px;
   padding: 6px;
   border-radius: 10px;
@@ -334,22 +336,21 @@ margin-top: 20px;
   font-weight: bolder;
   color: #264653;
   font-size: 16px;
-  
 }
-.cadastro .banner .container img{
+
+.cadastro .banner .container img {
   width: 200px;
 }
 
-.cadastro .banner .container button:hover{
+.cadastro .banner .container button:hover {
   cursor: pointer;
   scale: 1.2;
 }
 
-.cadastro .banner .container input:focus{
+.cadastro .banner .container input:focus {
   scale: 1.1;
   transition: 0.2;
 }
-
 
 /*--------------------------------------footer--------------------------------------*/
 .footer {
