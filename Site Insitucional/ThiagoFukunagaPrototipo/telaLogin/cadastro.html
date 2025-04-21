@@ -43,14 +43,15 @@
                     <img src="assets/imgs/ecodrain.png" alt="">
                     <h1 class="cor">Cadastro</h1>
                     <h4 class="cor">Usuário:</h4>
-                    <input id="ipt_user" type="text">
+                    <input id="ipt_user" type="text" placeholder="NomeExemplo">
                     <h4 class="cor">E-mail:</h4>
-                    <input id="ipt_email" type="text">
+                    <input id="ipt_email" type="text" placeholder="exemplo@email.com">
                     <h4 class="cor">Senha:</h4>
-                    <input id="ipt_senha" type="password">
+                    <input id="ipt_senha" type="password" placeholder="SenhaEcodrain">
                     <h4 class="cor">Insira sua senha novamente:</h4>
-                    <input id="ipt_senha" type="password">
+                    <input id="ipt_senha2" type="password" placeholder="SenhaEcodrain">
                     <button onclick="cadastro()">Cadastrar-se</button>
+                    <div id="div_exibir"></div>
                 </div>
             </div>
         </div>
@@ -59,4 +60,27 @@
 </body>
 
 </html>
-<script></script>
+<script>
+    function cadastro(){
+        var senha = ipt_senha.value
+        var senha2 = ipt_senha2.value
+        var email = ipt_email.value
+        var usuario = ipt_user.value
+        var arroba_email = email.indexOf('@')
+        var validacao = 0
+        var tamanho_senha = senha.length;
+        var tamanho_senha2 = senha2.length;
+        div_exibir.innerHTML = ``
+
+        if(senha == "" && senha2 == "" && email == "" && usuario == ""){
+            alert("Preencha todos os campos")
+        }
+
+     if (arroba_email == 0 && tamanho_senha > 0 && senha == senha2){
+        div_exibir.innerHTML += `Usuário cadastrado com sucesso!`
+     }else{alert ("Preencha os campos corretamente!")}
+        
+        
+        
+}
+    </script>
