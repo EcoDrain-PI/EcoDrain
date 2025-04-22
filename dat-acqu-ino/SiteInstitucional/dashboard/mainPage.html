@@ -79,10 +79,10 @@
             Dados gerais do alerta
           </div>
           <div class="div-select">
-            <select id="selectAno1">
+            <select id="selectAnoBarraPrincipal">
               <option value="2025">Ano de 2025</option>
               <option value="2024">Ano de 2024</option>
-              <option value="2024">Ano de 2023</option>
+              <option value="2023">Ano de 2023</option>
             </select>
           </div>
           <!-- MÉTRICA PRINCIPAL -->
@@ -100,10 +100,10 @@
               Dados gerais do alerta
             </div>
             <div class="div-select">
-              <select id="selectAno2">
+              <select id="selectAnoBolhaPrincipal">
                 <option value="2025">Ano de 2025</option>
                 <option value="2024">Ano de 2024</option>
-                <option value="2024">Ano de 2023</option>
+                <option value="2023">Ano de 2023</option>
               </select>
             </div>
           </div>
@@ -117,10 +117,10 @@
               Dados gerais do alerta
             </div>
             <div class="div-select">
-              <select id="selectAno3">
+              <select id="selectAnoRoscaPrincipal">
                 <option value="2025">Ano de 2025</option>
                 <option value="2024">Ano de 2024</option>
-                <option value="2024">Ano de 2023</option>
+                <option value="2023">Ano de 2023</option>
               </select>
             </div>
           </div>
@@ -137,181 +137,6 @@
 
 </html>
 
-<script>
-
-  //  MÉTRICA DE BARRAS (PRINCIPAL)
-  
-  const MetricaBarrasGerais = document.getElementById('metricaPrincipal');
-
-  new Chart(MetricaBarrasGerais, {
-    type: 'bar',
-    data: {
-      labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago'],
-      datasets: [
-        {
-          label: 'Bairro 1',
-          data: [12, 19, 3, 5, 2, 3, 7, 9],
-          backgroundColor: 'rgb(90, 245, 227)',
-          borderWidth: 1,
-          borderColor: 'rgb(0, 0, 0)'
-        },
-        {
-          label: 'Bairro 2',
-          data: [10, 15, 5, 8, 3, 6, 4, 7],
-          backgroundColor: 'rgb(30, 208, 186)',
-          borderWidth: 1,
-          borderColor: 'rgb(0, 0, 0)'
-        },
-        {
-          label: 'Bairro 3',
-          data: [10, 15, 5, 8, 3, 6, 4, 7],
-          backgroundColor: 'rgb(42, 157, 143)',
-          borderWidth: 1,
-          borderColor: 'rgb(0, 0, 0)'
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            color: '#ffffff'
-          },
-          grid: {
-            color: 'rgba(255, 255, 255, 0.2)'
-          }
-        },
-        x: {
-          ticks: {
-            color: '#ffffff'
-          },
-          grid: {
-            color: 'rgba(255, 255, 255, 0.2)'
-          }
-        }
-      },
-      plugins: {
-        legend: {
-          labels: {
-            color: '#ffffff'
-          }
-        }
-      }
-    }
-  });
-
-
-  //  MÉTRICA DE BOLHA (PRINCIPAL)
-
-  const MetricaDeBolha = document.getElementById('can-metrica-bolha-principal');
-
-  new Chart(MetricaDeBolha, {
-    type: 'bubble',
-    data: {
-      datasets: [{
-        label: 'Caixa de drenagem1',
-        data: [
-          { x: 24, y: 22, r: 10 },
-          { x: 25, y: 20, r: 10 },
-          { x: 15, y: 15, r: 10 },
-          { x: 20, y: 35, r: 10 },
-          { x: 22, y: 32, r: 10 }
-        ],
-        backgroundColor: 'rgb(90, 245, 227)'
-      },
-
-      {
-        label: 'Caixa de drenagem2',
-        data: [
-          { x: 20, y: 20, r: 10 },
-          { x: 16, y: 20, r: 10 },
-          { x: 15, y: 15, r: 10 },
-          { x: 16, y: 20, r: 10 },
-          { x: 14, y: 22, r: 10 },
-          { x: 18, y: 30, r: 10 },
-          { x: 18, y: 27, r: 10 }
-        ],
-        backgroundColor: 'rgb(42, 157, 143)'
-      }
-
-
-      ]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        y: { // Todo a estilização da vertical ("Y" do plano cartesiano)
-          beginAtZero: true,
-          ticks: {
-            color: '#ffffff' // Cor do texto que está em baixo
-          },
-          grid: {
-            color: 'rgba(255, 255, 255, 0.2)'
-          }
-        },
-        x: { // Todo a estilização da horizontal ("X" do plano cartesiano)
-          ticks: {
-            color: '#ffffff'
-          },
-          grid: {
-            color: 'rgba(255, 255, 255, 0.2)'
-          }
-        }
-      },
-      plugins: { // Estilização dos textos das labels  (informações dos retângulos)
-        legend: {
-          labels: {
-            color: '#ffffff' //A cor dos textos labels (informações dos retângulos)
-          }
-        }
-      }
-    }
-  });
-
-  //MÉTRICA DE ROSCA (PRINCIPAL) 
-
-  const MetricaRoscaPrincipal = document.getElementById('can-metrica-rosca-principal');
-
-  new Chart(MetricaRoscaPrincipal, {
-    type: 'doughnut',
-    data: { 
-      labels: [
-        'Alerta normal',
-        'Alerta atenção',
-        'Alerta risco'
-      ],
-      datasets: [{
-        label: [
-          'Alerta normal',
-          'Alerta atenção',
-          'Alerta risco'
-        ],
-        data: [100, 150, 50],
-        backgroundColor: [
-          'rgb(90, 245, 227)',
-          'rgb(30, 208, 186)',
-          'rgb(42, 157, 143)',
-        ],
-         borderColor: '#000000',
-         borderWidth: 1,
-         hoverOffset: 3,
-      }],
-      
-    
-  },
-  options: {
-      plugins: {
-        legend: {
-          labels: {
-            color: '#ffffff'
-          }
-        }
-      }
-    }
-});
-
-
-
-</script>
+<script src="js/metricaDeBarras.js"></script>
+<script src="js/MetricaDeBolhas.js"></script>
+<script src="js/metricaDeRosca.js"></script>

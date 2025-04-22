@@ -247,7 +247,7 @@ header .header-container {
 
 .container-alertas .div-3-alertas .div-risco {
     /* background-color: #25964D; */
-    background-color: crimson; 
+    background-color: rgb(220, 20, 60); 
 
     color: white;
 }
@@ -260,7 +260,7 @@ header .header-container {
     width: 800px;
     height: 100%;
     padding: 10px;
-    margin-top: 100px;
+    margin-top: 40px;
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
@@ -299,7 +299,7 @@ header .header-container {
     width: 1040px;
     height: 75%;
     padding: 10px;
-    margin-top: 80px;
+    margin-top: 40px;
     /* border-radius: 15px; */
     /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); */
     display: flex;
