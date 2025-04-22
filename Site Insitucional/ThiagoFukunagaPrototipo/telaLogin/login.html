@@ -46,7 +46,8 @@
                     <input id="ipt_login" type="text" placeholder="Digite seu login">
                     <h4 class="cor">Senha:</h4>
                     <input id="ipt_senha" type="password" placeholder="Insira sua Senha">
-                    <button onclick="login()">Entrar</button>
+                    <button onclick="login()">Entrar <div id="div_teste"></div></button>
+                    
             
                 </div>
             </div>
@@ -61,7 +62,8 @@
         var senha = ipt_senha.value
         
         if(login == "professor@sptech.school" && senha =="sptech"){
-            alert("Logado")
+            // alert("Logado")
+            div_teste.innerHTML = `<a href="cadastro.html"></a>`;
         }else{
             alert(`Credenciais de login ou cadastro incorretas!`)
         }
