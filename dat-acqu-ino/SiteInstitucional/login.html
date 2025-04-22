@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login
+    </title>
+    <link rel="stylesheet" href="css/styleLogin.css" />
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <ul class="nav">
+                <h1><img src="assets/icon/ecodrain.png" alt=""></h1>
+                <div class="list">
+                    <li>
+                        <a href="index.html">Início</a>
+                    </li>
+                </div>
+                <div class="list">
+                    <li>
+                        <a href="calculadora.html">Calculadora</a>
+                    </li>
+                </div>
+                <div class="list">
+                    <li>
+                     <a href="sobre.html">Sobre </a>
+                    </li>
+                </div>
+                    <div class="botaoLog">
+                        <li id="alturaList">
+                           <a href="login.html"> Login</a>
+                        </li>
+                    </div>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="login">
+        <div class="banner">
+            <div class="container">
+                <div class="credenciais">
+                    <img src="assets/imgs/ecodrain.png" alt="">
+                    <h1 class="cor">Bem-vindo de volta</h1>
+                    <h4 class="cor">Login:</h4>
+                    <input id="ipt_login" type="text" placeholder="Digite seu login">
+                    <h4 class="cor">Senha:</h4>
+                    <input id="ipt_senha" type="password" placeholder="Insira sua Senha">
+
+                    <button onclick="login()">Entrar</button>
+
+                    <!-- <button onclick="login()">Entrar <div id="div_teste"></div></button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="esquerda">
+          <img class="footerlogo" src="assets/icon/ecodrain.png" alt="EcoDrain" />
+          <div class="redes">
+            <img src="assets/img/Facebook.png" alt="Facebook"/>
+            <img src="assets/img/X.png" alt="X"/>
+            <img src="assets/img/Instagram.png" alt="Instagram"/>          
+          </div>
+        </div>
+        <div class="menu">
+      
+          <div class="coluna">
+            <p><strong><a href="https://github.com/Gabriel1Ribeiro">GitHub - Gabriel Ribeiro</a></strong></p>
+            <p><strong><a href="https://github.com/AdamanLino"></a>GitHub - Adaman Lino</strong></p>
+            <p><strong><a href="https://github.com/Lelecasss">GitHub - Leonardo Mello</a></strong></p>
+          </div>
+          
+          <div class="coluna">
+            <p><strong><a href="https://github.com/ThiagoFukunaga">GitHub - Thiago Fukunaga</a></strong></p>
+            <p><strong><a href="#">https://github.com/EcoDrain-PI/EcoDrain</a></strong></p>
+            <p><strong><a href="#">https://github.com/EcoDrain-PI/EcoDrain</a></strong></p>
+          </div>
+        </div>
+        <div class="direita">
+          <p><strong>TELEFONE</strong>: (11)9999-9999</p>
+          <p><strong>WHATSAPP</strong>: (11)9999-9999</p>
+          <p><strong>SAC</strong>: ecodrain@gptech.school</p>
+        </div>
+      </div>
+</body>
+
+</html>
+<script>
+    var contador = 3
+    function login() {
+        var login = ipt_login.value
+        var senha = ipt_senha.value
+
+        
+        while(login != 'professor@sptech.school' || senha != 'sptech'){
+            alert(`Credenciais Incorretas! ${contador - 1} chance(s) restantes.`)
+            contador--
+            break
+        }
+        if(contador < 1){
+            alert('Você excedeu o limite de tentativas! Tente novamente daqui 1 minuto.')
+            contador = 3
+        }
+
+        else if (login == 'professor@sptech.school' && senha == 'sptech') {
+            window.location.assign("../SiteInstitucional/dashboard/mainPage.html")
+        }
+    }
+</script>

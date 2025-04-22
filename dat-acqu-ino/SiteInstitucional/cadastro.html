@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro
+    </title>
+    <link rel="stylesheet" href="css/styleLogin.css" />
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            
+            <div class="imgNav">
+                <img src="assets/imgs/ecodrain.png" alt="">
+            </div>
+            <ul class="nav">
+               
+               
+                <div class="list">
+                    <li>
+                        Início
+                    </li>
+                </div>
+                <div class="list">
+                    <li>
+                        Serviços
+                    </li>
+                </div>
+                <div class="list">
+                    <li>
+                        Sobre
+                    </li>
+            </ul>
+        </div>
+    </div>
+    <div class="cadastro">
+        <div class="banner">
+            <div class="container">
+                <div class="credenciais">
+                    <img src="assets/imgs/ecodrain.png" alt="">
+                    <h1 class="cor">Cadastro</h1>
+                    <h4 class="cor">Usuário:</h4>
+                    <input id="ipt_user" type="text" placeholder="NomeExemplo">
+                    <h4 class="cor">E-mail:</h4>
+                    <input id="ipt_email" type="text" placeholder="exemplo@email.com">
+                    <h4 class="cor">Senha:</h4>
+                    <input id="ipt_senha" type="password" placeholder="SenhaEcodrain">
+                    <h4 class="cor">Insira sua senha novamente:</h4>
+                    <input id="ipt_senha2" type="password" placeholder="SenhaEcodrain">
+                    <button onclick="cadastro()">Cadastrar-se</button>
+                    <div id="div_exibir"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>
+<script>
+    function cadastro(){
+        var senha = ipt_senha.value
+        var senha2 = ipt_senha2.value
+        var email = ipt_email.value
+        var usuario = ipt_user.value
+        var arroba_email = email.indexOf('@')
+        var validacao = 0
+        var tamanho_senha = senha.length;
+        var tamanho_senha2 = senha2.length;
+        div_exibir.innerHTML = ``
+
+        if(senha == "" && senha2 == "" && email == "" && usuario == ""){
+            alert("Preencha todos os campos")
+        }
+
+     if (arroba_email == 0 && tamanho_senha > 0 && senha == senha2){
+        div_exibir.innerHTML += `Usuário cadastrado com sucesso!`
+     }else{alert ("Preencha os campos corretamente!")}
+        
+        
+        
+}
+    </script>

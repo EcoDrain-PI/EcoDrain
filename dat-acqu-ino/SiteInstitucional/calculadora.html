@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Limpeza</title>
+    <link rel="stylesheet" href="css/styleIndex.css">
+
+    
+</head>
+<body>
+     <div class="header">
+    <div class="container">
+        <ul class="nav">
+            <h1><img src="assets/icon/ecodrain.png" alt=""></h1>
+            <div class="list">
+                <li>
+                    <a href="index.html">Início</a>
+                </li>
+            </div>
+            <div class="list">
+                <li>
+                    <a href="calculadora.html">Calculadora</a>
+                </li>
+            </div>
+            <div class="list">
+                <li>
+                 <a href="sobre.html">Sobre </a>
+                </li>
+            </div>
+                <div class="botaoLog">
+                    <li id="alturaList">
+                       <a href="login.html"> Login</a>
+                    </li>
+                </div>
+        </ul>
+    </div>
+</div>
+
+    
+<div class="calculadora_container">
+  <div class="calculadora">
+    <h3>Como o projeto pode ajudar: <br>Calculadora</h3>
+    <p>Total de bueiros no bairro:</p>
+    <input type="number" id="ipt_totalBueiros" placeholder="Ex: 200">
+
+    <p>Porcentagem estimada de bueiros sujos (%):</p>
+    <input type="number" id="ipt_porcSujos" placeholder="Ex: 40">
+
+    <p>Custo médio de limpeza por bueiro (R$):</p>
+    <input type="number" id="ipt_custoLimpeza" placeholder="Ex: 120">
+
+    <button onclick="Calcular()">Calcular</button>
+    <div id="div_resultado"></div>
+</div>
+</div>
+
+<div class="footer">
+    <div class="esquerda">
+      <img class="footerlogo" src="assets/icon/ecodrain.png" alt="EcoDrain" />
+      <div class="redes">
+        <img src="assets/img/Facebook.png" alt="Facebook"/>
+        <img src="assets/img/X.png" alt="X"/>
+        <img src="assets/img/Instagram.png" alt="Instagram"/>          
+      </div>
+    </div>
+    <div class="menu">
+          <div class="coluna">
+            <p><strong><a href="https://github.com/Gabriel1Ribeiro">GitHub - Gabriel Ribeiro</a></strong></p>
+            <p><strong><a href="https://github.com/AdamanLino"></a>GitHub - Adaman Lino</strong></p>
+            <p><strong><a href="https://github.com/Lelecasss">GitHub - Leonardo Mello</a></strong></p>
+          </div>
+          
+          <div class="coluna">
+            <p><strong><a href="https://github.com/ThiagoFukunaga">GitHub - Thiago Fukunaga</a></strong></p>
+            <p><strong><a href="https://github.com/kaua-dsilva">GitHub - Kauã Martins</a></strong></p>
+            <p><strong><a href="https://github.com/PedrooAmaral">GitHub - Pedro Amaral</a></strong></p>
+          </div>
+        </div>
+    <div class="direita">
+      <p><strong>TELEFONE</strong>: (11)9999-9999</p>
+      <p><strong>WHATSAPP</strong>: (11)9999-9999</p>
+      <p><strong>SAC</strong>: ecodrain@gptech.school</p>
+    </div>
+  </div>
+  
+
+</body>
+</html>
+
+<script>
+    function Calcular(){
+        var total = Number(ipt_totalBueiros.value)
+        var porcentagem = Number(ipt_porcSujos.value)
+        var custo = Number(ipt_custoLimpeza.value)
+
+        if (porcentagem < 0 || porcentagem > 100 || total <= 0 || custo <= 0) {
+            alert("Preencha os campos corretamente!")
+            return
+        }
+
+        var gasto_total = total * custo
+        var bueiros_sujos = (porcentagem / 100) * total
+        var gasto_efetivo = bueiros_sujos * custo
+        var economia = gasto_total - gasto_efetivo
+
+        div_resultado.innerHTML = `
+            Gasto atual (todos os bueiros): <strong>R$ ${gasto_total.toFixed(2)}</strong><br>
+            Gasto com sistema inteligente: <strong>R$ ${gasto_efetivo.toFixed(2)}</strong><br>
+            Economia gerada: <strong style="color:green;">R$ ${economia.toFixed(2)}</strong>
+        `
+    }
+</script>
+

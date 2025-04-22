@@ -43,7 +43,8 @@ const grafico = new Chart(ctx, {
         label: 'Bairro 3',
         data: dadosPorAno[2025][2],
         backgroundColor: 'rgb(42, 157, 143)'
-      }
+      },
+
     ]
   },
   options: {
