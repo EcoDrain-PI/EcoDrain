@@ -43,10 +43,8 @@ telefone varchar (14),
 primary key(id)
 );
 
-
-
 INSERT INTO endereco (CEP, nome_rua, posicaoX, posicaoY, bairro, num_bueiros)
-VALUES 
+VALUES
 ('12345678', 'Rua das Palmeiras', '10', '20', 'Centro', 2),
 ('87654321', 'Avenida dos Lagos', '2', '7', 'Jardim Sul', 3),
 ('11223344', 'Travessa do Sol', '12', '10', 'Nova Esperança', 1);
@@ -83,11 +81,3 @@ inner join endereco e on b.fkEndereco = e.id;
 select b.id AS id_bueiro,  b.tamanho_bueiro, s.id AS id_sensor
 from bueiro b
 inner join sensor s on b.fkSensor = s.id;
-
-
-
-
-
-
-
-
