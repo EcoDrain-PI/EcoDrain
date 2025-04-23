@@ -146,6 +146,7 @@ a{
   padding:20px; 
   }
 
+
   /*calculadora*/
   .calculadora {
     background-color: #ffffff;
@@ -392,18 +393,6 @@ a{
 
 .footer .redes p {
   cursor: pointer;
-}
-
-.footer .menu {
-  display: flex;
-  flex-direction: row;
-  gap: 40px;
-}
-
-.footer .menu .coluna {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
 }
 
 .footer .direita {

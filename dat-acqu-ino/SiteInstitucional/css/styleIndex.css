@@ -146,6 +146,44 @@ a{
   padding:20px; 
   }
 
+  .sobrenos {
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+
+  .sobrenos h2 {
+    max-width: 800px;      
+    margin: 0;  
+    text-align: center;      
+    color: #000;
+    padding-left: 450px;
+    
+  }
+
+  .colunas {
+    display: flex;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .coluna {
+    flex: 1;
+    padding: 0;
+  }
+
+  .coluna p,
+  .coluna p a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .coluna p a:hover {
+    text-decoration: underline;
+  }
+
   /*calculadora*/
   .calculadora {
     background-color: #ffffff;
