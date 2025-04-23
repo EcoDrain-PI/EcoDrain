@@ -26,12 +26,12 @@
         <div class="div-restricoes">
           <div class="div-btComImg">
             <img src="../assets/img/main-menu.png" alt="Imagem do ícone da main page">
-            <a href="mainPage.html"><button>Tela principal</button>
-            </div></a>
+            <button>Tela principal</button>
+          </div>
         </div>
         <div class="div-btComImg">
           <img src="../assets/img/drainage.png" alt="">
-         <a href="localizacao.html"><button>Localização</button></a> 
+          <button>Localização</button>
         </div>
 
       </div>
@@ -50,7 +50,7 @@
             </div>
             <div class="div-opcoes">
               <div class="div-opcao-sair">
-               <a href="../index.html"><span>Sair</span></a>
+                <span>Sair</span>
               </div>
             </div>
           </div>
@@ -59,24 +59,35 @@
     </header>
     <div class="container">
 
-      <h1>Bairros com sensores</h1>
+
       <div class="metricas-secundarias">
 
         <!-- MÉTRICA DE BOLHA -->
-        <div class="metrica-secun">
+        <div class="metrica-secun mooca">
           <div class="div-head-metricas">
             <div class="div-texto">
-              Localização dos sensores
-            </div>
-            <div class="div-select">
-              <select id="selectAnoBolhaPrincipal">
-                <option value="2025">Ano de 2025</option>
-                <option value="2024">Ano de 2024</option>
-                <option value="2023">Ano de 2023</option>
-              </select>
+              Bairro Mooca (por ruas)
             </div>
           </div>
-          <canvas id="can-metrica-bolha-principal"></canvas>
+          <canvas id="metrica-Barras-Mooca"></canvas>
+        </div>
+
+        <div class="metrica-secun">
+          <div class="div-head-metricas carrao">
+            <div class="div-texto">
+              Bairro Carrão (por ruas)
+            </div>
+          </div>
+          <canvas id="metrica-Barras-Carrao"></canvas>
+        </div>
+
+        <div class="metrica-secun itaquera">
+          <div class="div-head-metricas">
+            <div class="div-texto">
+              Bairro Itaquera (por ruas)
+            </div>
+          </div>
+          <canvas id="metrica-Barras-Itaquera"></canvas>
         </div>
 
       </div>
@@ -88,4 +99,4 @@
 </body>
 
 </html>
-<script src="js/MetricaDeBolhas.js"></script>
+<script src="js/metricaDeBarras2.js"></script>

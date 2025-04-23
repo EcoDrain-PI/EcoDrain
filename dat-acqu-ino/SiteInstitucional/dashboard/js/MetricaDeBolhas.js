@@ -41,7 +41,12 @@
        label: 'Sensores instalados',
        data: dadosPorAnoBolha[2025],
        backgroundColor: 'rgb(90, 245, 227)'
-     }
+     },
+     {
+      label: 'Sensores instalados',
+      data: dadosPorAnoBolha[2025],
+      backgroundColor: 'rgb(81, 255, 0)'
+    }
      ]
    },
    options: {
