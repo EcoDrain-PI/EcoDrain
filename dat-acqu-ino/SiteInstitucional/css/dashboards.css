@@ -10,7 +10,16 @@ body {
     flex-wrap: wrap;
 }
 
+a {
+    text-decoration: none;
+    color: white;
+}
+
 h2 {
+    color: white;
+}
+
+h1 {
     color: white;
 }
 
@@ -180,6 +189,7 @@ header .header-container {
     color: white;
     font-size: 15px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 /* FIM SIDEBAR */
@@ -315,7 +325,7 @@ header .header-container {
     width: 450px;
     height: 100%;
     padding: 10px;
-    margin-bottom: 30px;
+
 }
 
 
@@ -326,3 +336,37 @@ header .header-container {
     width: 290px;
     height: 290px;
 }
+
+
+/* Parte de informações de coordenadas do gráfico de bolhas*/
+
+.div-img .img-coordenadas {
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+}
+
+.container .div-coordenadas-graf-bolha {
+    display: none;
+    margin-top: 20px;
+    background-color: #264F4A ;
+    width: 30rem;
+    padding: 10px;
+    border-radius: 15px;
+    color: white;
+    border: 2px #1ED0BA solid;
+}
+
+.container .div-coordenadas-graf-bolha .div-coordenadas-bairro {
+    width: 50%;
+    margin-left: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container .div-coordenadas-graf-bolha .h2-coordenadas,.container .div-coordenadas-graf-bolha p {
+    color: white;
+    display: flex;
+    justify-content: center;
+ }
