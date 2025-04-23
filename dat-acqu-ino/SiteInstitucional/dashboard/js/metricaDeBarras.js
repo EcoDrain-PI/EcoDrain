@@ -29,18 +29,18 @@ const grafico = new Chart(ctx, {
     labels: labels,
     datasets: [
       {
-        label: 'Bairro 1',
+        label: 'Bairro Mooca',
         data: dadosPorAno[2025][0],
         borderColor: 'black',
         backgroundColor: 'rgb(90, 245, 227)'
       },
       {
-        label: 'Bairro 2',
+        label: 'Bairro Itaquera',
         data: dadosPorAno[2025][1],
         backgroundColor: 'rgb(30, 208, 186)'
       },
       {
-        label: 'Bairro 3',
+        label: 'Bairro Carrão',
         data: dadosPorAno[2025][2],
         backgroundColor: 'rgb(42, 157, 143)'
       },
