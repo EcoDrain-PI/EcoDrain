@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #f1f4f8, #dfe9f3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Caixa principal */
+.container {
+    background-color: #ffffff;
+    padding: 35px 30px;
+    border-radius: 20px;
+    width: 360px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease;
+}
+
+.container:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+h2 {
+    text-align: center;
+    color: #2a2a2a;
+    font-size: 22px;
+    margin-bottom: 25px;
+}
+
+/* Texto das perguntas */
+p {
+    font-size: 14px;
+    color: #4a4a4a;
+    margin-bottom: 6px;
+}
+
+/* Campos de entrada */
+input[type="number"] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fdfdfd;
+    font-size: 15px;
+    margin-bottom: 18px;
+    transition: border-color 0.3s;
+}
+
+input[type="number"]:focus {
+    border-color: #2bb673;
+    outline: none;
+}
+
+/* Botão */
+button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 30px;
+    background-color: #2bb673;
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+button:hover {
+    background-color: #239b5b;
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+#div_resultado {
+    margin-top: 25px;
+    padding: 16px;
+    background-color: #f8f8f8;
+    border-left: 4px solid #2bb673;
+    border-radius: 12px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+}
+
+#div_resultado strong {
+    color: #2b8740;
+}
