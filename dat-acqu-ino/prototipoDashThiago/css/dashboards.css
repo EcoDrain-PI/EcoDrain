@@ -1,0 +1,330 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #1F2C31;
+}
+
+.div-pai {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+h2 {
+    color: white;
+}
+
+/* NAVBAR */
+
+header {
+    background-color: #264F4A;
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+    /* BOTÃO PARA SAIR */
+
+.div-pai-perfil {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 8vw;
+}
+
+    /* '.div-linha' é aquela linha ao lado do perfil (para sair)  */
+.div-linha {
+    height: 5vh;
+    width: 3px;
+    background-color: white;
+}
+
+    /* '.div-todo-perfil' é todo aquele ' img de perfil e a opção de sair' */
+.div-todo-perfil {
+    width: 90px;
+    position: relative;
+}
+
+    /* '.div-filho-perfil' é a parte das imagens de perfil e a seta para baixo*/
+.div-filho-perfil{
+    background-color: #2A9D8F;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ao passar do mouse, tira a borda da parte de baixo da div da img de perfil e da seta */
+.div-filho-perfil:hover {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;   
+}
+
+    /* '.div-opcao-sair' é a div que está o texto 'Sair'*/
+.div-filho-perfil, .div-opcao-sair {
+    display: flex;
+    align-items: center;
+    padding: 9px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    color: white;
+    justify-content: space-around;
+    text-align: center; 
+}
+
+.div-opcoes {
+    display: none;
+    position: absolute;
+    background: #2A9D8F;
+    width: 100%;
+}
+
+.div-todo-perfil:hover .div-opcoes {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;    
+    display: block;
+}
+.div-todo-perfil .img-perfil {
+    width: 35px;
+    height: 35px;
+}
+
+.div-todo-perfil .img-seta {
+    width: 20px;
+    height: 20px;
+}
+
+header .header-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 300px;
+    margin-right: 50px;
+}
+
+    /* FIM DO BOTÃO PARA SAIR */
+
+/* FIM DA NAVBAR */
+
+/* NAVBAR E SIDEBAR (JUNÇÃO)*/
+
+.div-pai {
+    display: flex;
+}
+
+.div-pai .div-sidebar {
+    background-color: #264653;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 100vh;
+}
+
+/* FIM DA NAVBAR E SIDEBAR (JUNÇÃO) */
+
+
+/* SIDEBAR */
+
+.div-sidebar .div-img {
+
+    margin: 30px 20px 20px 30px;  /* cima, direita, baixo e esquerda */
+
+}
+
+.div-sidebar img {
+    width: 150px;
+    height: 65px;
+}
+
+.div-sidebar .div-botoes {
+    margin: 70px 20px 10px 30px;
+}
+
+/* Div que está em volta dos botões (o botão da tela que você está atualmente)*/
+.div-sidebar .div-botoes .div-btComImg {
+    display: flex;
+    margin-bottom: 20px;
+    background-color: #1ED0BA;
+    width: 150px;
+    height: 35px;
+    padding: 7px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    border: 1px solid transparent;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+/* O ".div-restricoes" é a div para os botões das telas que você NÃO está */
+.div-sidebar .div-botoes .div-restricoes .div-btComImg {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.div-sidebar .div-botoes .div-btComImg img {
+    width: 25px;
+    height: 25px;
+}
+
+.div-sidebar .div-botoes .div-btComImg button {
+    background-color: transparent;
+    border: 0;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* FIM SIDEBAR */
+
+/* CONTAINER PRINCIPAL (TUDO QUE NÃO É A NAV OU SIDEBAR) */
+
+    /* ALERTAS */
+
+.div-pai .container {
+    background-color: #1F2C31;
+    width: 100vw;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    margin-top: 40px;
+    margin-left: 240px;
+    flex-wrap: wrap;
+}
+
+.div-pai .container .container-alertas {
+    background-color: #264F4A;
+    display: grid;
+    justify-content: center;
+    align-items: start;
+    justify-items: center;
+    width: 70vw;
+    /* height: 30vh; */
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.container-alertas .div-h2-alertas {
+    padding: 0;
+    margin: 0;
+}
+
+.container-alertas .div-3-alertas {
+    /* background-color: crimson; */
+    width: 70vw;
+    height: 150px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.container-alertas .div-3-alertas .alerta {
+    background-color: #1ED0BA;
+    width: 27%;
+    height: 60%;
+    margin: 10px;
+    border-radius: 15px;
+    text-align: center;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.container-alertas .div-3-alertas .div-normal {
+    background-color: #7FFBAB;
+}
+
+.container-alertas .div-3-alertas .div-atencao {
+    background-color: #3EE178;
+}
+
+.container-alertas .div-3-alertas .div-risco {
+    /* background-color: #25964D; */
+    background-color: rgb(220, 20, 60); 
+
+    color: white;
+}
+
+
+/* Métricas */
+
+.container .div-metrica-principal {
+    background-color: #264F4A;
+    width: 800px;
+    height: 100%;
+    padding: 10px;
+    margin-top: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+
+.container .div-head-metricas .div-select select {
+    padding: 8px 12px;
+    border-radius: 5px;
+    background-color: #2A9D8F;
+    color: white;
+    border: none;
+    font-size: 16px;
+}
+
+.container .div-head-metricas .div-select option {
+    color: white;
+    background-color: #2A9D8F; /* Funciona em alguns navegadores */
+}
+
+.container .div-head-metricas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.div-texto {
+    color: white;
+    font-size: 20px;
+    border-bottom: 1px solid white;
+}
+
+.container .metricas-secundarias {
+    /* background-color: crimson; */
+    
+    width: 1040px;
+    height: 75%;
+    padding: 10px;
+    margin-top: 40px;
+    /* border-radius: 15px; */
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Para quando a tela ficar menos, uma métrica fique em baixo da outra */
+}
+
+.container .metricas-secundarias .metrica-secun {
+    background-color: #264F4A;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    width: 450px;
+    height: 100%;
+    padding: 10px;
+
+}
+/* .div-selec{
+    display: flex;
+} */
+
+.container .div-centralizar-metrica {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 290px;
+    height: 290px;
+}

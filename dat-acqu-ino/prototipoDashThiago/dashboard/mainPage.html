@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tela principal</title>
+  <link rel="icon" href="../assets/icon/favicon.ico">
+  <link rel="stylesheet" href="../css/dashboards.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+</head>
+
+<body>
+
+  <div class="div-pai">
+    <!-- Sidebar -->
+    <div class="div-sidebar">
+      <div class="div-img">
+        <img src="../assets/img/ecodrainSemFundo.png" alt="Logomarca da EcoDrain">
+      </div>
+
+      <div class="div-botoes">
+        <div class="div-restricoes">
+          <div class="div-btComImg">
+            <img src="../assets/img/main-menu.png" alt="Imagem do ícone da main page">
+            <button>Tela principal</button>
+          </div>
+        </div>
+        <div class="div-btComImg">
+          <img src="../assets/img/drainage.png" alt="">
+          <button>Localização</button>
+        </div>
+
+      </div>
+    </div>
+    <!-- Cabeçalho -->
+    <header>
+      <div class="header-container">
+        <h2>TELA DE LOCALIZAÇÃO</h2>
+
+        <div class="div-pai-perfil">
+          <div class="div-linha"></div>
+          <div class="div-todo-perfil">
+            <div class="div-filho-perfil">
+              <img src="../assets/img/profile.png" alt="imagem de perfil" class="img-perfil">
+              <img src="../assets/img/seta-baixo.png" alt="ver opções" class="img-seta">
+            </div>
+            <div class="div-opcoes">
+              <div class="div-opcao-sair">
+                <span>Sair</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+
+
+      <div class="metricas-secundarias">
+
+        <!-- MÉTRICA DE BOLHA -->
+        <div class="metrica-secun">
+          <div class="div-head-metricas">
+            <div class="div-texto">
+              Localização dos sensores
+            </div>
+            <div class="div-select">
+              <select id="selectAnoBolhaPrincipal">
+                <option value="2025">Ano de 2025</option>
+                <option value="2024">Ano de 2024</option>
+                <option value="2023">Ano de 2023</option>
+              </select>
+            </div>
+          </div>
+          <canvas id="can-metrica-bolha-principal"></canvas>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  </div>
+</body>
+
+</html>
+<script src="js/MetricaDeBolhas.js"></script>
