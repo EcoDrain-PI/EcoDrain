@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Limpeza</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div class="container">
+        <img src="ecodrain.png" alt="Logo da plataforma" class="top-image">
+
+        <p>Total de bueiros no bairro:</p>
+        <input type="number" id="ipt_totalBueiros" placeholder="Ex: 200">
+
+        <p>Porcentagem estimada de bueiros sujos (%):</p>
+        <input type="number" id="ipt_porcSujos" placeholder="Ex: 40">
+
+        <p>Custo médio de limpeza por bueiro (R$):</p>
+        <input type="number" id="ipt_custoLimpeza" placeholder="Ex: 120">
+
+        <button onclick="Calcular()">Calcular</button>
+        <div id="div_resultado"></div>
+    </div>
+</body>
+</html>
+
+<script>
+    function Calcular(){
+        var total = Number(ipt_totalBueiros.value)
+        var porcentagem = Number(ipt_porcSujos.value)
+        var custo = Number(ipt_custoLimpeza.value)
+
+        if (porcentagem < 0 || porcentagem > 100 || total <= 0 || custo <= 0) {
+            alert("Preencha os campos corretamente!")
+            return
+        }
+
+        var gasto_total = total * custo
+        var bueiros_sujos = (porcentagem / 100) * total
+        var gasto_efetivo = bueiros_sujos * custo
+        var economia = gasto_total - gasto_efetivo
+
+        div_resultado.innerHTML = `
+            Gasto atual (todos os bueiros): <strong>R$ ${gasto_total.toFixed(2)}</strong><br>
+            Gasto com sistema inteligente: <strong>R$ ${gasto_efetivo.toFixed(2)}</strong><br>
+            Economia gerada: <strong style="color:green;">R$ ${economia.toFixed(2)}</strong>
+        `
+    }
+</script>
