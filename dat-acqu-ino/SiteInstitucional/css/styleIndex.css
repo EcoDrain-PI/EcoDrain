@@ -95,7 +95,7 @@ a{
 
 .diagrama {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   
 }
@@ -105,11 +105,12 @@ a{
   height: 1080px; */
   max-width: 100%;
   height: auto;
-  margin-left: 200px;
+  margin-left: 150px;
 }
 .header .container .nav img{
   width: 200px;
 }
+
 
 /*--------------------------------------main--------------------------------------*/
 .main {
@@ -135,6 +136,11 @@ a{
     color: #333;
     font-size: 20px;
   }
+
+.main .ilustracao img{
+width: 350px;
+
+}
 
 .caixa-de-imagens {
   display: flex;             
@@ -173,7 +179,7 @@ a{
     margin: 0;  
     text-align: center;      
     color: #000;
-    padding-left: 450px;
+    padding-left: 15%;
     
   }
 
