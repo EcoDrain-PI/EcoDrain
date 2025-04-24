@@ -25,12 +25,12 @@ const grafico1 = new Chart(canvasMooca, {
         backgroundColor: 'rgb(90, 245, 227)'
       },
       {
-        label: 'Pães de barros',
+        label: 'Rua Pães de barros',
         data: dadosPorMesMooca[2025][1],
         backgroundColor: 'rgb(30, 208, 186)'
       },
       {
-        label: 'Ezequiel Ramos',
+        label: 'Rua Ezequiel Ramos',
         data: dadosPorMesMooca[2025][2],
         backgroundColor: 'rgb(42, 157, 143)'
       },
@@ -82,18 +82,18 @@ const graficoItaquera = new Chart(canvasItaquera, {
     labels: labelsItaquera,
     datasets: [
       {
-        label: 'Mooca',
+        label: 'Rua São Teodoro',
         data: dadosPorMesItaquera[2025][0],
         borderColor: 'black',
         backgroundColor: 'rgb(90, 245, 227)'
       },
       {
-        label: 'Pães de barros',
+        label: 'Rua Virginia Fernie',
         data: dadosPorMesItaquera[2025][1],
         backgroundColor: 'rgb(30, 208, 186)'
       },
       {
-        label: 'Ezequiel Ramos',
+        label: 'Rua Itaquera',
         data: dadosPorMesItaquera[2025][2],
         backgroundColor: 'rgb(42, 157, 143)'
       },
@@ -145,18 +145,18 @@ const grafico2 = new Chart(ctx2, {
     labels: labels2,
     datasets: [
       {
-        label: 'Mooca',
+        label: 'Rua Barueri',
         data: dadosPorMesCarrao[2025][0],
         borderColor: 'black',
         backgroundColor: 'rgb(90, 245, 227)'
       },
       {
-        label: 'Pães de barros',
+        label: 'Rua Boa Estrela',
         data: dadosPorMesCarrao[2025][1],
         backgroundColor: 'rgb(30, 208, 186)'
       },
       {
-        label: 'Ezequiel Ramos',
+        label: 'Rua Dulce',
         data: dadosPorMesCarrao[2025][2],
         backgroundColor: 'rgb(42, 157, 143)'
       },
