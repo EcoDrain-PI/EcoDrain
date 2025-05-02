@@ -35,7 +35,7 @@ header {
 }
 
 
-    /* BOTÃO PARA SAIR */
+/* BOTÃO PARA SAIR */
 
 .div-pai-perfil {
     display: flex;
@@ -44,21 +44,21 @@ header {
     width: 8vw;
 }
 
-    /* '.div-linha' é aquela linha ao lado do perfil (para sair)  */
+/* '.div-linha' é aquela linha ao lado do perfil (para sair)  */
 .div-linha {
     height: 5vh;
     width: 3px;
     background-color: white;
 }
 
-    /* '.div-todo-perfil' é todo aquele ' img de perfil e a opção de sair' */
+/* '.div-todo-perfil' é todo aquele ' img de perfil e a opção de sair' */
 .div-todo-perfil {
     width: 90px;
     position: relative;
 }
 
-    /* '.div-filho-perfil' é a parte das imagens de perfil e a seta para baixo*/
-.div-filho-perfil{
+/* '.div-filho-perfil' é a parte das imagens de perfil e a seta para baixo*/
+.div-filho-perfil {
     background-color: #2A9D8F;
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
@@ -70,11 +70,12 @@ header {
 /* ao passar do mouse, tira a borda da parte de baixo da div da img de perfil e da seta */
 .div-filho-perfil:hover {
     border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;   
+    border-bottom-right-radius: 0;
 }
 
-    /* '.div-opcao-sair' é a div que está o texto 'Sair'*/
-.div-filho-perfil, .div-opcao-sair {
+/* '.div-opcao-sair' é a div que está o texto 'Sair'*/
+.div-filho-perfil,
+.div-opcao-sair {
     display: flex;
     align-items: center;
     padding: 9px;
@@ -83,7 +84,7 @@ header {
     border-bottom-right-radius: 15px;
     color: white;
     justify-content: space-around;
-    text-align: center; 
+    text-align: center;
 }
 
 .div-opcoes {
@@ -95,9 +96,10 @@ header {
 
 .div-todo-perfil:hover .div-opcoes {
     border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;    
+    border-bottom-right-radius: 15px;
     display: block;
 }
+
 .div-todo-perfil .img-perfil {
     width: 35px;
     height: 35px;
@@ -118,7 +120,7 @@ header .header-container {
     margin-right: 50px;
 }
 
-    /* FIM DO BOTÃO PARA SAIR */
+/* FIM DO BOTÃO PARA SAIR */
 
 /* FIM DA NAVBAR */
 
@@ -144,7 +146,8 @@ header .header-container {
 
 .div-sidebar .div-img {
 
-    margin: 30px 20px 20px 30px;  /* cima, direita, baixo e esquerda */
+    margin: 30px 20px 20px 30px;
+    /* cima, direita, baixo e esquerda */
 
 }
 
@@ -196,7 +199,7 @@ header .header-container {
 
 /* CONTAINER PRINCIPAL (TUDO QUE NÃO É A NAV OU SIDEBAR) */
 
-    /* ALERTAS */
+/* ALERTAS */
 
 .div-pai .container {
     background-color: #1F2C31;
@@ -257,7 +260,7 @@ header .header-container {
 
 .container-alertas .div-3-alertas .div-risco {
     /* background-color: #25964D; */
-    background-color: rgb(220, 20, 60); 
+    background-color: rgb(220, 20, 60);
 
     color: white;
 }
@@ -287,7 +290,8 @@ header .header-container {
 
 .container .div-head-metricas .div-select option {
     color: white;
-    background-color: #2A9D8F; /* Funciona em alguns navegadores */
+    background-color: #2A9D8F;
+    /* Funciona em alguns navegadores */
 }
 
 .container .div-head-metricas {
@@ -305,7 +309,7 @@ header .header-container {
 
 .container .metricas-secundarias {
     /* background-color: crimson; */
-    
+
     width: 1040px;
     height: 75%;
     padding: 10px;
@@ -315,7 +319,8 @@ header .header-container {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    flex-wrap: wrap; /* Para quando a tela ficar menos, uma métrica fique em baixo da outra */
+    flex-wrap: wrap;
+    /* Para quando a tela ficar menos, uma métrica fique em baixo da outra */
 }
 
 .container .metricas-secundarias .metrica-secun {
@@ -350,7 +355,7 @@ header .header-container {
 .container .div-coordenadas-graf-bolha {
     display: none;
     margin-top: 20px;
-    background-color: #264F4A ;
+    background-color: #264F4A;
     width: 30rem;
     padding: 10px;
     border-radius: 15px;
@@ -366,8 +371,9 @@ header .header-container {
     align-items: center;
 }
 
-.container .div-coordenadas-graf-bolha .h2-coordenadas,.container .div-coordenadas-graf-bolha p {
+.container .div-coordenadas-graf-bolha .h2-coordenadas,
+.container .div-coordenadas-graf-bolha p {
     color: white;
     display: flex;
     justify-content: center;
- }
+}
