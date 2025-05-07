@@ -26,22 +26,21 @@
             <a href="mainPage.html"><button>Tela principal</button> </a> 
           </div>
         </div>
-
-          <div class="div-btComImg">
+        <div class="div-restricoes">
+            <div class="div-btComImg">
             <img src="../assets/img/drainage.png" alt="">
             <button>Localização</button>
-          </div>
-        <div class="div-restricoes">
-          <div class="div-btComImg">
-            <img src="../assets/img/parametro.png" alt="">
-            <a href="localizacao.html"><button>Parâmetros</button></a>
-          </div>
+            </div>
         </div>
         <div class="div-restricoes">
-          <div class="div-btComImg">
+            <div class="div-btComImg">
+                <img src="../assets/img/parametro.png" alt="">
+                <a href="localizacao.html"><button>Parâmetros</button></a>
+            </div>
+        </div>
+        <div class="div-btComImg">
             <img src="../assets/img/setaDireita.png" alt="">
-            <a href="zonaLeste.html"><button>Zona Leste</button></a>
-          </div>
+            <a href="localizacao.html"><button>Zona Leste</button></a>
         </div>
 
       </div>
@@ -49,7 +48,7 @@
     <!-- Cabeçalho -->
     <header>
       <div class="header-container">
-        <h2>TELA DE LOCALIZAÇÃO: NÍVEL NORMAL</h2>
+        <h2>TELA DA ZONA LESTE: CONTÉM X ALERTAS DE RISCO</h2>
 
         <div class="div-pai-perfil">
           <div class="div-linha"></div>
@@ -69,38 +68,24 @@
     </header>
     <div class="container">
 
-
-      <div class="metricas-secundarias">
-
-        <!-- MÉTRICA DE BARRAS -->
-        <div class="metrica-secun mooca">
-          <div class="div-head-metricas">
-            <div class="div-texto">
-              Bairro Mooca (por ruas)
+        <div class="div-metrica-principal">
+            <!-- Cabeçalho -->
+            <div class="div-head-metricas">
+              <div class="div-texto">
+                Níveis de lotação nos bueiros da Zona Leste
+              </div>
+              <div class="div-select">
+                <select id="selectAnoBarraPrincipalZL">
+                  <option value="2025">Ano de 2025</option>
+                  <option value="2024">Ano de 2024</option>
+                  <option value="2023">Ano de 2023</option>
+                </select>
+              </div>
+              <!-- MÉTRICA PRINCIPAL -->
             </div>
+            <canvas id="metricaPrincipalZL"></canvas>
           </div>
-          <canvas id="metrica-Barras-Mooca"></canvas>
-        </div>
 
-        <div class="metrica-secun">
-          <div class="div-head-metricas carrao">
-            <div class="div-texto">
-              Bairro Carrão (por ruas)
-            </div>
-          </div>
-          <canvas id="metrica-Barras-Carrao"></canvas>
-        </div>
-
-        <div class="metrica-secun itaquera">
-          <div class="div-head-metricas">
-            <div class="div-texto">
-              Bairro Itaquera (por ruas)
-            </div>
-          </div>
-          <canvas id="metrica-Barras-Itaquera"></canvas>
-        </div>
-
-      </div>
     </div>
 
   </div>
@@ -110,3 +95,4 @@
 
 </html>
 <script src="js/metricaDeBarras2.js"></script>
+<script src="js/zonasJS/zonaLeste.js"></script>

@@ -1,4 +1,4 @@
-const ctx = document.getElementById('metricaPrincipal').getContext('2d');
+const metricaPrincipalZL = document.getElementById('metricaPrincipalZL').getContext('2d');
 
 // Novo formato de dados com múltiplos bairros
 const dadosPorAno = {
@@ -23,24 +23,24 @@ const dadosPorAno = {
 const labels = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago'];
 
 // Criação inicial do gráfico
-const grafico = new Chart(ctx, {
+const grafico = new Chart(metricaPrincipalZL, {
   type: 'bar',
   data: {
     labels: labels,
     datasets: [
       {
-        label: 'Itaquera',
+        label: 'Bairro 1',
         data: dadosPorAno[2025][0],
         borderColor: 'black',
         backgroundColor: 'rgb(90, 245, 227)'
       },
       {
-        label: 'Mooca',
+        label: 'Bairro 2',
         data: dadosPorAno[2025][1],
         backgroundColor: 'rgb(30, 208, 186)'
       },
       {
-        label: 'Arthur Alvim',
+        label: 'Bairro 3',
         data: dadosPorAno[2025][2],
         backgroundColor: 'rgb(42, 157, 143)'
       },
@@ -69,72 +69,10 @@ const grafico = new Chart(ctx, {
 });
 
 // Corrigido: id correto 'selectAno' e atualização para múltiplos datasets
-document.getElementById('selectAnoBarraPrincipal').addEventListener('change', function () {
+document.getElementById('selectAnoBarraPrincipalZL').addEventListener('change', function () {
   const anoSelecionado = this.value;
 
   const dadosAno = dadosPorAno[anoSelecionado];
-  grafico.data.datasets.forEach((dataset, index) => {
-    dataset.data = dadosAno[index];
-  });
-
-  grafico.update();
-});
-
-
-// Métrica da ZL
-const metricaPrincipalZL = document.getElementById('metricaPrincipalZL').getContext('2d');
-
-const graficoMetricaPrincipalZL = new Chart(metricaPrincipalZL, {
-  type: 'bar',
-  data: {
-    labels: labels,
-    datasets: [
-      {
-        label: 'Itaquera',
-        data: dadosPorAno[2025][0],
-        borderColor: 'black',
-        backgroundColor: 'rgb(90, 245, 227)'
-      },
-      {
-        label: 'Mooca',
-        data: dadosPorAno[2025][1],
-        backgroundColor: 'rgb(30, 208, 186)'
-      },
-      {
-        label: 'Arthur Alvim',
-        data: dadosPorAno[2025][2],
-        backgroundColor: 'rgb(42, 157, 143)'
-      },
-
-    ]
-  },
-  options: {
-    responsive: true,
-    scales: {
-      y: {
-        beginAtZero: true,
-        ticks: { color: '#ffffff' },
-        grid: { color: 'rgba(255, 255, 255, 0.2)' }
-      },
-      x: {
-        ticks: { color: '#ffffff' },
-        grid: { color: 'rgba(255, 255, 255, 0.2)' }
-      }
-    },
-    plugins: {
-      legend: {
-        labels: { color: '#ffffff' }
-      }
-    }
-  }
-});
-
-
-
-document.getElementById('selectAnoBarraPrincipalZL').addEventListener('change', function () {
-  // const anoSelecionado = this.value;
-
-  // const dadosAno = dadosPorAno[anoSelecionado];
   grafico.data.datasets.forEach((dataset, index) => {
     dataset.data = dadosAno[index];
   });
