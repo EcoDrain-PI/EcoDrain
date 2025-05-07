@@ -377,3 +377,68 @@ header .header-container {
     display: flex;
     justify-content: center;
 }
+
+/* TELA DE PARÂMETROS */
+.div-pai .container .container-parametro {
+    background-color: #264F4A;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    justify-items: center;
+    width: 70vw;
+    height: 75vh;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.div-pai .container .container-parametro p {
+    color: aliceblue;
+    text-align: center;
+}
+
+.div-pai .container .container-parametro h2 {
+    text-align: center;
+}
+
+#ipt_estado {
+    text-align: center;
+    border-radius: 3px;
+    border: none;
+    text-align: center;
+}
+
+.select-estado {
+    text-align: center;
+}
+
+.parametro-personalizado {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.parametro-personalizado input {
+    text-align: center;
+    margin: 7px;
+    border: none;
+    border-radius: 5px;
+}
+
+#ipt_profundidade {
+    margin-bottom: 22px;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.configuracoes {
+    color: aliceblue;
+    text-align: center;
+}
+
+#div_exibirConfiguracao {
+    font-size: 20px;
+}
