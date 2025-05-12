@@ -42,3 +42,17 @@ email varchar(45),
 telefone varchar (14),
 primary key(id)
 );
+
+
+create table empresa (
+idEmpresa int primary key auto_increment,
+nome varchar(45),
+cnpj char(14),
+email  varchar(64),
+num_tel char (11),
+num_cel char (11),
+fkEndereco int,
+codigoAtivacao varchar(10),
+foreign key (fkEndereco) references endereco (idEndereco)
+);
+

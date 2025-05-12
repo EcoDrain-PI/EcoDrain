@@ -18,6 +18,7 @@ email  varchar(64),
 num_tel char (11),
 num_cel char (11),
 fkEndereco int,
+codigoAtivacao varchar(10),
 foreign key (fkEndereco) references endereco (idEndereco)
 );
 
@@ -52,3 +53,7 @@ altura_lixo decimal (10,2),
 nivel_lixo varchar(5),
 data_monitoramento timestamp,
 primary key (idLotacao, fkSensor));
+
+insert into empresa(nome, cnpj, codigoAtivacao)
+values('Empresa 1', '12345678901234', 'ABCDE'),
+('Empresa 2', '09876543210987', 'EDCBA');
