@@ -20,29 +20,35 @@
       </div>
 
       <div class="div-botoes">
-        <div class="div-restricoes">
+        <a href="mainPage.html">
           <div class="div-btComImg">
             <img src="../assets/img/main-menu.png" alt="Imagem do ícone da main page">
-            <a href="mainPage.html"><button>Tela principal</button> </a> 
+            <button>Tela principal</button>
           </div>
-        </div>
-          <div class="div-btComImg">
-            <img src="../assets/img/drainage.png" alt="">
-            <button>Localização</button>
-          </div>
+        </a>
         <div class="div-restricoes">
+          <a href="localizacao.html">
           <div class="div-btComImg">
-            <img src="../assets/img/parametro.png" alt="">
-            <a href="parametro.html"><button>Parâmetros</button></a>
+              <img src="../assets/img/drainage.png" alt="">
+              <button>Localização</button>
+            </div>
+          </a>
+          <a href="parametro.html">
+            <div class="div-btComImg">
+              <img src="../assets/img/parametro.png" alt="">
+              <button>Parâmetros</button>
+            </div>
+          </a>
+          <div class="div-zonas">
+            <img src="../assets/img/setaDireita.png" alt=""><select id="zonas" onchange="redirecionar()">
+              <option value="#">Zonas</option>
+              <option value="zn">Zona Norte</option>
+              <option value="zl">Zona Leste</option>
+              <option value="zo">Zona Oeste</option>
+              <option value="zs">Zona Sul</option>
+            </select>
           </div>
         </div>
-        <div class="div-restricoes">
-          <div class="div-btComImg">
-            <img src="../assets/img/setaDireita.png" alt="">
-            <a href="zonaLeste.html"><button>Zona Leste</button></a>
-          </div>
-        </div>
-
       </div>
     </div>
     <!-- Cabeçalho -->
@@ -190,4 +196,21 @@
 </body>
 
 </html>
+<script>
+  function redirecionar(){
+    var zona = zonas.value
+    if(zona == 'zn'){
+      window.location.href = "zonaNorte.html"
+    }
+    if(zona == 'zl'){
+      window.location.href = "zonaLeste.html"
+    }
+    if(zona == 'zo'){
+      window.location.href = "zonaOeste.html"
+    }
+    if(zona == 'zs'){
+      window.location.href = "zonaSul.html"
+    }
+  }
+</script>
 <script src="js/metricaDeBarras2.js"></script>

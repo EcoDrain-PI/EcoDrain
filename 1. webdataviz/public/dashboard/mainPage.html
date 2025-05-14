@@ -23,23 +23,34 @@
       </div>
 
       <div class="div-botoes">
-        <div class="div-btComImg">
-          <img src="../assets/img/main-menu.png" alt="Imagem do ícone da main page">
-          <a href="mainPage.html"><button>Tela principal</button>
-        </div>
+        <a href="mainPage.html">
+          <div class="div-btComImg">
+            <img src="../assets/img/main-menu.png" alt="Imagem do ícone da main page">
+            <button>Tela principal</button>
+          </div>
+        </a>
         <div class="div-restricoes">
-          <div class="div-btComImg">
-            <img src="../assets/img/drainage.png" alt="">
-            <a href="localizacao.html"><button>Localização</button></a>
+          <a href="localizacao.html">
+            <div class="div-btComImg">
+              <img src="../assets/img/drainage.png" alt="">
+              <button>Localização</button>
+            </div>
+          </a>
+          <a href="parametro.html">
+            <div class="div-btComImg">
+              <img src="../assets/img/parametro.png" alt="">
+              <button>Parâmetros</button>
+            </div>
+          </a>
+          <div class="div-zonas">
+            <img src="../assets/img/setaDireita.png" alt=""><select id="zonas" onchange="redirecionar()">
+              <option value="#">Zonas</option>
+              <option value="zn">Zona Norte</option>
+              <option value="zl">Zona Leste</option>
+              <option value="zo">Zona Oeste</option>
+              <option value="zs">Zona Sul</option>
+            </select>
           </div>
-          <div class="div-btComImg">
-            <img src="../assets/img/parametro.png" alt="">
-            <a href="parametro.html"><button>Parâmetros</button></a>
-          </div>
-          <div class="div-btComImg">
-            <img src="../assets/img/setaDireita.png" alt="">
-            <a href="localizacao.html"><button>Zona Leste</button></a>
-        </div>
         </div>
       </div>
     </div>
@@ -73,22 +84,27 @@
         </div>
 
         <div class="div-3-alertas">
-
-          <div class="alerta div-normal">
+          <div>
             <a href="alertaNormal.html">
-              Nível normal: <br>100
+              <div class="alerta div-normal">
+                Nível normal: <br>100
+              </div>
             </a>
           </div>
 
-          <div class="alerta div-atencao">
+          <div>
             <a href="alertaAtencao.html">
-              Nível de atenção: <br>150
+              <div class="alerta div-atencao">
+                Nível de atenção: <br>150
+              </div>
             </a>
           </div>
 
-          <div class="alerta div-risco">
+          <div>
             <a href="alertaRisco.html">
-              Nível de risco: <br>50
+              <div class="alerta div-risco">
+                Nível de risco: <br>50
+              </div>
             </a>
           </div>
 
@@ -135,7 +151,7 @@
                 <option value="2023">Ano de 2023</option>
               </select>
             </div>
-            
+
           </div>
           <canvas id="can-metrica-bolha-principal"></canvas>
         </div>
@@ -187,6 +203,24 @@
 </body>
 
 </html>
+<script>
+  function redirecionar(){
+    var zona = zonas.value
+    if(zona == 'zn'){
+      window.location.href = "zonaNorte.html"
+    }
+    if(zona == 'zl'){
+      window.location.href = "zonaLeste.html"
+    }
+    if(zona == 'zo'){
+      window.location.href = "zonaOeste.html"
+    }
+    if(zona == 'zs'){
+      window.location.href = "zonaSul.html"
+    }
+  }
+</script>
+
 
 <script src="js/metricaDeBarras.js"></script>
 <script src="js/MetricaDeBolhas.js"></script>
