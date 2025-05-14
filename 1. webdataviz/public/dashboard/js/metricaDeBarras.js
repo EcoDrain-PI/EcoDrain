@@ -3,9 +3,9 @@ const ctx = document.getElementById('metricaPrincipal').getContext('2d');
 // Novo formato de dados com múltiplos bairros
 const dadosPorAno = {
   2025: [
-    [200, 190, 150, 170, 190, 210, 230, 250],
-    [120, 140, 160, 130, 150, 170, 190, 210],
-    [100, 110, 120, 130, 140, 150, 160, 170]
+    [2, 9, 5, 9],
+    [10, 4, 16, 8],
+    [5, 15, 25, 2]
   ],
   2024: [
     [100, 90, 80, 70, 60, 50, 40, 30],
@@ -20,7 +20,7 @@ const dadosPorAno = {
 };
 
 // Atualizado para 8 meses
-const labels = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago'];
+const labels = ['Zona Norte', 'Zona Sul', 'Zona Leste', 'Zona Oeste'];
 
 // Criação inicial do gráfico
 const grafico = new Chart(ctx, {
@@ -29,18 +29,18 @@ const grafico = new Chart(ctx, {
     labels: labels,
     datasets: [
       {
-        label: 'Itaquera',
+        label: 'Nível Normal',
         data: dadosPorAno[2025][0],
         borderColor: 'black',
         backgroundColor: 'rgb(90, 245, 227)'
       },
       {
-        label: 'Mooca',
+        label: 'Nível Atenção',
         data: dadosPorAno[2025][1],
         backgroundColor: 'rgb(30, 208, 186)'
       },
       {
-        label: 'Arthur Alvim',
+        label: 'Nível Risco',
         data: dadosPorAno[2025][2],
         backgroundColor: 'rgb(42, 157, 143)'
       },
