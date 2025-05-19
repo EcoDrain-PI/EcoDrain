@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/dashboards.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="div-pai">
@@ -62,17 +63,53 @@
           </div>
         </header>
         <div class="container">
-            <div class="div-alertas">
-                <div class="div-select">
-                    <select name="" id="">
-                        <option value="">Filtro</option>
-                        <option value="">Última hora</option>
-                        <option value="">Última 24 horas</option>
-                        <option value="">Última semana</option>
-                    </select>
+              <div class="div-alertas">
+                  <div class="div-select">
+                      <select name="" id="filtroSelect">
+                          <option value="">Filtro</option>
+                          <option value="ultimaHora">Última hora</option>
+                          <option value="ultimas24">Última 24 horas</option>
+                          <option value="ultimaSemana">Última semana</option>
+                      </select>
+                  </div>
+              </div>
+
+            <div class="metricas-secundarias">
+
+               <!-- MÉTRICA DE BARRAS -->
+              <div class="metrica-secun" id="div_ultima_hora" style="display: none;">
+                <div class="div-head-metricas">
+                  <div class="div-texto">
+                    Bairro X (Zona X)
+                  </div>
                 </div>
-            </div>
+                <canvas id="metrica-Barras-alerta-risco-x"></canvas>
+              </div>
+
+              <div class="metrica-secun" id="div_ultimo_dia" style="display: none;">
+                <div class="div-head-metricas">
+                  <div class="div-texto">
+                    Bairro y (Zona Y)
+                  </div>
+                </div>
+                <canvas id="metrica-Barras-alerta-risco-y"></canvas>
+              </div>
+
+              <div class="metrica-secun" id="div_ultima_semana" style="display: none;">
+                <div class="div-head-metricas">
+                  <div class="div-texto">
+                    Bairro Z (Zona Z)
+                  </div>
+                </div>
+                <canvas id="metrica-Barras-alerta-risco-Z"></canvas>
+              </div>
+
+            </div>      
+
         </div>
+    </div>
         
 </body>
 </html>
+
+<script src="../dashboard/js/alertas.js"></script>

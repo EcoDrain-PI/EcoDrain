@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/dashboards.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
     <div class="div-pai">
@@ -72,7 +74,42 @@
                     </select>
                 </div>
             </div>
+
+            <div class="metricas-secundarias">
+
+               <!-- MÉTRICA DE BARRAS -->
+              <div class="metrica-secun" id="div_ultima_hora" style="display: none;">
+                <div class="div-head-metricas">
+                  <div class="div-texto">
+                    Bairro X (Zona X)
+                  </div>
+                </div>
+                <canvas id="metrica-Barras-alerta-normal-x"></canvas>
+              </div>
+
+              <div class="metrica-secun" id="div_ultimo_dia" style="display: none;">
+                <div class="div-head-metricas">
+                  <div class="div-texto">
+                    Bairro y (Zona Y)
+                  </div>
+                </div>
+                <canvas id="metrica-Barras-alerta-normal-y"></canvas>
+              </div>
+
+              <div class="metrica-secun" id="div_ultima_semana" style="display: none;">
+                <div class="div-head-metricas">
+                  <div class="div-texto">
+                    Bairro Z (Zona Z)
+                  </div>
+                </div>
+                <canvas id="metrica-Barras-alerta-normal-Z"></canvas>
+              </div>
+
+            </div>     
         </div>
         
 </body>
 </html>
+
+
+<script src="../dashboard/js/alertas.js"></script>
