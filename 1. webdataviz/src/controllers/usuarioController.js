@@ -19,22 +19,23 @@ function autenticar(req, res) {
 
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
-
-                        bueiroModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].id)
-                            .then((resultadoAquarios) => {
-                                if (resultadoAquarios.length > 0) {
-                                    res.json({
+                        res.json({
                                         id: resultadoAutenticar[0].id,
                                         email: resultadoAutenticar[0].email,
                                         nome: resultadoAutenticar[0].nome,
                                         senha: resultadoAutenticar[0].senha,
                                         // aquarios: resultadoAquarios
                                     });
-                                } else {
-                                    res.status(204).json({ aquarios: [] });
                                 }
-                            })
-                    } else if (resultadoAutenticar.length == 0) {
+
+                        // bueiroModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].id)
+                        //     .then((resultadoAquarios) => {
+                        //         if (resultadoAquarios.length > 0) {
+                        //              else {
+                        //             res.status(204).json({ aquarios: [] });
+                        //         }
+                        //     })}
+                             else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
                         res.status(403).send("Mais de um usuário com o mesmo login e senha!");
