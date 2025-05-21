@@ -72,23 +72,25 @@
         var email = ipt_email.value
         var usuario = ipt_user.value
         var arroba_email = email.indexOf('@')
-        var pontoSchool = email.endsWith('.school')
+        // var pontoSchool = email.endsWith('.school')
         var validacao = 0
         var tamanho_senha = senha.length;
         var tamanho_senha2 = senha2.length;
-        div_exibir.innerHTML = ``
+        div_exibir.innerHTML = ``;
 
         if (senha == "" || senha2 == "" || email == "" || usuario == "") {
             alert("Preencha todos os campos")
-        } else if (arroba_email == -1 || pontoSchool == false) {
+        // } else if (arroba_email == -1 || pontoSchool == false) {
+        } else if (arroba_email == -1) {
             alert('Insira um email válido')
         } else if (senha != senha2) {
             alert('As senhas não correspondem')
-        } else if (arroba_email == 0 || tamanho_senha > 0 && senha == senha2 && pontoSchool) {
+        // } else if (arroba_email == 0 || tamanho_senha > 0 && senha == senha2 && pontoSchool) {
+        } else if (arroba_email == 0 || tamanho_senha > 0 && senha == senha2) {
             alert(`Usuário cadastrado com sucesso!`)
             window.location.assign("login.html")
         }
-        console.log(pontoSchool);
+        // console.log(pontoSchool);
 
 
         // Enviando o valor da nova input
