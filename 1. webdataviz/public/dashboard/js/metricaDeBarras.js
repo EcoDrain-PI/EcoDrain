@@ -20,7 +20,7 @@ const dadosPorAno = {
 };
 
 // Atualizado para 8 meses
-const labels = ['Zona Norte', 'Zona Sul', 'Zona Leste', 'Zona Oeste'];
+const labels = ['Bueiro 1', 'Bueiro 2', 'Bueiro 3', 'Bueiro 4'];
 
 // Criação inicial do gráfico
 const grafico = new Chart(ctx, {
@@ -29,22 +29,10 @@ const grafico = new Chart(ctx, {
     labels: labels,
     datasets: [
       {
-        label: 'Nível Normal',
-        data: dadosPorAno[2025][0],
-        borderColor: 'black',
-        backgroundColor: 'rgb(90, 245, 227)'
-      },
-      {
-        label: 'Nível Atenção',
+        label: 'Nível do Lixo',
         data: dadosPorAno[2025][1],
         backgroundColor: 'rgb(30, 208, 186)'
       },
-      {
-        label: 'Nível Risco',
-        data: dadosPorAno[2025][2],
-        backgroundColor: 'rgb(42, 157, 143)'
-      },
-
     ]
   },
   options: {

@@ -301,14 +301,13 @@ header .header-container {
 }
 
 .container-alertas .div-3-alertas .div-atencao {
+    color: black;
     background-color: #3EE178;
 }
 
 .container-alertas .div-3-alertas .div-risco {
-    /* background-color: #25964D; */
+    color: black;
     background-color: rgb(220, 20, 60);
-
-    color: white;
 }
 
 
@@ -318,7 +317,7 @@ header .header-container {
     background-color: #264F4A;
     width: 800px;
     height: 100%;
-    padding: 10px;
+    padding: 25px;
     margin-top: 40px;
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
@@ -376,8 +375,7 @@ header .header-container {
     width: 450px;
     height: 100%;
     padding: 10px;
-    margin-bottom: 30px;
-
+    margin-bottom: 300px;
 }
 
 
@@ -385,8 +383,8 @@ header .header-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 290px;
-    height: 290px;
+    width: auto;
+    height: auto;
 }
 
 

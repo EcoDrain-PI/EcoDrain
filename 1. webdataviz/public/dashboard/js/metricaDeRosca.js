@@ -9,25 +9,45 @@ const dadosPorAnoRosca = {
 };
 
 const chartRosca = new Chart(MetricaRoscaPrincipal, {
-  type: 'doughnut',
+  type: 'bar',
   data: {
     labels: [
-      'Alerta normal',
-      'Alerta atenção',
-      'Alerta risco'
+      2023,
+      2024,
+      2025
     ],
     datasets: [{
-      label: 'Distribuição de alertas',
+      label: 'Alerta de atenção',
       data: dadosPorAnoRosca[2025], // valor inicial
       borderColor: 'transparent',
+      color: '#ffffff',
       backgroundColor: [
-        'rgb(127, 251, 171)',
         'rgb(62, 225, 120)',
+      ]      
+    },
+    {
+      label: 'Alerta de risco',
+      data: dadosPorAnoRosca[2025], // valor inicial
+      borderColor: 'transparent',
+      color: '#ffffff',
+      backgroundColor: [
         'rgb(220, 20, 60)'
       ]      
     }]
   },
   options: {
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: { color: '#ffffff' },
+        grid: { color: 'rgba(255, 255, 255, 0.2)' }
+      },
+      x: {
+        ticks: { color: '#ffffff' },
+        grid: { color: 'rgba(255, 255, 255, 0.2)' }
+      }
+    },
     plugins: {
       legend: {
         labels: {
