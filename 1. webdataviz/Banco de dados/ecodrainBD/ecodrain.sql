@@ -1,6 +1,17 @@
 create database ecodrain;
 use ecodrain;
 
+create table zona (
+idZona int primary key auto_increment,
+nome varchar(5) unique
+);
+
+insert into zona (nome) values 
+('Norte'),
+('Sul'),
+('Leste'),
+('Oeste');
+
 create table endereco (
 idEndereco int primary key auto_increment,
 cep char(8),
@@ -8,7 +19,10 @@ nome_rua varchar(100),
 posicao_x varchar(10),
 posicao_y varchar(10),
 num_bueiros int,
-bairro varchar(45));
+bairro varchar(45),
+fkZona int,
+foreign key (fkZona) references zona(idZona) 
+);
 
 create table empresa (
 idEmpresa int primary key auto_increment,
@@ -50,9 +64,18 @@ idLotacao int auto_increment,
 fkSensor int ,
 foreign key (fkSensor) references sensor (idSensor),
 altura_lixo decimal (10,2),
-nivel_lixo varchar(5),
 data_monitoramento timestamp,
 primary key (idLotacao, fkSensor));
+
+create table alerta (
+idAlerta int auto_increment,
+fkLotacao int,
+fkSensor int,
+descricao varchar(5) check (descricao = 'Alerta' or descricao = 'Risco'), -- antigo nível lixo da tabela lotacao
+foreign key (fkLotacao) references lotacao (idLotacao),
+foreign key (fkSensor) references sensor (idSensor),
+primary key (idAlerta, fkLotacao, fkSensor)
+);
 
 insert into empresa(nome, cnpj, codigoAtivacao)
 values('Empresa 1', '12345678901234', 'ABCDE'),
