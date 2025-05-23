@@ -13,7 +13,7 @@
 
 </head>
 
-<body>
+<body onload="obterDadosGrafico(1)">
 
   <div class="div-pai">
     <!-- Sidebar -->
@@ -114,14 +114,12 @@
           <!-- MÉTRICA PRINCIPAL -->
         </div>
         <canvas id="metricaPrincipal"></canvas>
-        <canvas id="metricaPrincipal"></canvas>
-        <canvas id="metricaPrincipal"></canvas>
       </div>
 
 
       <!-- Métricas secundárias (de histórico) -->
       <div class="metricas-secundarias">
-      <!-- <div class="metrica-secun">
+        <!-- <div class="metrica-secun">
 
           <div class="div-head-metricas">
             <div class="div-texto">
@@ -209,8 +207,80 @@
   }
 </script>
 
+<script>
+  // Função chamada ao carregar a página para obter e processar os dados
+  function obterDadosGrafico(idAquario) {
+    fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          resposta.reverse();
 
-<script src="js/metricaDeBarras.js"></script>
-<script src="js/MetricaDeBolhas.js"></script>
+          plotarGrafico(resposta, idAquario);
+
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+  }
+
+  // Função para plotar o gráfico com os dados
+  function plotarGrafico(dados) {
+    console.log('iniciando plotagem do gráfico...');
+
+    let labels = [];
+    let dadosGrafico = [];
+
+    for (let i = 0; i < dados.length; i++) {
+      labels.push(dados[i].idBueiro);
+      dadosGrafico.push(dados[i].altura_lixo);
+    }
+
+    console.log('Labels:', labels);
+    console.log('Dados:', dadosGrafico);
+
+    const ctx = document.getElementById('metricaPrincipal').getContext('2d');
+
+    const config = {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Nível do Lixo',
+          data: dadosGrafico,
+          backgroundColor: 'rgb(30, 208, 186)'
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { color: '#ffffff' },
+            grid: { color: 'rgba(255, 255, 255, 0.2)' }
+          },
+          x: {
+            ticks: { color: '#ffffff' },
+            grid: { color: 'rgba(255, 255, 255, 0.2)' }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: { color: '#ffffff' }
+          }
+        }
+      }
+    };
+
+    new Chart(ctx, config);
+  }
+</script>
+
+<!-- <script src="js/metricaDeBarras.js"></script> -->
+<!-- <script src="js/MetricaDeBolhas.js"></script> -->
 <script src="js/metricaDeRosca.js"></script>
 <script src="js/codigosFront.js"></script>
