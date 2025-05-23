@@ -1,6 +1,6 @@
  //MÉTRICA DE ROSCA (PRINCIPAL) 
 
-const MetricaRoscaPrincipal = document.getElementById('can-metrica-rosca-principal');
+const MetricaRoscaPrincipal = document.getElementById('can-metrica-registro-alertas-principal');
 
 const dadosPorAnoRosca = {
   2025: [100, 150, 50],
