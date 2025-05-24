@@ -20,34 +20,29 @@
       </div>
 
       <div class="div-botoes">
-        <div class="div-restricoes">
+        <a href="mainPage.html">
           <div class="div-btComImg">
             <img src="../assets/img/main-menu.png" alt="Imagem do ícone da main page">
-            <a href="mainPage.html"><button>Tela principal</button> </a> 
+            <button>Tela principal</button>
+          </div>
+        </a>
+        <div class="div-restricoes">
+          <!-- <a href="localizacao.html">
+            <div class="div-btComImg">
+              <img src="../assets/img/drainage.png" alt="">
+              <button>Localização</button>
+            </div>
+          </a> -->
+          <div class="div-zonas">
+            <img src="../assets/img/setaDireita.png" alt=""><select id="zonas" onchange="redirecionar()">
+              <option value="#">Zonas</option>
+              <option value="zn">Zona Norte</option>
+              <option value="zl">Zona Leste</option>
+              <option value="zo">Zona Oeste</option>
+              <option value="zs">Zona Sul</option>
+            </select>
           </div>
         </div>
-        <div class="div-restricoes">
-            <div class="div-btComImg">
-            <img src="../assets/img/drainage.png" alt="">
-            <button>Localização</button>
-            </div>
-        </div>
-        <div class="div-restricoes">
-            <div class="div-btComImg">
-                <img src="../assets/img/parametro.png" alt="">
-                <a href="localizacao.html"><button>Parâmetros</button></a>
-            </div>
-        </div>
-        <div class="div-zonas">
-          <img src="../assets/img/setaDireita.png" alt=""><select id="zonas" onchange="redirecionar()">
-            <option value="#">Zonas</option>
-            <option value="zn">Zona Norte</option>
-            <option value="zl">Zona Leste</option>
-            <option value="zo">Zona Oeste</option>
-            <option value="zs">Zona Sul</option>
-          </select>
-        </div>
-
       </div>
     </div>
     <!-- Cabeçalho -->

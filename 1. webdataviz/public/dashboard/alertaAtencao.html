@@ -8,38 +8,38 @@
 </head>
 <body>
     <div class="div-pai">
-        <!-- Sidebar -->
-        <div class="div-sidebar">
-          <div class="div-img">
-            <img src="../assets/img/ecodrainSemFundo.png" alt="Logomarca da EcoDrain">
+         <!-- Sidebar -->
+    <div class="div-sidebar">
+      <div class="div-img">
+        <img src="../assets/img/ecodrainSemFundo.png" alt="Logomarca da EcoDrain">
+      </div>
+
+      <div class="div-botoes">
+        <a href="mainPage.html">
+          <div class="div-btComImg">
+            <img src="../assets/img/main-menu.png" alt="Imagem do ícone da main page">
+            <button>Tela principal</button>
           </div>
-    
-          <div class="div-botoes">
-            <div class="div-restricoes">
-              <div class="div-btComImg">
-                <img src="../assets/img/main-menu.png" alt="Imagem do ícone da main page">
-                <a href="mainPage.html"><button>Tela principal</button> </a> 
-              </div>
-            </div>
-            <div class="div-restricoes">
-                <div class="div-btComImg">
-                <img src="../assets/img/drainage.png" alt="">
-                <button>Localização</button>
-                </div>
-            </div>
-            <div class="div-restricoes">
-                <div class="div-btComImg">
-                    <img src="../assets/img/parametro.png" alt="">
-                    <a href="localizacao.html"><button>Parâmetros</button></a>
-                </div>
-            </div>
+        </a>
+        <div class="div-restricoes">
+          <!-- <a href="localizacao.html">
             <div class="div-btComImg">
-                <img src="../assets/img/setaDireita.png" alt="">
-                <a href="localizacao.html"><button>Zona Leste</button></a>
+              <img src="../assets/img/drainage.png" alt="">
+              <button>Localização</button>
             </div>
-    
+          </a> -->
+          <div class="div-zonas">
+            <img src="../assets/img/setaDireita.png" alt=""><select id="zonas" onchange="redirecionar()">
+              <option value="#">Zonas</option>
+              <option value="zn">Zona Norte</option>
+              <option value="zl">Zona Leste</option>
+              <option value="zo">Zona Oeste</option>
+              <option value="zs">Zona Sul</option>
+            </select>
           </div>
         </div>
+      </div>
+    </div>
         <!-- Cabeçalho -->
         <header>
           <div class="header-container">
@@ -76,3 +76,20 @@
         
 </body>
 </html>
+<script>
+  function redirecionar() {
+    var zona = zonas.value
+    if (zona == 'zn') {
+      window.location.href = "zonaNorte.html"
+    }
+    if (zona == 'zl') {
+      window.location.href = "zonaLeste.html"
+    }
+    if (zona == 'zo') {
+      window.location.href = "zonaOeste.html"
+    }
+    if (zona == 'zs') {
+      window.location.href = "zonaSul.html"
+    }
+  }
+</script>
