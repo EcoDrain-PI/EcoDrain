@@ -8,9 +8,6 @@
   <link rel="icon" href="../assets/icon/favicon.ico">
   <link rel="stylesheet" href="../css/dashboards.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
-
 </head>
 
 <body onload="obterDadosGrafico(1)">
@@ -209,14 +206,14 @@
 
 <script>
   // Função chamada ao carregar a página para obter e processar os dados
-  function obterDadosGrafico(idAquario) {
-    fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+  function obterDadosGrafico(idBueiro) {
+    fetch(`/medidas/ultimas/${idBueiro}`, { cache: 'no-store' }).then(function (response) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
           resposta.reverse();
 
-          plotarGrafico(resposta, idAquario);
+          plotarGrafico(resposta, idBueiro);
 
         });
       } else {
@@ -236,7 +233,7 @@
     let dadosGrafico = [];
 
     for (let i = 0; i < dados.length; i++) {
-      labels.push(dados[i].idBueiro);
+      labels.push(dados[i].nome_rua);
       dadosGrafico.push(dados[i].altura_lixo);
     }
 
@@ -277,6 +274,58 @@
     };
 
     new Chart(ctx, config);
+
+    function atualizarGrafico(idBueiro, dados, myChart) {
+      fetch(`/medidas/tempo-real/${idBueiro}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (novoRegistro) {
+
+            obterdados(idBueiro);
+            // alertar(novoRegistro, idBueiro);
+            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+            console.log(`Dados atuais do gráfico:`);
+            console.log(dados);
+
+            let avisoCaptura = document.getElementById(`avisoCaptura${idBueiro}`)
+            avisoCaptura.innerHTML = ""
+
+
+            if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+              console.log("---------------------------------------------------------------")
+              console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+              avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+              console.log("Horário do novo dado capturado:")
+              console.log(novoRegistro[0].momento_grafico)
+              console.log("Horário do último dado capturado:")
+              console.log(dados.labels[dados.labels.length - 1])
+              console.log("---------------------------------------------------------------")
+            } else {
+              // tirando e colocando valores no gráfico
+              dados.labels.shift(); // apagar o primeiro
+              dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+
+              dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+              dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+
+              dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+              dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+
+              myChart.update();
+            }
+
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(() => atualizarGrafico(idBueiro, dados, myChart), 2000);
+          });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+          // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+          proximaAtualizacao = setTimeout(() => atualizarGrafico(idBueiro, dados, myChart), 2000);
+        }
+      })
+        .catch(function (error) {
+          console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
   }
 </script>
 
