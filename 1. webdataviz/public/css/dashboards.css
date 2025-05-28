@@ -503,3 +503,18 @@ button {
     background-color: #2A9D8F;
     /* Funciona em alguns navegadores */
 }
+
+.perigo-risco{
+    background-color: crimson;
+}
+
+.alerta-atencao{
+    background-color: orange;
+}
+
+.cor-alerta {
+    width: 13%;
+    height: 30%;
+    border-radius: 50%;
+    display: inline-block;
+  }
