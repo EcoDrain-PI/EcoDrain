@@ -184,8 +184,7 @@ header .header-container {
 }
 
 .div-sidebar .div-botoes .div-btComImg:hover,
-.div-sidebar .div-botoes .div-zonas:hover 
-{
+.div-sidebar .div-botoes .div-zonas:hover {
     border: #1ED0BA 1px solid;
 }
 
@@ -302,7 +301,7 @@ header .header-container {
 
 .container-alertas .div-3-alertas .div-atencao {
     color: black;
-    background-color: #3EE178;
+    background-color: rgb(255, 200, 0);
 }
 
 .container-alertas .div-3-alertas .div-risco {
@@ -504,11 +503,11 @@ button {
     /* Funciona em alguns navegadores */
 }
 
-.perigo-risco{
+.perigo-risco {
     background-color: crimson;
 }
 
-.alerta-atencao{
+.alerta-atencao {
     background-color: orange;
 }
 
@@ -517,4 +516,4 @@ button {
     height: 30%;
     border-radius: 50%;
     display: inline-block;
-  }
+}

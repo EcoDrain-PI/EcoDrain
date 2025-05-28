@@ -77,25 +77,6 @@ CREATE TABLE alerta (
     CONSTRAINT fk_alerta_lotacao1 FOREIGN KEY (fkLotacao , fkSensor) REFERENCES lotacao (idLotacao , fkSensor)
   );
 
--- INSERTS PARA TESTE
-INSERT INTO logradouro (idLogradouro, estado, cidade)
-VALUES (1, 'SP', 'São Paulo');
-
-INSERT INTO empresa (idEmpresa, nome, cnpj, email, num_tel, num_cel, fklogradouro)
-VALUES (1, 'Empresa Exemplo', '12345678000199', 'empresa@exemplo.com', '1133445566', '11988887777', 1);
-
-INSERT INTO endereco (idEndereco, fkEmpresa, cep, nome_rua, bairro, zonas)
-VALUES (1, 1, '12345678', 'Rua Exemplo', 'Centro', 1);
-
-INSERT INTO bueiro (idBueiro, tamanho, fkEndereco)
-VALUES (1, 50.00, 1);
-
-INSERT INTO sensor (idSensor, data_instalacao, fkBueiro)
-VALUES (1, '2024-06-10', 1);
-
-INSERT INTO lotacao (fkSensor, altura_lixo, data_monitoramento)
-VALUES (1, 25.75, CURRENT_TIMESTAMP);
-
 -- SELECTS PARA A DASHBOARD
 -- SELECT DO GRÁFICO DO NÍVEL DO LIXO
 SELECT  b.idBueiro, l.altura_lixo, l.data_monitoramento, e.nome_rua
@@ -108,3 +89,44 @@ INNER JOIN endereco e ON b.fkEndereco = e.idEndereco;
 SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE TABLE lotacao;
 SET FOREIGN_KEY_CHECKS = 1;
+
+-- INSERTS PARA TESTE
+-- 1. Inserir logradouro
+INSERT INTO logradouro (idLogradouro, estado, cidade)
+VALUES (1, 'SP', 'São Paulo');
+
+-- 2. Inserir empresa
+INSERT INTO empresa (idEmpresa, nome, cnpj, email, num_tel, num_cel, fklogradouro)
+VALUES (1, 'Empresa Exemplo', '12345678000199', 'empresa@exemplo.com', '1133445566', '11988887777', 1);
+
+-- 3. Inserir endereco
+INSERT INTO endereco (idEndereco, fkEmpresa, cep, nome_rua, bairro, zonas)
+VALUES (1, 1, '12345678', 'Rua Exemplo', 'Centro', 1);
+
+-- 4. Inserir bueiro
+INSERT INTO bueiro (idBueiro, tamanho, fkEndereco)
+VALUES (1, 50.00, 1);
+
+-- 5. Inserir sensor
+INSERT INTO sensor (idSensor, data_instalacao, fkBueiro)
+VALUES (1, '2024-06-10', 1);
+
+-- 6. Inserir lotacao
+INSERT INTO lotacao (idLotacao, fkSensor, altura_lixo, data_monitoramento)
+VALUES (1, 1, 30, CURRENT_TIMESTAMP);
+
+-- 7. Inserir alerta vinculado à lotacao e sensor
+INSERT INTO alerta (idAlerta, descricao, alertacol, fkLotacao, fkSensor)
+VALUES (1, 'Nível de lixo alto', 'vermelho', 1, 1);
+-- INSERINDO MAIS DADOS NA TABELA LOTACAO
+INSERT INTO lotacao (idLotacao, fkSensor, altura_lixo, data_monitoramento)
+VALUES 
+(2, 1, 25.75, CURRENT_TIMESTAMP),
+(3, 1, 10.25, '2025-05-25 08:30:00'),
+(4, 1, 15.50, '2025-05-25 12:00:00'),
+(5, 1, 20.75, '2025-05-26 09:15:00'),
+(6, 1, 28.00, '2025-05-26 13:45:00'),
+(7, 1, 35.25, '2025-05-27 07:00:00'),
+(8, 1, 40.00, '2025-05-27 10:30:00'),
+(9, 1, 45.75, '2025-05-27 14:00:00'),
+(10, 1, 48.50, '2025-05-28 06:45:00');
