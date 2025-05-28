@@ -1,6 +1,6 @@
 var alertas = [];
 
-function obterdados(idBueiro) {
+function obterDadosGrafico (idBueiro) {
     fetch(`/medidas/tempo-real/${idBueiro}`)
         .then(resposta => {
             if (resposta.status == 200) {
@@ -25,7 +25,7 @@ function alertar(resposta, idBueiro) {
 
     var grauDeAviso = '';
 
-    var limites = {
+    var limites = {     
         atencao: 60,
         risco: 30
     };
@@ -99,7 +99,7 @@ function transformarEmDiv({ idBueiro, alt, grauDeAviso, grauDeAvisoCor }) {
 
 function atualizacaoPeriodica() {
     JSON.parse(sessionStorage.BUEIROS).forEach(item => {
-        obterdados(item.id)
+        obterDadosGrafico(item.id)
     });
     setTimeout(atualizacaoPeriodica, 5000);
 }

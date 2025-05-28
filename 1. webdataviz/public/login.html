@@ -2,129 +2,127 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login
-    </title>
-    <link rel="stylesheet" href="css/styleLogin.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login
+  </title>
+  <link rel="stylesheet" href="css/styleLogin.css" />
 </head>
 
 <body>
-    <div class="header">
-        <div class="container">
-          <ul class="nav">
-            <h1><img src="assets/icon/ecodrain.png" alt="Icone da ecodrain"></h1>
-            <div class="list">
-              <li>
-                <a href="index.html">Início</a>
-              </li>
-            </div>
-            <div class="list">
-              <li>
-                <a href="calculadora.html">Calculadora</a>
-              </li>
-            </div>
-            <div class="list">
-              <li>
-                <a href="sobre.html">Sobre </a>
-              </li>
-            </div>
-            <div class="botaoLog">
-              <li id="alturaList">
-                <a href="login.html"> Login</a>
-              </li>
-            </div>
-          </ul>
+  <div class="header">
+    <div class="container">
+      <ul class="nav">
+        <h1><img src="assets/icon/ecodrain.png" alt="Icone da ecodrain"></h1>
+        <div class="list">
+          <li>
+            <a href="index.html">Início</a>
+          </li>
+        </div>
+        <div class="list">
+          <li>
+            <a href="calculadora.html">Calculadora</a>
+          </li>
+        </div>
+        <div class="list">
+          <li>
+            <a href="sobre.html">Sobre </a>
+          </li>
+        </div>
+        <div class="botaoLog">
+          <li id="alturaList">
+            <a href="login.html"> Login</a>
+          </li>
+        </div>
+      </ul>
+    </div>
+  </div>
+
+
+
+
+  <div class="login">
+    <div class="banner">
+      <div class="container">
+        <div class="credenciais">
+          <!-- <img src="assets/imgs/ecodrain.png" alt="Logomarca"> -->
+          <h1 class="cor">Bem-vindo de volta</h1>
+          <h4 class="cor">E-mail:</h4>
+          <input id="ipt_email" type="text" placeholder="Digite seu e-mail">
+          <h4 class="cor">Senha:</h4>
+          <input id="ipt_senha" type="password" placeholder="Insira sua Senha">
+          <a href="cadastro.html">
+            <h6>Cadastrar-se</h6>
+          </a>
+          <button onclick="login()">Entrar</button>
+
+          <!-- <button onclick="login()">Entrar <div id="div_teste"></div></button> -->
         </div>
       </div>
-    
-    
-    
-
-    <div class="login">
-        <div class="banner">
-            <div class="container">
-                <div class="credenciais">
-                    <!-- <img src="assets/imgs/ecodrain.png" alt="Logomarca"> -->
-                    <h1 class="cor">Bem-vindo de volta</h1>
-                    <h4 class="cor">E-mail:</h4>
-                    <input id="ipt_email" type="text" placeholder="Digite seu e-mail">
-                    <h4 class="cor">Senha:</h4>
-                    <input id="ipt_senha" type="password" placeholder="Insira sua Senha">
-                    <a href="cadastro.html">
-                      <h6>Cadastrar-se</h6>
-                    </a>
-                    <button onclick="login()">Entrar</button>
-
-                    <!-- <button onclick="login()">Entrar <div id="div_teste"></div></button> -->
-                </div>
-            </div>
-        </div>
     </div>
+  </div>
 
 </body>
 
 </html>
 <script>
-    // var contador = 3
-     function login() {
-        // aguardar();
+  // var contador = 3
+  function login() {
+    // aguardar();
 
-        var email = ipt_email.value;
-        var senha = ipt_senha.value;
+    var email = ipt_email.value;
+    var senha = ipt_senha.value;
 
-        if (email == "" || senha == "") {
-            alert("Preencha todos os campos")
-        }
-
-        console.log("FORM LOGIN: ", email);
-        console.log("FORM SENHA: ", senha);
-
-        fetch("/usuarios/autenticar",  {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: email,
-                senhaServer: senha
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.BUEIROS = json.stringify(json.bueiros)
-                    
-                    setTimeout(function () {
-                        window.location = "./dashboard/mainPage.html"
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    // console.error(texto);
-                    // finalizarAguardar(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
+    if (email == "" || senha == "") {
+      alert("Preencha todos os campos")
     }
+
+    console.log("FORM LOGIN: ", email);
+    console.log("FORM SENHA: ", senha);
+
+    fetch("/usuarios/autenticar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        emailServer: email,
+        senhaServer: senha
+      })
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO entrar()!")
+
+      if (resposta.ok) {
+        console.log(resposta);
+
+        resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
+          sessionStorage.EMAIL_USUARIO = json.email;
+          sessionStorage.NOME_USUARIO = json.nome;
+          sessionStorage.ID_USUARIO = json.id;
+          setTimeout(function () {
+            window.location = "./dashboard/mainPage.html"
+          }, 1000); // apenas para exibir o loading
+
+        });
+
+      } else {
+
+        console.log("Houve um erro ao tentar realizar o login!");
+
+        resposta.text().then(texto => {
+          // console.error(texto);
+          // finalizarAguardar(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    })
+
+    return false;
+  }
 </script>
 
 <!-- while (login != 'professor@sptech.school' || senha != 'sptech') {

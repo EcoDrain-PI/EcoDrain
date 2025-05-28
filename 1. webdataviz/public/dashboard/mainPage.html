@@ -280,7 +280,7 @@
         if (response.ok) {
           response.json().then(function (novoRegistro) {
 
-            obterdados(idBueiro);
+            obterDadosGrafico(idBueiro);
             // alertar(novoRegistro, idBueiro);
             console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
             console.log(`Dados atuais do gráfico:`);
@@ -333,3 +333,4 @@
 <!-- <script src="js/MetricaDeBolhas.js"></script> -->
 <script src="js/metricaDeRosca.js"></script>
 <script src="js/codigosFront.js"></script>
+<script src="js/alertasExibir.js"></script>
