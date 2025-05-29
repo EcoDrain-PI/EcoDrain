@@ -10,37 +10,42 @@
 <body>
     <div class="div-pai">
          <!-- Sidebar -->
-    <div class="div-sidebar">
-      <div class="div-img">
-        <img src="../assets/img/ecodrainSemFundo.png" alt="Logomarca da EcoDrain">
-      </div>
-
-      <div class="div-botoes">
-        <a href="mainPage.html">
-          <div class="div-btComImg">
-            <img src="../assets/img/main-menu.png" alt="Imagem do ícone da main page">
-            <button>Tela principal</button>
+         <div class="div-sidebar">
+          <div class="div-img">
+            <img src="../assets/img/ecodrainSemFundo.png" alt="Logomarca da EcoDrain">
           </div>
-        </a>
-        <div class="div-restricoes">
-          <!-- <a href="localizacao.html">
-            <div class="div-btComImg">
-              <img src="../assets/img/drainage.png" alt="">
-              <button>Localização</button>
+    
+          <div class="div-botoes">
+            <a href="mainPage.html">
+              <div class="div-btComImg">
+                <img src="../assets/img/main-menu.png" alt="Imagem do ícone da main page">
+                <button>Tela principal</button>
+              </div>
+            </a>
+            <div class="div-restricoes">
+              <!-- <a href="localizacao.html">
+                <div class="div-btComImg">
+                  <img src="../assets/img/drainage.png" alt="">
+                  <button>Localização</button>
+                </div>
+              </a> -->
+              <div class="div-zonas">
+                <img src="../assets/img/setaDireita.png" alt=""><select id="zonas" onchange="redirecionar()">
+                  <option value="#">Zonas</option>
+                  <option value="zn">Zona Norte</option>
+                  <option value="zl">Zona Leste</option>
+                  <option value="zo">Zona Oeste</option>
+                  <option value="zs">Zona Sul</option>
+                </select>
+              </div>
             </div>
-          </a> -->
-          <div class="div-zonas">
-            <img src="../assets/img/setaDireita.png" alt=""><select id="zonas" onchange="redirecionar()">
-              <option value="#">Zonas</option>
-              <option value="zn">Zona Norte</option>
-              <option value="zl">Zona Leste</option>
-              <option value="zo">Zona Oeste</option>
-              <option value="zs">Zona Sul</option>
-            </select>
+            <a href="https://ecodrain.atlassian.net/servicedesk/customer/portal/1" target="_blank">
+              <div class="div-btComImg">
+                <img src="../assets/img/help.svg" alt="Imagem do ícone de Suporte" >
+                <button>Suporte</button>
+              </div>
           </div>
         </div>
-      </div>
-    </div>
         <!-- Cabeçalho -->
         <header>
           <div class="header-container">
