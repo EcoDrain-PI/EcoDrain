@@ -2,7 +2,7 @@ var database = require("../database/config");
 
 function buscarUltimasMedidas(idBueiro, limite_linhas) {
     var instrucaoSql = `
-    SELECT  b.idBueiro, l.altura_lixo, l.data_monitoramento, e.nome_rua
+    SELECT  b.idBueiro, l.altura_lixo, l.data_monitoramento, e.nome_rua, e.bairro, e.zonas
     FROM lotacao l
     INNER JOIN sensor s ON l.fkSensor = s.idSensor
     INNER JOIN bueiro b ON s.fkBueiro = b.idBueiro

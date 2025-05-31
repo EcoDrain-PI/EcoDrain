@@ -8,6 +8,7 @@
   <link rel="icon" href="../assets/icon/favicon.ico">
   <link rel="stylesheet" href="../css/dashboards.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
 </head>
 
 <body onload="obterDadosGrafico(1)">
@@ -45,8 +46,8 @@
         </div>
         <a href="https://ecodrain.atlassian.net/servicedesk/customer/portal/1" target="_blank">
           <div class="div-btComImg">
-            <img src="../assets/img/help.svg" alt="Imagem do ícone de Suporte" >
-          <button>Suporte</button>
+            <img src="../assets/img/help.svg" alt="Imagem do ícone de Suporte">
+            <button>Suporte</button>
           </div>
         </a>
       </div>
@@ -211,16 +212,16 @@
 </script>
 
 <script>
+  let myChart;
   // Função chamada ao carregar a página para obter e processar os dados
   function obterDadosGrafico(idBueiro) {
     fetch(`/medidas/ultimas/${idBueiro}`, { cache: 'no-store' }).then(function (response) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-          resposta.reverse();
+          resposta.reverse(); // Invertendo os dados para plotar da esquerda para a direita
 
           plotarGrafico(resposta, idBueiro);
-
         });
       } else {
         console.error('Nenhum dado encontrado ou erro na API');
@@ -232,19 +233,28 @@
   }
 
   // Função para plotar o gráfico com os dados
-  function plotarGrafico(dados) {
-    console.log('iniciando plotagem do gráfico...');
+  function plotarGrafico(dados, idBueiro) {
+
+    if (myChart) {
+      myChart.destroy();
+    }
+    console.log('Iniciando plotagem do gráfico...');
 
     let labels = [];
     let dadosGrafico = [];
+    let zonas = [];
 
+    // Processando os dados
     for (let i = 0; i < dados.length; i++) {
-      labels.push(dados[i].nome_rua);
+      labels.push(dados[i].bairro);
       dadosGrafico.push(dados[i].altura_lixo);
+      zonas.push(dados[i].zonas);
     }
 
-    console.log('Labels:', labels);
-    console.log('Dados:', dadosGrafico);
+    // Definindo a cor das barras com base no nível do lixo
+    const backgroundColors = dadosGrafico.map(nivel => {
+      return nivel > 180 ? 'rgba(255, 99, 132, 0.7)' : 'rgba(54, 162, 235, 0.7)';  // Vermelho para > 180, azul para <= 180
+    });
 
     const ctx = document.getElementById('metricaPrincipal').getContext('2d');
 
@@ -253,9 +263,11 @@
       data: {
         labels: labels,
         datasets: [{
-          label: 'Nível do Lixo',
+          label: 'Nível do Lixo (cm)',
           data: dadosGrafico,
-          backgroundColor: 'rgb(30, 208, 186)'
+          backgroundColor: backgroundColors,
+          borderColor: backgroundColors.map(c => c.replace('0.7', '1')),
+          borderWidth: 1
         }]
       },
       options: {
@@ -272,66 +284,88 @@
           }
         },
         plugins: {
-          legend: {
-            labels: { color: '#ffffff' }
+          legend: { labels: { color: '#ffffff' } },
+          tooltip: {
+            callbacks: {
+              afterLabel: function (context) {
+                return 'Zona: ' + zonas[context.dataIndex];
+              }
+            }
+          },
+          annotation: {
+            annotations: {
+              linhaAtencao: {
+                type: 'line',
+                yMin: 150,
+                yMax: 150,
+                borderColor: 'rgba(255, 205, 86, 0.7)',
+                borderWidth: 2,
+                label: {
+                  content: 'Atenção',
+                  position: 'center',
+                  enabled: true,
+                  font: { size: 12, weight: 'bold' },
+                  yAdjust: -10
+                }
+              },
+              linhaRisco: {
+                type: 'line',
+                yMin: 180,
+                yMax: 180,
+                borderColor: 'rgba(255, 99, 132, 0.7)',
+                borderWidth: 2,
+                label: {
+                  content: 'Risco',
+                  position: 'center',
+                  enabled: true,
+                  font: { size: 12, weight: 'bold' },
+                  yAdjust: -10
+                }
+              }
+            }
           }
         }
       }
     };
 
-    new Chart(ctx, config);
+    myChart = new Chart(ctx, config);
 
-    function atualizarGrafico(idBueiro, dados, myChart) {
-      fetch(`/medidas/tempo-real/${idBueiro}`, { cache: 'no-store' }).then(function (response) {
-        if (response.ok) {
-          response.json().then(function (novoRegistro) {
+    setTimeout(() => atualizarGrafico(idBueiro, dados, myChart), 5000);
+  }
 
-            obterdados(idBueiro);
-            // alertar(novoRegistro, idBueiro);
-            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-            console.log(`Dados atuais do gráfico:`);
-            console.log(dados);
+  // Função para atualizar o gráfico em tempo real
+  function atualizarGrafico(idBueiro, dados, myChart) {
+    fetch(`/medidas/tempo-real/${idBueiro}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (novoRegistro) {
+          obterDadosGrafico(idBueiro);  // Atualiza os dados do gráfico
+          console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
 
-            let avisoCaptura = document.getElementById(`avisoCaptura${idBueiro}`)
-            avisoCaptura.innerHTML = ""
+          // Verifica se há dados novos para atualizar o gráfico
+          if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+            console.log("---------------------------------------------------------------")
+            console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+          } else {
+            dados.labels.shift();  // Remove o primeiro
+            dados.labels.push(novoRegistro[0].momento_grafico); // Adiciona o novo dado
+            dadosGrafico.shift();  // Remove o primeiro nível de lixo
+            dadosGrafico.push(novoRegistro[0].altura_lixo); // Adiciona o novo nível de lixo
 
+            // Atualiza o gráfico com novos dados
+            myChart.update();
+          }
 
-            if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-              console.log("---------------------------------------------------------------")
-              console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-              avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-              console.log("Horário do novo dado capturado:")
-              console.log(novoRegistro[0].momento_grafico)
-              console.log("Horário do último dado capturado:")
-              console.log(dados.labels[dados.labels.length - 1])
-              console.log("---------------------------------------------------------------")
-            } else {
-              // tirando e colocando valores no gráfico
-              dados.labels.shift(); // apagar o primeiro
-              dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
-
-              dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-              dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
-
-              dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-              dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-              myChart.update();
-            }
-
-            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-            proximaAtualizacao = setTimeout(() => atualizarGrafico(idBueiro, dados, myChart), 2000);
-          });
-        } else {
-          console.error('Nenhum dado encontrado ou erro na API');
-          // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-          proximaAtualizacao = setTimeout(() => atualizarGrafico(idBueiro, dados, myChart), 2000);
-        }
-      })
-        .catch(function (error) {
-          console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+          // Atualização do gráfico a cada 2 segundos
+          setTimeout(() => atualizarGrafico(idBueiro, dados, myChart), 2000);
         });
-    }
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+        setTimeout(() => atualizarGrafico(idBueiro, dados, myChart), 2000);
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
   }
 </script>
 
