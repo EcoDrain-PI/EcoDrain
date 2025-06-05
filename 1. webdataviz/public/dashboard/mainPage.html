@@ -367,6 +367,19 @@
         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
       });
   }
+
+  async function carregarContadores() {
+    try {
+      const respostaAtencao = await fetch("http://localhost:3333/api/atencao");
+      const dadosAtencao = await respostaAtencao.json();
+      document.getElementById("qtd_atencao").innerText = dadosAtencao.atencao;
+      } catch (erro) {
+      console.error("Erro ao carregar os dados:", erro);
+      document.getElementById("qtd_atencao").innerText = "Erro";
+      document.getElementById("qtd_risco").innerText = "Erro";
+    }
+  }
+  carregarContadores();
 </script>
 
 <!-- <script src="js/metricaDeBarras.js"></script> -->
