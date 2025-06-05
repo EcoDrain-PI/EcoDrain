@@ -1,388 +1,390 @@
-<!DOCTYPE html>
-<html lang="en">
+  <!DOCTYPE html>
+  <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tela principal - Dashboard</title>
-  <link rel="icon" href="../assets/icon/favicon.ico">
-  <link rel="stylesheet" href="../css/dashboards.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela principal - Dashboard</title>
+    <link rel="icon" href="../assets/icon/favicon.ico">
+    <link rel="stylesheet" href="../css/dashboards.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+  </head>
 
-<body onload="obterDadosGrafico(1)">
+  <body onload="obterDadosGrafico(1)">
 
-  <div class="div-pai">
-    <!-- Sidebar -->
-    <div class="div-sidebar">
-      <div class="div-img">
-        <img src="../assets/img/ecodrainSemFundo.png" alt="Logomarca da EcoDrain">
-      </div>
-
-      <div class="div-botoes">
-        <a href="mainPage.html">
-          <div class="div-btComImg">
-            <img src="../assets/img/main-menu.png" alt="Imagem do ícone da main page">
-            <button>Tela principal</button>
-          </div>
-        </a>
-        <div class="div-restricoes">
-          <!-- <a href="localizacao.html">
-            <div class="div-btComImg">
-              <img src="../assets/img/drainage.png" alt="">
-              <button>Localização</button>
-            </div>
-          </a> -->
-          <div class="div-zonas">
-            <img src="../assets/img/setaDireita.png" alt=""><select id="zonas" onchange="redirecionar()">
-              <option value="#">Zonas</option>
-              <option value="zn">Zona Norte</option>
-              <option value="zl">Zona Leste</option>
-              <option value="zo">Zona Oeste</option>
-              <option value="zs">Zona Sul</option>
-            </select>
-          </div>
+    <div class="div-pai">
+      <!-- Sidebar -->
+      <div class="div-sidebar">
+        <div class="div-img">
+          <img src="../assets/img/ecodrainSemFundo.png" alt="Logomarca da EcoDrain">
         </div>
-        <a href="https://ecodrain.atlassian.net/servicedesk/customer/portal/1" target="_blank">
-          <div class="div-btComImg">
-            <img src="../assets/img/help.svg" alt="Imagem do ícone de Suporte">
-            <button>Suporte</button>
-          </div>
-        </a>
-      </div>
-    </div>
-    <!-- Cabeçalho -->
-    <header>
-      <div class="header-container">
-        <h2>TELA DE DASHBOARD</h2>
 
-        <div class="div-pai-perfil">
-          <div class="div-linha"></div>
-          <div class="div-todo-perfil">
-            <div class="div-filho-perfil">
-              <img src="../assets/img/profile.png" alt="imagem de perfil" class="img-perfil">
-              <img src="../assets/img/seta-baixo.png" alt="ver opções" class="img-seta">
+        <div class="div-botoes">
+          <a href="mainPage.html">
+            <div class="div-btComImg">
+              <img src="../assets/img/main-menu.png" alt="Imagem do ícone da main page">
+              <button>Tela principal</button>
             </div>
-            <div class="div-opcoes">
-              <div class="div-opcao-sair">
-                <a href="../index.html"><span>Sair</span></a>
+          </a>
+          <div class="div-restricoes">
+            <!-- <a href="localizacao.html">
+              <div class="div-btComImg">
+                <img src="../assets/img/drainage.png" alt="">
+                <button>Localização</button>
+              </div>
+            </a> -->
+            <div class="div-zonas">
+              <img src="../assets/img/setaDireita.png" alt=""><select id="zonas" onchange="redirecionar()">
+                <option value="#">Zonas</option>
+                <option value="zn">Zona Norte</option>
+                <option value="zl">Zona Leste</option>
+                <option value="zo">Zona Oeste</option>
+                <option value="zs">Zona Sul</option>
+              </select>
+            </div>
+          </div>
+          <a href="https://ecodrain.atlassian.net/servicedesk/customer/portal/1" target="_blank">
+            <div class="div-btComImg">
+              <img src="../assets/img/help.svg" alt="Imagem do ícone de Suporte">
+              <button>Suporte</button>
+            </div>
+          </a>
+        </div>
+      </div>
+      <!-- Cabeçalho -->
+      <header>
+        <div class="header-container">
+          <h2>TELA DE DASHBOARD</h2>
+
+          <div class="div-pai-perfil">
+            <div class="div-linha"></div>
+            <div class="div-todo-perfil">
+              <div class="div-filho-perfil">
+                <img src="../assets/img/profile.png" alt="imagem de perfil" class="img-perfil">
+                <img src="../assets/img/seta-baixo.png" alt="ver opções" class="img-seta">
+              </div>
+              <div class="div-opcoes">
+                <div class="div-opcao-sair">
+                  <a href="../index.html"><span>Sair</span></a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </header>
-    <div class="container">
+      </header>
+      <div class="container">
 
-      <!-- Alertas -->
-      <div class="container-alertas">
-        <div class="div-h2-alertas">
-          <h2>Quantidade de Alertas Registrados na Última Hora</h2>
-        </div>
+        <!-- Alertas -->
+        <div class="container-alertas">
+          <div class="div-h2-alertas">
+            <h2>Quantidade de Alertas Registrados na Última Hora</h2>
+          </div>
 
         <div class="div-3-alertas">
-          <div>
-            <a href="alertaAtencao.html">
-              <div class="alerta div-atencao">
-                Alertas de atenção: <br>4
-              </div>
-            </a>
-          </div>
-
-          <div>
-            <a href="alertaRisco.html">
-              <div class="alerta div-risco">
-                Alertas de risco: <br>6
-              </div>
-            </a>
-          </div>
-
+    <div>
+      <a href="alertaAtencao.html">
+        <div class="alerta div-atencao">
+          Alertas de atenção: <br><span id="qtd_atencao">Carregando...</span>
         </div>
-      </div>
-
-      <!-- A métrica principal e o seu cabeçalho (gráfico de barras gerais) -->
-      <div class="div-metrica-principal">
-        <!-- Cabeçalho -->
-        <div class="div-head-metricas">
-          <div class="div-texto">
-            Níveis de Lotação por Bueiro (em cm)
-          </div>
-          <!-- <div class="div-select">
-            <select id="selectAnoBarraPrincipal">
-              <option value="2025">Ano de 2025</option>
-              <option value="2024">Ano de 2024</option>
-              <option value="2023">Ano de 2023</option>
-            </select>
-          </div> -->
-          <!-- MÉTRICA PRINCIPAL -->
-        </div>
-        <canvas id="metricaPrincipal"></canvas>
-      </div>
-
-
-      <!-- Métricas secundárias (de histórico) -->
-      <div class="metricas-secundarias">
-        <!-- <div class="metrica-secun">
-
-          <div class="div-head-metricas">
-            <div class="div-texto">
-              Sensores com Defeito
-            </div>
-            <div class="div-img">
-              Imagem que irá falar das coordenadas de localização dos bairros
-              <img src="../assets/img/coordenadas.png" alt="Imagem para ilustrar as coordenadas" class="img-coordenadas"
-                onclick="imgCoordenadas()" title="coordenadas das localizações dos bairros">
-            </div>
-            <div class="div-select">
-              <select id="selectAnoBolhaPrincipal">
-                <option value="2025">Ano de 2025</option>
-                <option value="2024">Ano de 2024</option>
-                <option value="2023">Ano de 2023</option>
-              </select>
-            </div>
-
-          </div>
-          <canvas id="can-metrica-bolha-principal"></canvas>
-        </div> -->
-
-
-        <div class="metrica-secun">
-          <div class="div-head-metricas">
-            <div class="div-texto">
-              Registro de alertas anuais
-            </div>
-            <div class="div-select">
-              <select id="selectAnoRoscaPrincipal">
-                <option value="2025">Ano de 2025</option>
-                <option value="2024">Ano de 2024</option>
-                <option value="2023">Ano de 2023</option>
-              </select>
-            </div>
-          </div>
-          <div class="div-centralizar-metrica">
-            <canvas id="can-metrica-registro-alertas-principal"></canvas>
-          </div>
-        </div>
-      </div>
-
-      <div id="coordenadas-bolha" class="div-coordenadas-graf-bolha">
-        <h2 class="h2-coordenadas">Coordenadas do gráfico de bolhas</h2>
-
-        <p>Legenda das coordenadas | Bairros com sensores instalados </p>
-
-        <div class="div-coordenadas-bairro">
-          <h3>Coordenadas | Bairro</h3>
-          <ul>
-            <li>x: 24, y: 22 | Itaquera</li>
-            <li>x: 25, y: 20 | Tatuapé</li>
-            <li>x: 15, y: 15 | Penha</li>
-            <li>x: 20, y: 20 | São Matheus</li>
-            <li>x: 16, y: 20 | Brás</li>
-            <li>x: 22, y: 30 | Guaianases</li>
-            <li>x: 12, y: 18 | Mooca</li>
-            <li>x: 14, y: 25 | Vila Formosa</li>
-            <li>x: 10, y: 20 | Vila Prudente</li>
-            <li>x: 16, y: 22 | Carrão</li>
-          </ul>
-        </div>
-      </div>
+      </a>
     </div>
 
-  </div>
-</body>
+    <div>
+      <a href="alertaRisco.html">
+        <div class="alerta div-risco">
+          Alertas de risco: <br><span id="qtd_risco">Carregando...</span>
+        </div>
+      </a>
+    </div>
+    </div>
 
-</html>
-<script>
-  function redirecionar() {
-    var zona = zonas.value
-    if (zona == 'zn') {
-      window.location.href = "zonaNorte.html"
-    }
-    if (zona == 'zl') {
-      window.location.href = "zonaLeste.html"
-    }
-    if (zona == 'zo') {
-      window.location.href = "zonaOeste.html"
-    }
-    if (zona == 'zs') {
-      window.location.href = "zonaSul.html"
-    }
-  }
-</script>
 
-<script>
-  let myChart;
-  // Função chamada ao carregar a página para obter e processar os dados
-  function obterDadosGrafico(idBueiro) {
-    fetch(`/medidas/ultimas/${idBueiro}`, { cache: 'no-store' }).then(function (response) {
-      if (response.ok) {
-        response.json().then(function (resposta) {
-          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-          resposta.reverse(); // Invertendo os dados para plotar da esquerda para a direita
+          </div>
+        </div>
 
-          plotarGrafico(resposta, idBueiro);
-        });
-      } else {
-        console.error('Nenhum dado encontrado ou erro na API');
+        <!-- A métrica principal e o seu cabeçalho (gráfico de barras gerais) -->
+        <div class="div-metrica-principal">
+          <!-- Cabeçalho -->
+          <div class="div-head-metricas">
+            <div class="div-texto">
+              Níveis de Lotação por Bueiro (em cm)
+            </div>
+            <!-- <div class="div-select">
+              <select id="selectAnoBarraPrincipal">
+                <option value="2025">Ano de 2025</option>
+                <option value="2024">Ano de 2024</option>
+                <option value="2023">Ano de 2023</option>
+              </select>
+            </div> -->
+            <!-- MÉTRICA PRINCIPAL -->
+          </div>
+          <canvas id="metricaPrincipal"></canvas>
+        </div>
+
+
+        <!-- Métricas secundárias (de histórico) -->
+        <div class="metricas-secundarias">
+          <!-- <div class="metrica-secun">
+
+            <div class="div-head-metricas">
+              <div class="div-texto">
+                Sensores com Defeito
+              </div>
+              <div class="div-img">
+                Imagem que irá falar das coordenadas de localização dos bairros
+                <img src="../assets/img/coordenadas.png" alt="Imagem para ilustrar as coordenadas" class="img-coordenadas"
+                  onclick="imgCoordenadas()" title="coordenadas das localizações dos bairros">
+              </div>
+              <div class="div-select">
+                <select id="selectAnoBolhaPrincipal">
+                  <option value="2025">Ano de 2025</option>
+                  <option value="2024">Ano de 2024</option>
+                  <option value="2023">Ano de 2023</option>
+                </select>
+              </div>
+
+            </div>
+            <canvas id="can-metrica-bolha-principal"></canvas>
+          </div> -->
+
+
+          <div class="metrica-secun">
+            <div class="div-head-metricas">
+              <div class="div-texto">
+                Registro de alertas anuais
+              </div>
+              <div class="div-select">
+                <select id="selectAnoRoscaPrincipal">
+                  <option value="2025">Ano de 2025</option>
+                  <option value="2024">Ano de 2024</option>
+                  <option value="2023">Ano de 2023</option>
+                </select>
+              </div>
+            </div>
+            <div class="div-centralizar-metrica">
+              <canvas id="can-metrica-registro-alertas-principal"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div id="coordenadas-bolha" class="div-coordenadas-graf-bolha">
+          <h2 class="h2-coordenadas">Coordenadas do gráfico de bolhas</h2>
+
+          <p>Legenda das coordenadas | Bairros com sensores instalados </p>
+
+          <div class="div-coordenadas-bairro">
+            <h3>Coordenadas | Bairro</h3>
+            <ul>
+              <li>x: 24, y: 22 | Itaquera</li>
+              <li>x: 25, y: 20 | Tatuapé</li>
+              <li>x: 15, y: 15 | Penha</li>
+              <li>x: 20, y: 20 | São Matheus</li>
+              <li>x: 16, y: 20 | Brás</li>
+              <li>x: 22, y: 30 | Guaianases</li>
+              <li>x: 12, y: 18 | Mooca</li>
+              <li>x: 14, y: 25 | Vila Formosa</li>
+              <li>x: 10, y: 20 | Vila Prudente</li>
+              <li>x: 16, y: 22 | Carrão</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+
+  </html>
+  <script>
+    function redirecionar() {
+      var zona = zonas.value
+      if (zona == 'zn') {
+        window.location.href = "zonaNorte.html"
       }
-    })
-      .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      if (zona == 'zl') {
+        window.location.href = "zonaLeste.html"
+      }
+      if (zona == 'zo') {
+        window.location.href = "zonaOeste.html"
+      }
+      if (zona == 'zs') {
+        window.location.href = "zonaSul.html"
+      }
+    }
+  </script>
+
+  <script>
+    let myChart;
+    // Função chamada ao carregar a página para obter e processar os dados
+    function obterDadosGrafico(idBueiro) {
+      fetch(`/medidas/ultimas/${idBueiro}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            resposta.reverse(); // Invertendo os dados para plotar da esquerda para a direita
+
+            plotarGrafico(resposta, idBueiro);
+          });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+        }
+      })
+        .catch(function (error) {
+          console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
+    // Função para plotar o gráfico com os dados
+    function plotarGrafico(dados, idBueiro) {
+
+      if (myChart) {
+        myChart.destroy();
+      }
+      console.log('Iniciando plotagem do gráfico...');
+
+      let labels = [];
+      let dadosGrafico = [];
+      let zonas = [];
+
+      // Processando os dados
+      for (let i = 0; i < dados.length; i++) {
+        labels.push(dados[i].bairro);
+        dadosGrafico.push(dados[i].altura_lixo);
+        zonas.push(dados[i].zonas);
+      }
+
+      // Definindo a cor das barras com base no nível do lixo
+      const backgroundColors = dadosGrafico.map(nivel => {
+        return nivel > 180 ? 'rgba(255, 99, 132, 0.7)' : 'rgba(54, 162, 235, 0.7)';  // Vermelho para > 180, azul para <= 180
       });
-  }
 
-  // Função para plotar o gráfico com os dados
-  function plotarGrafico(dados, idBueiro) {
+      const ctx = document.getElementById('metricaPrincipal').getContext('2d');
 
-    if (myChart) {
-      myChart.destroy();
-    }
-    console.log('Iniciando plotagem do gráfico...');
-
-    let labels = [];
-    let dadosGrafico = [];
-    let zonas = [];
-
-    // Processando os dados
-    for (let i = 0; i < dados.length; i++) {
-      labels.push(dados[i].bairro);
-      dadosGrafico.push(dados[i].altura_lixo);
-      zonas.push(dados[i].zonas);
-    }
-
-    // Definindo a cor das barras com base no nível do lixo
-    const backgroundColors = dadosGrafico.map(nivel => {
-      return nivel > 180 ? 'rgba(255, 99, 132, 0.7)' : 'rgba(54, 162, 235, 0.7)';  // Vermelho para > 180, azul para <= 180
-    });
-
-    const ctx = document.getElementById('metricaPrincipal').getContext('2d');
-
-    const config = {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Nível do Lixo (cm)',
-          data: dadosGrafico,
-          backgroundColor: backgroundColors,
-          borderColor: backgroundColors.map(c => c.replace('0.7', '1')),
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: { color: '#ffffff' },
-            grid: { color: 'rgba(255, 255, 255, 0.2)' }
-          },
-          x: {
-            ticks: { color: '#ffffff' },
-            grid: { color: 'rgba(255, 255, 255, 0.2)' }
-          }
+      const config = {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Nível do Lixo (cm)',
+            data: dadosGrafico,
+            backgroundColor: backgroundColors,
+            borderColor: backgroundColors.map(c => c.replace('0.7', '1')),
+            borderWidth: 1
+          }]
         },
-        plugins: {
-          legend: { labels: { color: '#ffffff' } },
-          tooltip: {
-            callbacks: {
-              afterLabel: function (context) {
-                return 'Zona: ' + zonas[context.dataIndex];
-              }
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: { color: '#ffffff' },
+              grid: { color: 'rgba(255, 255, 255, 0.2)' }
+            },
+            x: {
+              ticks: { color: '#ffffff' },
+              grid: { color: 'rgba(255, 255, 255, 0.2)' }
             }
           },
-          annotation: {
-            annotations: {
-              linhaAtencao: {
-                type: 'line',
-                yMin: 150,
-                yMax: 150,
-                borderColor: 'rgba(255, 205, 86, 0.7)',
-                borderWidth: 2,
-                label: {
-                  content: 'Atenção',
-                  position: 'center',
-                  enabled: true,
-                  font: { size: 12, weight: 'bold' },
-                  yAdjust: -10
+          plugins: {
+            legend: { labels: { color: '#ffffff' } },
+            tooltip: {
+              callbacks: {
+                afterLabel: function (context) {
+                  return 'Zona: ' + zonas[context.dataIndex];
                 }
-              },
-              linhaRisco: {
-                type: 'line',
-                yMin: 180,
-                yMax: 180,
-                borderColor: 'rgba(255, 99, 132, 0.7)',
-                borderWidth: 2,
-                label: {
-                  content: 'Risco',
-                  position: 'center',
-                  enabled: true,
-                  font: { size: 12, weight: 'bold' },
-                  yAdjust: -10
+              }
+            },
+            annotation: {
+              annotations: {
+                linhaAtencao: {
+                  type: 'line',
+                  yMin: 150,
+                  yMax: 150,
+                  borderColor: 'rgba(255, 205, 86, 0.7)',
+                  borderWidth: 2,
+                  label: {
+                    content: 'Atenção',
+                    position: 'center',
+                    enabled: true,
+                    font: { size: 12, weight: 'bold' },
+                    yAdjust: -10
+                  }
+                },
+                linhaRisco: {
+                  type: 'line',
+                  yMin: 180,
+                  yMax: 180,
+                  borderColor: 'rgba(255, 99, 132, 0.7)',
+                  borderWidth: 2,
+                  label: {
+                    content: 'Risco',
+                    position: 'center',
+                    enabled: true,
+                    font: { size: 12, weight: 'bold' },
+                    yAdjust: -10
+                  }
                 }
               }
             }
           }
         }
-      }
-    };
+      };
 
-    myChart = new Chart(ctx, config);
+      myChart = new Chart(ctx, config);
 
-    setTimeout(() => atualizarGrafico(idBueiro, dados, myChart), 5000);
-  }
-
-  // Função para atualizar o gráfico em tempo real
-  function atualizarGrafico(idBueiro, dados, myChart) {
-    fetch(`/medidas/tempo-real/${idBueiro}`, { cache: 'no-store' }).then(function (response) {
-      if (response.ok) {
-        response.json().then(function (novoRegistro) {
-          obterDadosGrafico(idBueiro);  // Atualiza os dados do gráfico
-          console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-
-          // Verifica se há dados novos para atualizar o gráfico
-          if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-            console.log("---------------------------------------------------------------")
-            console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-          } else {
-            dados.labels.shift();  // Remove o primeiro
-            dados.labels.push(novoRegistro[0].momento_grafico); // Adiciona o novo dado
-            dadosGrafico.shift();  // Remove o primeiro nível de lixo
-            dadosGrafico.push(novoRegistro[0].altura_lixo); // Adiciona o novo nível de lixo
-
-            // Atualiza o gráfico com novos dados
-            myChart.update();
-          }
-
-          // Atualização do gráfico a cada 2 segundos
-          setTimeout(() => atualizarGrafico(idBueiro, dados, myChart), 2000);
-        });
-      } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-        setTimeout(() => atualizarGrafico(idBueiro, dados, myChart), 2000);
-      }
-    })
-      .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-      });
-  }
-
-  async function carregarContadores() {
-    try {
-      const respostaAtencao = await fetch("http://localhost:3333/api/atencao");
-      const dadosAtencao = await respostaAtencao.json();
-      document.getElementById("qtd_atencao").innerText = dadosAtencao.atencao;
-      } catch (erro) {
-      console.error("Erro ao carregar os dados:", erro);
-      document.getElementById("qtd_atencao").innerText = "Erro";
-      document.getElementById("qtd_risco").innerText = "Erro";
+      setTimeout(() => atualizarGrafico(idBueiro, dados, myChart), 5000);
     }
-  }
-  carregarContadores();
-</script>
 
-<!-- <script src="js/metricaDeBarras.js"></script> -->
-<!-- <script src="js/MetricaDeBolhas.js"></script> -->
-<script src="js/metricaDeRosca.js"></script>
-<script src="js/codigosFront.js"></script>
+    // Função para atualizar o gráfico em tempo real
+    function atualizarGrafico(idBueiro, dados, myChart) {
+      fetch(`/medidas/tempo-real/${idBueiro}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (novoRegistro) {
+            obterDadosGrafico(idBueiro);  // Atualiza os dados do gráfico
+            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+
+            // Verifica se há dados novos para atualizar o gráfico
+            if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+              console.log("---------------------------------------------------------------")
+              console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+            } else {
+              dados.labels.shift();  // Remove o primeiro
+              dados.labels.push(novoRegistro[0].momento_grafico); // Adiciona o novo dado
+              dadosGrafico.shift();  // Remove o primeiro nível de lixo
+              dadosGrafico.push(novoRegistro[0].altura_lixo); // Adiciona o novo nível de lixo
+
+              // Atualiza o gráfico com novos dados
+              myChart.update();
+            }
+
+            // Atualização do gráfico a cada 2 segundos
+            setTimeout(() => atualizarGrafico(idBueiro, dados, myChart), 2000);
+          });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+          setTimeout(() => atualizarGrafico(idBueiro, dados, myChart), 2000);
+        }
+      })
+        .catch(function (error) {
+          console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
+    async function carregarContadores() {
+      try {
+        const respostaAtencao = await fetch("http://localhost:3333/medidas/atencao");
+        const dadosAtencao = await respostaAtencao.json();
+        document.getElementById("qtd_atencao").innerText = dadosAtencao.atencao;
+        } catch (erro) {
+        console.error("Erro ao carregar os dados:", erro);
+        document.getElementById("qtd_atencao").innerText = "Erro";
+        document.getElementById("qtd_risco").innerText = "Erro";
+      }
+    }
+    carregarContadores();
+  </script>
+
+  <!-- <script src="js/metricaDeBarras.js"></script> -->
+  <!-- <script src="js/MetricaDeBolhas.js"></script> -->
+  <script src="js/metricaDeRosca.js"></script>
+  <script src="js/codigosFront.js"></script>
