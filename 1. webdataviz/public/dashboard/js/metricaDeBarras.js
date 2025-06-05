@@ -1,131 +1,155 @@
+let myChart;
+// Função chamada ao carregar a página para obter e processar os dados
+function obterDadosGrafico(idBueiro) {
+fetch(`/medidas/ultimas/${idBueiro}`, { cache: 'no-store' }).then(function (response) {
+if (response.ok) {
+response.json().then(function (resposta) {
+console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+resposta.reverse(); // Invertendo os dados para plotar da esquerda para a direita
+
+plotarGrafico(resposta, idBueiro);
+});
+} else {
+console.error('Nenhum dado encontrado ou erro na API');
+}
+})
+.catch(function (error) {
+console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+});
+}
+
+// Função para plotar o gráfico com os dados
+function plotarGrafico(dados, idBueiro) {
+
+if (myChart) {
+myChart.destroy();
+}
+console.log('Iniciando plotagem do gráfico...');
+
+let labels = [];
+let dadosGrafico = [];
+let zonas = [];
+
+// Processando os dados
+for (let i = 0; i < dados.length; i++) {
+labels.push(dados[i].bairro);
+dadosGrafico.push(dados[i].altura_lixo);
+zonas.push(dados[i].zonas);
+}
+
+// Definindo a cor das barras com base no nível do lixo
+const backgroundColors = dadosGrafico.map(nivel => {
+return nivel > 180 ? 'rgba(255, 99, 132, 0.7)' : 'rgba(54, 162, 235, 0.7)'; // Vermelho para > 180, azul para <= 180
+});
+
 const ctx = document.getElementById('metricaPrincipal').getContext('2d');
 
-// Novo formato de dados com múltiplos bairros
-const dadosPorAno = {
-  2025: [
-    [2, 9, 5, 9],
-    [10, 4, 16, 8],
-    [5, 15, 25, 2]
-  ],
-  2024: [
-    [100, 90, 80, 70, 60, 50, 40, 30],
-    [70, 60, 50, 40, 30, 20, 10, 5],
-    [60, 50, 40, 30, 20, 10, 5, 2]
-  ],
-  2023: [
-    [150, 160, 170, 160, 150, 160, 170, 180],
-    [140, 130, 120, 110, 105, 115, 125, 135],
-    [130, 140, 150, 140, 130, 120, 110, 105]
-  ]
+const config = {
+type: 'bar',
+data: {
+labels: labels,
+datasets: [{
+label: 'Nível do Lixo (cm)',
+data: dadosGrafico,
+backgroundColor: backgroundColors,
+borderColor: backgroundColors.map(c => c.replace('0.7', '1')),
+borderWidth: 1
+}]
+},
+options: {
+responsive: true,
+scales: {
+y: {
+beginAtZero: true,
+ticks: { color: '#ffffff' },
+grid: { color: 'rgba(255, 255, 255, 0.2)' }
+},
+x: {
+ticks: { color: '#ffffff' },
+grid: { color: 'rgba(255, 255, 255, 0.2)' }
+}
+},
+plugins: {
+legend: { labels: { color: '#ffffff' } },
+tooltip: {
+callbacks: {
+afterLabel: function (context) {
+return 'Zona: ' + zonas[context.dataIndex];
+}
+}
+},
+annotation: {
+annotations: {
+linhaAtencao: {
+type: 'line',
+yMin: 150,
+yMax: 150,
+borderColor: 'rgba(255, 205, 86, 0.7)',
+borderWidth: 2,
+label: {
+content: 'Atenção',
+position: 'center',
+enabled: true,
+font: { size: 12, weight: 'bold' },
+yAdjust: -10
+}
+},
+linhaRisco: {
+type: 'line',
+yMin: 180,
+yMax: 180,
+borderColor: 'rgba(255, 99, 132, 0.7)',
+borderWidth: 2,
+label: {
+content: 'Risco',
+position: 'center',
+enabled: true,
+font: { size: 12, weight: 'bold' },
+yAdjust: -10
+}
+}
+}
+}
+}
+}
 };
 
-// Atualizado para 8 meses
-const labels = ['Bueiro 1', 'Bueiro 2', 'Bueiro 3', 'Bueiro 4'];
+myChart = new Chart(ctx, config);
 
-// Criação inicial do gráfico
-const grafico = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: labels,
-    datasets: [
-      {
-        label: 'Nível do Lixo',
-        data: dadosPorAno[2025][1],
-        backgroundColor: 'rgb(30, 208, 186)'
-      },
-    ]
-  },
-  options: {
-    responsive: true,
-    scales: {
-      y: {
-        beginAtZero: true,
-        ticks: { color: '#ffffff' },
-        grid: { color: 'rgba(255, 255, 255, 0.2)' }
-      },
-      x: {
-        ticks: { color: '#ffffff' },
-        grid: { color: 'rgba(255, 255, 255, 0.2)' }
-      }
-    },
-    plugins: {
-      legend: {
-        labels: { color: '#ffffff' }
-      }
-    }
-  }
+setTimeout(() => atualizarGrafico(idBueiro, dados, myChart), 5000);
+}
+
+// Função para atualizar o gráfico em tempo real
+function atualizarGrafico(idBueiro, dados, myChart) {
+fetch(`/medidas/tempo-real/${idBueiro}`, { cache: 'no-store' }).then(function (response) {
+if (response.ok) {
+response.json().then(function (novoRegistro) {
+obterDadosGrafico(idBueiro); // Atualiza os dados do gráfico
+console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+
+// Verifica se há dados novos para atualizar o gráfico
+if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+console.log("---------------------------------------------------------------")
+console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+} else {
+dados.labels.shift(); // Remove o primeiro
+dados.labels.push(novoRegistro[0].momento_grafico); // Adiciona o novo dado
+dadosGrafico.shift(); // Remove o primeiro nível de lixo
+dadosGrafico.push(novoRegistro[0].altura_lixo); // Adiciona o novo nível de lixo
+
+// Atualiza o gráfico com novos dados
+myChart.update();
+}
+
+// Atualização do gráfico a cada 2 segundos
+setTimeout(() => atualizarGrafico(idBueiro, dados, myChart), 2000);
 });
-
-// Corrigido: id correto 'selectAno' e atualização para múltiplos datasets
-document.getElementById('selectAnoBarraPrincipal').addEventListener('change', function () {
-  const anoSelecionado = this.value;
-
-  const dadosAno = dadosPorAno[anoSelecionado];
-  grafico.data.datasets.forEach((dataset, index) => {
-    dataset.data = dadosAno[index];
-  });
-
-  grafico.update();
+} else {
+console.error('Nenhum dado encontrado ou erro na API');
+setTimeout(() => atualizarGrafico(idBueiro, dados, myChart), 2000);
+}
+})
+.catch(function (error) {
+console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
 });
-
-
-// Métrica da ZL
-const metricaPrincipalZL = document.getElementById('metricaPrincipalZL').getContext('2d');
-
-const graficoMetricaPrincipalZL = new Chart(metricaPrincipalZL, {
-  type: 'bar',
-  data: {
-    labels: labels,
-    datasets: [
-      {
-        label: 'Itaquera',
-        data: dadosPorAno[2025][0],
-        borderColor: 'black',
-        backgroundColor: 'rgb(90, 245, 227)'
-      },
-      {
-        label: 'Mooca',
-        data: dadosPorAno[2025][1],
-        backgroundColor: 'rgb(30, 208, 186)'
-      },
-      {
-        label: 'Arthur Alvim',
-        data: dadosPorAno[2025][2],
-        backgroundColor: 'rgb(42, 157, 143)'
-      },
-
-    ]
-  },
-  options: {
-    responsive: true,
-    scales: {
-      y: {
-        beginAtZero: true,
-        ticks: { color: '#ffffff' },
-        grid: { color: 'rgba(255, 255, 255, 0.2)' }
-      },
-      x: {
-        ticks: { color: '#ffffff' },
-        grid: { color: 'rgba(255, 255, 255, 0.2)' }
-      }
-    },
-    plugins: {
-      legend: {
-        labels: { color: '#ffffff' }
-      }
-    }
-  }
-});
-
-
-
-document.getElementById('selectAnoBarraPrincipalZL').addEventListener('change', function () {
-  // const anoSelecionado = this.value;
-
-  // const dadosAno = dadosPorAno[anoSelecionado];
-  grafico.data.datasets.forEach((dataset, index) => {
-    dataset.data = dadosAno[index];
-  });
-
-  grafico.update();
-});
+}
