@@ -1,39 +1,36 @@
- //MÉTRICA DE ROSCA (PRINCIPAL) 
-
 const MetricaRoscaPrincipal = document.getElementById('can-metrica-registro-alertas-principal');
 
-const dadosPorAnoRosca = {
-  2025: [100, 150, 50],
-  2024: [200, 100, 400],
-  2023: [40, 160, 100],
+// Dados fixos para 2023 e 2024
+const dadosFixos = {
+  2023: { atencao: 100, risco: 100 },
+  2024: { atencao: 150, risco: 145 }
 };
 
+// Inicializar o gráfico com os dados de 2025 como placeholder
 const chartRosca = new Chart(MetricaRoscaPrincipal, {
   type: 'bar',
   data: {
-    labels: [
-      2023,
-      2024,
-      2025
-    ],
-    datasets: [{
-      label: 'Alerta de atenção',
-      data: dadosPorAnoRosca[2025], // valor inicial
-      borderColor: 'transparent',
-      color: '#ffffff',
-      backgroundColor: [
-        'rgb(62, 225, 120)',
-      ]      
-    },
-    {
-      label: 'Alerta de risco',
-      data: dadosPorAnoRosca[2025], // valor inicial
-      borderColor: 'transparent',
-      color: '#ffffff',
-      backgroundColor: [
-        'rgb(220, 20, 60)'
-      ]      
-    }]
+    labels: ['2023', '2024', '2025'],
+    datasets: [
+      {
+        label: 'Alerta de atenção',
+        backgroundColor: 'rgb(62, 225, 120)',
+        data: [
+          dadosFixos[2023].atencao,
+          dadosFixos[2024].atencao,
+          0 // valor de 2025 será atualizado
+        ]
+      },
+      {
+        label: 'Alerta de risco',
+        backgroundColor: 'rgb(220, 20, 60)',
+        data: [
+          dadosFixos[2023].risco,
+          dadosFixos[2024].risco,
+          0 // valor de 2025 será atualizado
+        ]
+      }
+    ]
   },
   options: {
     responsive: true,
@@ -58,12 +55,37 @@ const chartRosca = new Chart(MetricaRoscaPrincipal, {
   }
 });
 
-// Atualizar os dados ao trocar o ano
-document.getElementById('selectAnoRoscaPrincipal').addEventListener('change', function () {
+// Atualizar gráfico ao trocar o ano
+document.getElementById('selectAnoRoscaPrincipal').addEventListener('change', async function () {
   const anoSelecionado = this.value;
 
-  
-    chartRosca.data.datasets[0].data = dadosPorAnoRosca[anoSelecionado];
-    chartRosca.update();
-  
+  if (anoSelecionado === '2025') {
+    try {
+      const [resAtencao, resRisco] = await Promise.all([
+        fetch("http://localhost:8080/medidas/atencao"),
+        fetch("http://localhost:8080/medidas/risco")
+      ]);
+
+      const dadosAtencao = await resAtencao.json();
+      const dadosRisco = await resRisco.json();
+
+      chartRosca.data.datasets[0].data[2] = dadosAtencao.atencao;
+      chartRosca.data.datasets[1].data[2] = dadosRisco.risco;
+
+    } catch (erro) {
+      console.error("Erro ao buscar dados dinâmicos de 2025:", erro);
+      chartRosca.data.datasets[0].data[2] = 0;
+      chartRosca.data.datasets[1].data[2] = 0;
+    }
+
+  } else {
+    const ano = parseInt(anoSelecionado);
+    chartRosca.data.datasets[0].data[2] = 0;
+    chartRosca.data.datasets[1].data[2] = 0;
+  }
+
+  chartRosca.update();
 });
+
+
+

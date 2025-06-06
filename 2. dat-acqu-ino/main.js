@@ -31,9 +31,9 @@ const serial = async (
         {
             host: 'localhost',
             user: 'aluno',
-            password: 'Sptech#2024',
+            password: 'sptech',
             database: 'EcoDrain',
-            port: 3307
+            port: 3306
         }
     ).promise();
 
