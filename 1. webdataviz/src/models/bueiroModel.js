@@ -17,6 +17,7 @@ function cadastrar(idEmpresa, nome) {
 }
 
 
+
 module.exports = {
   buscarBueiroPorEmpresa,
   cadastrar

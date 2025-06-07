@@ -13,6 +13,7 @@ router.get("/tempo-real/:idBueiro", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);
 })
 
+
 router.get("/atencao", async (req, res) => {
   try {
     const resultado = await executar(`
