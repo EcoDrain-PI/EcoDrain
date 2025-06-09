@@ -6,21 +6,21 @@ const { executar } = require("../database/config");
 var medidaController = require("../controllers/medidaController");
 
 router.get("/ultimas/:idBueiro", function (req, res) {
-    medidaController.buscarUltimasMedidas(req, res);
+  medidaController.buscarUltimasMedidas(req, res);
 });
 
 router.get("/tempo-real/:idBueiro", function (req, res) {
-    medidaController.buscarMedidasEmTempoReal(req, res);
+  medidaController.buscarMedidasEmTempoReal(req, res);
 })
 
 
 router.get("/atencao", async (req, res) => {
   try {
     const resultado = await executar(`
-      SELECT COUNT(*) AS atencao
+      SELECT 
+        COUNT(*) AS atencao
       FROM lotacao
-      WHERE altura_lixo <= 139 AND altura_lixo > 50
-    `);
+      WHERE altura_lixo <= 150 AND altura_lixo > 0;`);
     res.json(resultado[0]);
   } catch (erro) {
     console.error("🛑 ERRO AO CONTAR ALERTAS DE ATENÇÃO:", erro); // 👈 Aqui loga o erro real
@@ -31,7 +31,7 @@ router.get("/atencao", async (req, res) => {
 router.get("/risco", async (req, res) => {
   try {
     const resultado = await executar(
-      `SELECT COUNT(*) AS risco FROM lotacao WHERE altura_lixo <= 50`
+      `SELECT COUNT(*) AS risco FROM lotacao WHERE altura_lixo >= 180;`
     );
     res.json(resultado[0]);
   } catch (erro) {

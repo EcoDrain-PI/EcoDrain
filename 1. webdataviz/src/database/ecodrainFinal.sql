@@ -31,7 +31,7 @@ CREATE TABLE endereco (
   cep CHAR(8) NOT NULL,
   rua VARCHAR(100) NOT NULL,
   bairro VARCHAR(45) NOT NULL,
-  fkZona INT NOT NULL unique,
+  fkZona INT NOT NULL,
   PRIMARY KEY (idEndereco),
   CONSTRAINT fk_endereco_empresa1 FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa), 
 CONSTRAINT fk_endereco_zona1 FOREIGN KEY (fkZona) REFERENCES zona (idZona)
