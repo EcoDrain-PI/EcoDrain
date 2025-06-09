@@ -1,20 +1,23 @@
 var database = require("../database/config");
 
 function buscarUltimasMedidas(idBueiro, limite_linhas) {
+    // SELECT  b.idBueiro, l.altura_lixo, l.data_monitoramento, e.nome_rua, e.bairro, e.zonas
     var instrucaoSql = `
-    SELECT  b.idBueiro, l.altura_lixo, l.data_monitoramento, e.nome_rua, e.bairro, e.zonas
+    SELECT  b.idBueiro, l.altura_lixo, l.data_monitoramento, e.bairro, z.nome as zonasGrafico
     FROM lotacao l
     INNER JOIN sensor s ON l.fkSensor = s.idSensor
     INNER JOIN bueiro b ON s.fkBueiro = b.idBueiro
-    INNER JOIN endereco e ON b.fkEndereco = e.idEndereco;`;
+    INNER JOIN endereco e ON b.fkEndereco = e.idEndereco
+    INNER JOIN zona z ON e.fkZona = z.idZona;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 function buscarMedidasEmTempoReal(idBueiro) {
+    // SELECT  b.idBueiro, l.altura_lixo, l.data_monitoramento, e.nome_rua
     var instrucaoSql = `
-    SELECT  b.idBueiro, l.altura_lixo, l.data_monitoramento, e.nome_rua
+    SELECT  b.idBueiro, l.altura_lixo, l.data_monitoramento
     FROM lotacao l
     INNER JOIN sensor s ON l.fkSensor = s.idSensor
     INNER JOIN bueiro b ON s.fkBueiro = b.idBueiro
@@ -24,8 +27,9 @@ function buscarMedidasEmTempoReal(idBueiro) {
     return database.executar(instrucaoSql);
 }
 
+// Select da Zona Norte da cidade Santana
 function zonaNorte() {
-        var instrucaoSql = `
+    var instrucaoSql = `
     SELECT 
         l.altura_lixo,
         e.bairro,
@@ -40,12 +44,12 @@ function zonaNorte() {
         JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
         where z.nome = 'Norte';`;
 
-        console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 function zonaOeste() {
-        var instrucaoSql = `
+    var instrucaoSql = `
     SELECT 
         l.altura_lixo,
         e.bairro,
@@ -60,7 +64,7 @@ function zonaOeste() {
         JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
         where z.zona = 'Oeste';`;
 
-        console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
