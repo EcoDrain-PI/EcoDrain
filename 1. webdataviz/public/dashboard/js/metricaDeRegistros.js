@@ -1,10 +1,38 @@
 const MetricaRoscaPrincipal = document.getElementById('can-metrica-registro-alertas-principal');
 
-// Dados fixos para 2023 e 2024
 const dadosFixos = {
   2023: { atencao: 80, risco: 127 },
   2024: { atencao: 67, risco: 45 }
 };
+
+async function atualizarDados2025() {
+  try {
+    const [resAtencao, resRisco] = await Promise.all([
+      fetch("/medidas/atencao"),
+      fetch("/medidas/risco")
+    ]);
+
+    const dadosAtencao = await resAtencao.json();
+    const dadosRisco = await resRisco.json();
+
+    // Atualizando os dados de 2025
+    dadosFixos[2025] = {
+      atencao: dadosAtencao.atencao,
+      risco: dadosRisco.risco
+    };
+
+    chartRosca.data.datasets[0].data[2] = dadosAtencao.atencao;
+    chartRosca.data.datasets[1].data[2] = dadosRisco.risco;
+    chartRosca.update();
+
+  } catch (erro) {
+    console.error("Erro ao buscar dados dinâmicos de 2025:", erro);
+    dadosFixos[2025] = { atencao: 0, risco: 0 };
+    chartRosca.data.datasets[0].data[2] = 0;
+    chartRosca.data.datasets[1].data[2] = 0;
+    chartRosca.update();
+  }
+}
 
 // Inicializar o gráfico com os dados de 2025 como placeholder
 const chartRosca = new Chart(MetricaRoscaPrincipal, {
@@ -18,7 +46,7 @@ const chartRosca = new Chart(MetricaRoscaPrincipal, {
         data: [
           dadosFixos[2023].atencao,
           dadosFixos[2024].atencao,
-          0 // valor de 2025 será atualizado
+          dadosFixos[2025]?.atencao || 0 // 2025 começará com 0 até ser atualizado
         ]
       },
       {
@@ -27,7 +55,7 @@ const chartRosca = new Chart(MetricaRoscaPrincipal, {
         data: [
           dadosFixos[2023].risco,
           dadosFixos[2024].risco,
-          0 // valor de 2025 será atualizado
+          dadosFixos[2025]?.risco || 0 // 2025 começará com 0 até ser atualizado
         ]
       }
     ]
@@ -55,37 +83,4 @@ const chartRosca = new Chart(MetricaRoscaPrincipal, {
   }
 });
 
-// Atualizar gráfico ao trocar o ano
-document.getElementById('selectAnoRoscaPrincipal').addEventListener('change', async function () {
-  const anoSelecionado = this.value;
-
-  if (anoSelecionado === '2025') {
-    try {
-      const [resAtencao, resRisco] = await Promise.all([
-        fetch("/medidas/atencao"),
-        fetch("/medidas/risco")
-      ]);
-
-      const dadosAtencao = await resAtencao.json();
-      const dadosRisco = await resRisco.json();
-
-      chartRosca.data.datasets[0].data[2] = dadosAtencao.atencao;
-      chartRosca.data.datasets[1].data[2] = dadosRisco.risco;
-
-    } catch (erro) {
-      console.error("Erro ao buscar dados dinâmicos de 2025:", erro);
-      chartRosca.data.datasets[0].data[2] = 0;
-      chartRosca.data.datasets[1].data[2] = 0;
-    }
-
-  } else {
-    const ano = parseInt(anoSelecionado);
-    chartRosca.data.datasets[0].data[2] = 0;
-    chartRosca.data.datasets[1].data[2] = 0;
-  }
-
-  chartRosca.update();
-});
-
-
-
+atualizarDados2025();
