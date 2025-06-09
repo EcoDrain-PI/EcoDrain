@@ -2,8 +2,8 @@ const MetricaRoscaPrincipal = document.getElementById('can-metrica-registro-aler
 
 // Dados fixos para 2023 e 2024
 const dadosFixos = {
-  2023: { atencao: 100, risco: 100 },
-  2024: { atencao: 150, risco: 145 }
+  2023: { atencao: 80, risco: 127 },
+  2024: { atencao: 67, risco: 45 }
 };
 
 // Inicializar o gráfico com os dados de 2025 como placeholder
