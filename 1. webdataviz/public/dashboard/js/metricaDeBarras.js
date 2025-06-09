@@ -39,7 +39,7 @@ function plotarGrafico(dados, idBueiro) {
 
     // Definindo a cor das barras com base no nível do lixo
     const backgroundColors = dadosGrafico.map(nivel => {
-        return nivel > 180 ? 'rgb(255, 99, 132)' : 'rgb(62, 225, 120)'; // Vermelho para > 180, azul para <= 180
+        return nivel >= 180 ? 'rgb(220, 20, 60)' : nivel >= 150 ? 'rgb(255, 200, 0)' : 'rgb(62, 225, 120)'; // Vermelho para > 180, azul para <= 180
     });
 
     const ctx = document.getElementById('metricaPrincipal').getContext('2d');

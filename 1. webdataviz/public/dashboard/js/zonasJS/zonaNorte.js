@@ -124,7 +124,7 @@ let myChart;
     fetch(`/medidas/tempo-real/${idBueiro}`, { cache: 'no-store' }).then(function (response) {
       if (response.ok) {
         response.json().then(function (novoRegistro) {
-          obterDadosGrafico(idBueiro);  // Atualiza os dados do gráfico
+          obterDadosZN(idBueiro);  // Atualiza os dados do gráfico
           console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
 
           // Verifica se há dados novos para atualizar o gráfico
