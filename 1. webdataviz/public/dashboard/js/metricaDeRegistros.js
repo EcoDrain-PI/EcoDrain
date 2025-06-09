@@ -6,6 +6,7 @@ const dadosFixos = {
 };
 
 async function atualizarDados2025() {
+  console.log("ENTROU AQUI")
   try {
     const [resAtencao, resRisco] = await Promise.all([
       fetch("/medidas/atencao"),
@@ -42,7 +43,7 @@ const chartRosca = new Chart(MetricaRoscaPrincipal, {
     datasets: [
       {
         label: 'Alerta de atenção',
-        backgroundColor: 'rgb(62, 225, 120)',
+        backgroundColor: 'rgb(255, 200, 0)',
         data: [
           dadosFixos[2023].atencao,
           dadosFixos[2024].atencao,
