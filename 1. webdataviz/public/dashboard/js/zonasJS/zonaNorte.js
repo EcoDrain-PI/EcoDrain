@@ -42,7 +42,7 @@ let myChart;
       return nivel > 180 ? 'rgba(255, 99, 132, 0.7)' : 'rgba(54, 162, 235, 0.7)';  // Vermelho para > 180, azul para <= 180
     });
 
-    const ctx = document.getElementById('zonaNorteBairro1').getContext('2d');
+    const ctx = document.getElementById('zonaNorteBairroSantana').getContext('2d');
 
     const config = {
       type: 'bar',
