@@ -1,13 +1,13 @@
 let myChart;
   // Função chamada ao carregar a página para obter e processar os dados
-  function obterDadosGrafico(idBueiro) {
-    fetch(`/medidas/ultimas/${idBueiro}`, { cache: 'no-store' }).then(function (response) {
+  function obterDadosRio(){
+    fetch(`/zonas/zonas`, { cache: 'no-store' }).then(function (response) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
           resposta.reverse(); // Invertendo os dados para plotar da esquerda para a direita
 
-          plotarGrafico(resposta, idBueiro);
+          plotarGrafico(resposta);
         });
       } else {
         console.error('Nenhum dado encontrado ou erro na API');
@@ -42,7 +42,7 @@ let myChart;
       return nivel > 180 ? 'rgba(255, 99, 132, 0.7)' : 'rgba(54, 162, 235, 0.7)';  // Vermelho para > 180, azul para <= 180
     });
 
-    const ctx = document.getElementById('metricaPrincipal').getContext('2d');
+    const ctx = document.getElementById('zonaSulRP').getContext('2d');
 
     const config = {
       type: 'bar',
@@ -124,7 +124,7 @@ let myChart;
     fetch(`/medidas/tempo-real/${idBueiro}`, { cache: 'no-store' }).then(function (response) {
       if (response.ok) {
         response.json().then(function (novoRegistro) {
-          obterDadosGrafico(idBueiro);  // Atualiza os dados do gráfico
+          obterDadosZN(idBueiro);  // Atualiza os dados do gráfico
           console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
 
           // Verifica se há dados novos para atualizar o gráfico

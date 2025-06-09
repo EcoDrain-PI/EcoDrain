@@ -12,6 +12,17 @@ function zonaNorte(req, res) {
         });
 }
 
+function zonaSulRP(req, res) {
+    medidaModel.zonaSulRP(req)
+        .then(resultado => {
+            res.status(200).json(resultado);
+        })
+        .catch(erro => {
+            console.error(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 function buscarMedidasEmTempoReal(req, res) {
 
     var idBueiro = req.params.idBueiro;
@@ -35,5 +46,6 @@ function buscarMedidasEmTempoReal(req, res) {
 
 module.exports = {
     buscarMedidasEmTempoReal,
-    zonaNorte
+    zonaNorte,
+    zonaSulRP
 }
