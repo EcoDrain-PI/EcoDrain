@@ -68,7 +68,30 @@
     </header>
 
     <!-- CONTAINER PRINCIPAL -->
+    <!-- LEGENDA -->
     <div class="container">
+      <div class="container-legenda">
+        <div class="div-h2-alertas">
+          <h2>Quantidade de Bueiros Monitorados: <strong>26</strong></h2>
+        </div>
+
+        <div class="div-3-alertas">
+          <div>
+            <div class="alerta div-atencao">
+              <h3> Nível de Lixo Maior que 150cm - <span style="color: rgb(255, 200, 0); font-weight: bolder;">Alerta De
+                  Atenção</span></h3>
+            </div>
+          </div>
+
+          <div>
+            <div class="alerta div-risco">
+              <h3>Nível de Lixo Maior que 180cm - <span style="color: rgb(220, 20, 60); font-weight: bolder;">Alerta De
+                  Risco</span></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Alertas -->
       <div class="container-alertas">
         <div class="div-h2-alertas">
@@ -110,11 +133,11 @@
           <div class="div-head-metricas">
             <div class="div-texto">Registro de alertas anuais</div>
             <div class="div-select">
-              <select id="selectAnoRoscaPrincipal">
+              <!-- <select id="selectAnoRoscaPrincipal">
                 <option value="2025">Ano de 2025</option>
                 <option value="2024">Ano de 2024</option>
                 <option value="2023">Ano de 2023</option>
-              </select>
+              </select> -->
             </div>
           </div>
           <div class="div-centralizar-metrica">
@@ -174,7 +197,7 @@
   carregarContadores();
 </script>
 <script src="js/metricaDeBarras.js"></script>
-<script src="js/metricaDeRosca.js"></script>
-<script src="js/codigosFront.js"></script>
+<script src="js/metricaDeRegistros.js"></script>
+<!-- <script src="js/codigosFront.js"></script> -->
 
 </html>
