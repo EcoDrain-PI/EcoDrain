@@ -20,7 +20,7 @@ router.get("/atencao", async (req, res) => {
       SELECT 
         COUNT(*) AS atencao
       FROM lotacao
-      WHERE altura_lixo <= 150 AND altura_lixo > 0;`);
+      WHERE altura_lixo > 150 AND altura_lixo <= 179;`);
     res.json(resultado[0]);
   } catch (erro) {
     console.error("🛑 ERRO AO CONTAR ALERTAS DE ATENÇÃO:", erro); // 👈 Aqui loga o erro real
