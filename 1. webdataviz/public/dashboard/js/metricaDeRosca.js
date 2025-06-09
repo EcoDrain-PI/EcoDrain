@@ -62,8 +62,8 @@ document.getElementById('selectAnoRoscaPrincipal').addEventListener('change', as
   if (anoSelecionado === '2025') {
     try {
       const [resAtencao, resRisco] = await Promise.all([
-        fetch("http://localhost:8080/medidas/atencao"),
-        fetch("http://localhost:8080/medidas/risco")
+        fetch("/medidas/atencao"),
+        fetch("/medidas/risco")
       ]);
 
       const dadosAtencao = await resAtencao.json();

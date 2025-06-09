@@ -142,3 +142,8 @@ INSERT INTO alerta (idAlerta, descricao, alertacol, fkLotacao, fkSensor) VALUES
 (3, 'Alerta de Bueiro 3', 'Cor verde', 3, 3),
 (4, 'Alerta de Bueiro 4', 'Cor laranja', 4, 4),
 (5, 'Alerta de Bueiro 5', 'Cor azul', 5, 5);
+
+-- desativa a foreing key e dá um truncate na tabela
+SET foreign_key_checks = 0;
+truncate lotacao;
+SET foreign_key_checks = 1;

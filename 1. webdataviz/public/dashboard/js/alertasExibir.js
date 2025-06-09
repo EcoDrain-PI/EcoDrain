@@ -1,6 +1,6 @@
 var alertas = [];
 
-function obterDadosGrafico (idBueiro) {
+function obterDadosGrafico(idBueiro) {
     fetch(`/medidas/tempo-real/${idBueiro}`)
         .then(resposta => {
             if (resposta.status == 200) {
@@ -25,7 +25,7 @@ function alertar(resposta, idBueiro) {
 
     var grauDeAviso = '';
 
-    var limites = {     
+    var limites = {
         atencao: 60,
         risco: 30
     };
@@ -57,7 +57,7 @@ function alertar(resposta, idBueiro) {
 }
 
 function exibirAlerta(alt, idBueiro, grauDeAviso, grauDeAvisoCor) {
-    var indice = alertas.findIndex(item => item.idBueiro == idBueiro    );
+    var indice = alertas.findIndex(item => item.idBueiro == idBueiro);
 
     if (indice >= 0) {
         alertas[indice] = { idBueiro, alt, grauDeAviso, grauDeAvisoCor }
