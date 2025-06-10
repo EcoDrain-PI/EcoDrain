@@ -242,6 +242,41 @@ function buscarAlertasRiscoTotalDB() {
     return database.executar(instrucaoSql);
 }
 
+function buscarAlertasRiscoPorPeriodoDB(filtro) {
+  let instrucaoSql;
+
+  switch (filtro) {
+    case '1h':
+      instrucaoSql = `
+        SELECT COUNT(*) AS risco
+        FROM lotacao
+        WHERE altura_lixo <= 50
+        AND data_monitoramento >= NOW() - INTERVAL 1 HOUR;
+      `;
+      break;
+    case '24h':
+      instrucaoSql = `
+        SELECT COUNT(*) AS risco
+        FROM lotacao
+        WHERE altura_lixo <= 50
+        AND data_monitoramento >= NOW() - INTERVAL 24 HOUR;
+      `;
+      break;
+    case '1w':
+      instrucaoSql = `
+        SELECT COUNT(*) AS risco
+        FROM lotacao
+        WHERE altura_lixo <= 50
+        AND data_monitoramento >= NOW() - INTERVAL 7 DAY;
+      `;
+      break;
+    default:
+      return Promise.reject(new Error("Filtro inválido"));
+  }
+
+  return database.executar(instrucaoSql);
+}
+
 // -------------------- EXPORTAÇÃO --------------------
 
 module.exports = {
@@ -259,5 +294,6 @@ module.exports = {
     zonaLesteMooca,
     zonaLestePenha,
     zonaLesteTatuape,
-    zonaOeste
+    zonaOeste,
+    buscarAlertasRiscoPorPeriodoDB
 };
