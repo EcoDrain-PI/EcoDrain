@@ -125,5 +125,6 @@ module.exports = {
     buscarMedidasEmTempoReal,
     buscarAlertasAtencaoPorPeriodo, // Função para o filtro do gráfico
     buscarAlertasAtencaoTotal,      // Função para o KPI de atenção
-    buscarAlertasRiscoTotal         // Função para o KPI de risco
+    buscarAlertasRiscoTotal,         // Função para o KPI de risco
+    buscarAlertasRiscoPorPeriodo
 }
