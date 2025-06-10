@@ -1,3 +1,6 @@
+medidaController.js
+// src/controllers/medidaController.js
+
 var medidaModel = require("../models/medidaModel");
 
 function buscarUltimasMedidas(req, res) {
@@ -41,9 +44,66 @@ function buscarMedidasEmTempoReal(req, res) {
     });
 }
 
+// Função para buscar alertas de atenção por período (para o gráfico)
+async function buscarAlertasAtencaoPorPeriodo(req, res) {
+    const filtro = req.params.filtro; // '1h', '24h', '1w'
+    console.log(`Buscando alertas de atenção para o período: ${filtro}`);
+
+    if (!["1h", "24h", "1w"].includes(filtro)) {
+        return res.status(400).json({ error: "Filtro de período inválido." });
+    }
+
+    try {
+        const resultado = await medidaModel.buscarAlertasAtencaoPorPeriodoDB(filtro);
+
+        if (resultado.length > 0) {
+            res.json({ atencao: resultado[0].atencao });
+        } else {
+            res.json({ atencao: 0 });
+        }
+    } catch (erro) {
+        console.error(`Erro ao buscar alertas de atenção para ${filtro}:`, erro);
+        res.status(500).json({ error: "Erro interno do servidor ao buscar alertas de atenção." });
+    }
+}
+
+// --- FUNÇÃO PARA O KPI DE ATENÇÃO (Contador Total) - AGORA CHAMA O MODEL ---
+async function buscarAlertasAtencaoTotal(req, res) {
+    console.log("Buscando total de alertas de atenção para o KPI principal.");
+    try {
+        const resultado = await medidaModel.buscarAlertasAtencaoTotalDB(); // Chama o Model
+        if (resultado.length > 0) {
+            res.json(resultado[0]);
+        } else {
+            res.json({ atencao: 0 });
+        }
+    } catch (erro) {
+        console.error("ERRO AO CONTAR ALERTAS DE ATENÇÃO (controller):", erro);
+        res.status(500).json({ erro: "Erro ao contar alertas de atenção" });
+    }
+}
+
+// --- FUNÇÃO PARA O KPI DE RISCO (Contador Total) - AGORA CHAMA O MODEL ---
+async function buscarAlertasRiscoTotal(req, res) {
+    console.log("Buscando total de alertas de risco para o KPI principal.");
+    try {
+        const resultado = await medidaModel.buscarAlertasRiscoTotalDB(); // Chama o Model
+        if (resultado.length > 0) {
+            res.json(resultado[0]);
+        } else {
+            res.json({ risco: 0 });
+        }
+    } catch (erro) {
+        console.error("ERRO AO CONTAR ALERTAS DE RISCO (controller):", erro);
+        res.status(500).json({ erro: "Erro ao contar alertas de risco" });
+    }
+}
 
 
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+    buscarAlertasAtencaoPorPeriodo, // Função para o filtro do gráfico
+    buscarAlertasAtencaoTotal,      // Função para o KPI de atenção
+    buscarAlertasRiscoTotal         // Função para o KPI de risco
 }
