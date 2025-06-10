@@ -12,6 +12,8 @@ function zonaNorte(req, res) {
         });
 }
 
+// Zona Sul
+
 function zonaSulRP(req, res) {
     medidaModel.zonaSulRP(req)
         .then(resultado => {
@@ -56,6 +58,52 @@ function zonaSulCL(req, res) {
         });
 }
 
+// Zona Leste
+
+function zonaLesteItaquera(req, res) {
+    medidaModel.zonaLesteItaquera(req)
+        .then(resultado => {
+            res.status(200).json(resultado);
+        })
+        .catch(erro => {
+            console.error(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function zonaLesteMooca(req, res) {
+    medidaModel.zonaLesteMooca(req)
+        .then(resultado => {
+            res.status(200).json(resultado);
+        })
+        .catch(erro => {
+            console.error(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function zonaLestePenha(req, res) {
+    medidaModel.zonaLestePenha(req)
+        .then(resultado => {
+            res.status(200).json(resultado);
+        })
+        .catch(erro => {
+            console.error(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function zonaLesteTatuape(req, res) {
+    medidaModel.zonaLesteTatuape(req)
+        .then(resultado => {
+            res.status(200).json(resultado);
+        })
+        .catch(erro => {
+            console.error(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 function buscarMedidasEmTempoReal(req, res) {
 
     var idBueiro = req.params.idBueiro;
@@ -83,5 +131,9 @@ module.exports = {
     zonaSulRP,
     zonaSulJabaquara,
     zonaSulCapao,
-    zonaSulCL
+    zonaSulCL,
+    zonaLesteItaquera,
+    zonaLesteMooca,
+    zonaLestePenha,
+    zonaLesteTatuape
 }

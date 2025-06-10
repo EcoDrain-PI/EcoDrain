@@ -42,7 +42,7 @@ let myChart;
       return nivel > 180 ? 'rgba(255, 99, 132, 0.7)' : 'rgba(54, 162, 235, 0.7)';  // Vermelho para > 180, azul para <= 180
     });
 
-    const ctx = document.getElementById('zonaSulRP').getContext('2d');
+    const riopreto = document.getElementById('zonaSulRP').getContext('2d');
     const jabaquara = document.getElementById('zonaSulJabaquara').getContext('2d');
     const capao = document.getElementById('zonaSulCapao').getContext('2d');
     const cl = document.getElementById('zonaSulCL').getContext('2d');
@@ -117,7 +117,7 @@ let myChart;
       }
     };
 
-    myChart = new Chart(ctx, jabaquara, capao, cl config);
+    myChart = new Chart(riopreto, jabaquara, capao, cl, config);
 
     setTimeout(() => atualizarGrafico(idBueiro, dados, myChart), 5000);
   }

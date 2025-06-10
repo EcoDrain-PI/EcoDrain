@@ -21,6 +21,19 @@ router.get("/zonas", function (req, res) {
   zonaController.zonaSulCL(req, res);
 });
 
+router.get("/zonas", function (req, res) {
+  zonaController.zonaLesteItaquera(req, res);
+});
+router.get("/zonas", function (req, res) {
+  zonaController.zonaLesteMooca(req, res);
+});
+router.get("/zonas", function (req, res) {
+  zonaController.zonaLestePenha(req, res);
+});
+router.get("/zonas", function (req, res) {
+  zonaController.zonaLesteTatuape(req, res);
+});
+
 router.get("/ultimas/:idBueiro", function (req, res) {
     medidaController.buscarUltimasMedidas(req, res);
 });
