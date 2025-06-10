@@ -13,8 +13,7 @@ function buscarUltimasMedidas(idBueiro, limite_linhas) {
         INNER JOIN endereco e ON b.fkEndereco = e.idEndereco
         INNER JOIN zona z ON e.fkZona = z.idZona
         WHERE b.idBueiro = ${idBueiro}
-        ORDER BY l.data_monitoramento DESC
-        LIMIT ${limite_linhas};
+        ORDER BY l.data_monitoramento DESC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -28,8 +27,7 @@ function buscarMedidasEmTempoReal(idBueiro) {
         INNER JOIN bueiro b ON s.fkBueiro = b.idBueiro
         INNER JOIN endereco e ON b.fkEndereco = e.idEndereco
         WHERE b.idBueiro = ${idBueiro}
-        ORDER BY l.data_monitoramento DESC
-        LIMIT 1;
+        ORDER BY l.data_monitoramento DESC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
