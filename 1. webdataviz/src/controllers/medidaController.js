@@ -98,6 +98,27 @@ async function buscarAlertasRiscoTotal(req, res) {
     }
 }
 
+async function buscarAlertasRiscoPorPeriodo(req, res) {
+  const filtro = req.params.filtro;
+
+  if (!["1h", "24h", "1w"].includes(filtro)) {
+    return res.status(400).json({ error: "Filtro de período inválido." });
+  }
+
+  try {
+    const resultado = await medidaModel.buscarAlertasRiscoPorPeriodoDB(filtro);
+
+    if (resultado.length > 0) {
+      res.json({ risco: resultado[0].risco });
+    } else {
+      res.json({ risco: 0 });
+    }
+  } catch (erro) {
+    console.error(`Erro ao buscar alertas de risco para ${filtro}:`, erro);
+    res.status(500).json({ error: "Erro interno ao buscar alertas de risco." });
+  }
+}
+
 
 module.exports = {
     buscarUltimasMedidas,
