@@ -23,6 +23,39 @@ function zonaSulRP(req, res) {
         });
 }
 
+function zonaSulJabaquara(req, res) {
+    medidaModel.zonaSulJabaquara(req)
+        .then(resultado => {
+            res.status(200).json(resultado);
+        })
+        .catch(erro => {
+            console.error(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function zonaSulCapao(req, res) {
+    medidaModel.zonaSulCapao(req)
+        .then(resultado => {
+            res.status(200).json(resultado);
+        })
+        .catch(erro => {
+            console.error(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function zonaSulCL(req, res) {
+    medidaModel.zonaSulCampoLimpo(req)
+        .then(resultado => {
+            res.status(200).json(resultado);
+        })
+        .catch(erro => {
+            console.error(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 function buscarMedidasEmTempoReal(req, res) {
 
     var idBueiro = req.params.idBueiro;
@@ -47,5 +80,8 @@ function buscarMedidasEmTempoReal(req, res) {
 module.exports = {
     buscarMedidasEmTempoReal,
     zonaNorte,
-    zonaSulRP
+    zonaSulRP,
+    zonaSulJabaquara,
+    zonaSulCapao,
+    zonaSulCL
 }
