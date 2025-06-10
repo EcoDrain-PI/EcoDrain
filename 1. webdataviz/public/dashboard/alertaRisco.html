@@ -1,139 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/dashboards.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alertas de Risco</title>
+  <link rel="stylesheet" href="../css/dashboards.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .card-alerta {
+      background-color: #2c3e50;
+      color: #f8f8f8;
+      border-radius: 16px;
+      padding: 30px;
+      max-width: 700px;
+      margin: 40px auto;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .card-alerta-header {
+      margin-bottom: 20px;
+    }
+
+    .card-alerta-header select {
+      padding: 8px 16px;
+      font-size: 16px;
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .card-alerta-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .resultado-alerta {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    #grafico-risco {
+      max-width: 650px;
+      width: 100%;
+      height: 380px !important;
+    }
+  </style>
 </head>
 <body>
-    <div class="div-pai">
-         <!-- Sidebar -->
-         <div class="div-sidebar">
-          <div class="div-img">
-            <img src="../assets/img/ecoDrain-letrabranca-removebg-preview.png" alt="Logomarca da EcoDrain">
+  <div class="div-pai">
+    <div class="div-sidebar">
+      <div class="div-img">
+        <img src="../assets/img/ecoDrain-letrabranca-removebg-preview.png" alt="Logomarca da EcoDrain">
+      </div>
+
+      <div class="div-botoes">
+        <a href="mainPage.html">
+          <div class="div-btComImg">
+            <img src="../assets/img/main-menu.png" alt="Imagem do ícone da main page">
+            <button>Tela principal</button>
           </div>
-    
-          <div class="div-botoes">
-            <a href="mainPage.html">
-              <div class="div-btComImg">
-                <img src="../assets/img/main-menu.png" alt="Imagem do ícone da main page">
-                <button>Tela principal</button>
-              </div>
-            </a>
-            <div class="div-restricoes">
-              <!-- <a href="localizacao.html">
-                <div class="div-btComImg">
-                  <img src="../assets/img/drainage.png" alt="">
-                  <button>Localização</button>
-                </div>
-              </a> -->
-              <div class="div-zonas">
-                <img src="../assets/img/setaDireita.png" alt=""><select id="zonas" onchange="redirecionar()">
-                  <option value="#">Zonas</option>
-                  <option value="zn">Zona Norte</option>
-                  <option value="zl">Zona Leste</option>
-                  <option value="zo">Zona Oeste</option>
-                  <option value="zs">Zona Sul</option>
-                </select>
-              </div>
-            </div>
-            <a href="https://ecodrain.atlassian.net/servicedesk/customer/portal/1" target="_blank">
-              <div class="div-btComImg">
-                <img src="../assets/img/help.svg" alt="Imagem do ícone de Suporte" >
-              <button>Suporte</button>
-              </div>
-            </a>
+        </a>
+        <div class="div-restricoes">
+          <div class="div-zonas">
+            <img src="../assets/img/setaDireita.png" alt="">
+            <select id="zonas" onchange="redirecionar()">
+              <option value="#">Zonas</option>
+              <option value="zn">Zona Norte</option>
+              <option value="zl">Zona Leste</option>
+              <option value="zo">Zona Oeste</option>
+              <option value="zs">Zona Sul</option>
+            </select>
           </div>
         </div>
-        <!-- Cabeçalho -->
-        <header>
-          <div class="header-container">
-            <h2>ALERTAS DE RISCO EMITIDOS (X < Xcm )</h2>
-    
-            <div class="div-pai-perfil">
-              <div class="div-linha"></div>
-              <div class="div-todo-perfil">
-                <div class="div-filho-perfil">
-                  <img src="../assets/img/profile.png" alt="imagem de perfil" class="img-perfil">
-                  <img src="../assets/img/seta-baixo.png" alt="ver opções" class="img-seta">
-                </div>
-                <div class="div-opcoes">
-                  <div class="div-opcao-sair">
-                    <span>Sair</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <a href="https://ecodrain.atlassian.net/servicedesk/customer/portal/1" target="_blank">
+          <div class="div-btComImg">
+            <img src="../assets/img/help.svg" alt="Imagem do ícone de Suporte" >
+            <button>Suporte</button>
           </div>
-        </header>
-        <div class="container">
-              <div class="div-alertas">
-                  <div class="div-select">
-                      <select name="" id="filtroSelect">
-                          <option value="">Filtro</option>
-                          <option value="ultimaHora">Última hora</option>
-                          <option value="ultimas24">Última 24 horas</option>
-                          <option value="ultimaSemana">Última semana</option>
-                      </select>
-                  </div>
-              </div>
-
-            <div class="metricas-secundarias">
-
-               <!-- MÉTRICA DE BARRAS -->
-              <div class="metrica-secun" id="div_ultima_hora" style="display: none;">
-                <div class="div-head-metricas">
-                  <div class="div-texto">
-                    Bairro X (Zona X)
-                  </div>
-                </div>
-                <canvas id="metrica-Barras-alerta-risco-x"></canvas>
-              </div>
-
-              <div class="metrica-secun" id="div_ultimo_dia" style="display: none;">
-                <div class="div-head-metricas">
-                  <div class="div-texto">
-                    Bairro y (Zona Y)
-                  </div>
-                </div>
-                <canvas id="metrica-Barras-alerta-risco-y"></canvas>
-              </div>
-
-              <div class="metrica-secun" id="div_ultima_semana" style="display: none;">
-                <div class="div-head-metricas">
-                  <div class="div-texto">
-                    Bairro Z (Zona Z)
-                  </div>
-                </div>
-                <canvas id="metrica-Barras-alerta-risco-Z"></canvas>
-              </div>
-
-            </div>      
-
-        </div>
+        </a>
+      </div>
     </div>
-        
+
+    <header>
+      <div class="header-container">
+        <h2>ALERTAS DE RISCO EMITIDOS (X < Xcm )</h2>
+
+        <div class="div-pai-perfil">
+          <div class="div-linha"></div>
+          <div class="div-todo-perfil">
+            <div class="div-filho-perfil">
+              <img src="../assets/img/profile.png" alt="imagem de perfil" class="img-perfil">
+              <img src="../assets/img/seta-baixo.png" alt="ver opções" class="img-seta">
+            </div>
+            <div class="div-opcoes">
+              <div class="div-opcao-sair">
+                <span>Sair</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="card-alerta">
+        <div class="card-alerta-header">
+          <select id="filtroSelect">
+            <option value="">Filtro</option>
+            <option value="1h">Última hora</option>
+            <option value="24h">Últimas 24 horas</option>
+            <option value="1w">Última semana</option>
+          </select>
+        </div>
+
+        <div class="card-alerta-body">
+          <div id="resultado-risco" class="resultado-alerta">Total de alertas de risco: --</div>
+          <canvas id="grafico-risco"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function redirecionar() {
+      var zona = zonas.value;
+      if (zona == 'zn') window.location.href = "zonaNorte.html";
+      if (zona == 'zl') window.location.href = "zonaLeste.html";
+      if (zona == 'zo') window.location.href = "zonaOeste.html";
+      if (zona == 'zs') window.location.href = "zonaSul.html";
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const select = document.getElementById('filtroSelect');
+      const resultado = document.getElementById('resultado-risco');
+      const ctx = document.getElementById('grafico-risco').getContext('2d');
+
+      let chart;
+
+      async function buscarRiscos(filtro) {
+        try {
+          const resposta = await fetch(`http://localhost:3333/medidas/risco/periodo/${filtro}`);
+          const json = await resposta.json();
+
+          if (json.risco !== undefined) {
+            exibirResultado(json.risco);
+            atualizarGrafico(json.risco, filtro);
+          } else {
+            exibirResultado("Erro ao obter dados");
+          }
+        } catch (erro) {
+          console.error("Erro ao buscar dados:", erro);
+          exibirResultado("Erro na requisição");
+        }
+      }
+
+      function exibirResultado(valor) {
+        resultado.textContent = `Total de alertas de risco: ${valor}`;
+      }
+
+      function atualizarGrafico(valor, filtro) {
+        if (chart) chart.destroy();
+
+        let labelPeriodo = filtro === "1h" ? "Última hora"
+                          : filtro === "24h" ? "Últimas 24 horas"
+                          : filtro === "1w" ? "Última semana"
+                          : filtro;
+
+        chart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: [labelPeriodo],
+            datasets: [{
+              label: 'Alertas de Risco',
+              data: [valor],
+              backgroundColor: 'rgba(231, 76, 60, 0.7)',
+              borderColor: 'rgba(192, 57, 43, 1)',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true,
+                precision: 0
+              }
+            }
+          }
+        });
+      }
+
+      const filtroInicial = '24h';
+      select.value = filtroInicial;
+      buscarRiscos(filtroInicial);
+
+      select.addEventListener('change', () => {
+        const filtro = select.value;
+        if (["1h", "24h", "1w"].includes(filtro)) {
+          buscarRiscos(filtro);
+        } else {
+          exibirResultado("Selecione um período válido.");
+          if (chart) chart.destroy();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
-
-<script>
-  function redirecionar() {
-    var zona = zonas.value
-    if (zona == 'zn') {
-      window.location.href = "zonaNorte.html"
-    }
-    if (zona == 'zl') {
-      window.location.href = "zonaLeste.html"
-    }
-    if (zona == 'zo') {
-      window.location.href = "zonaOeste.html"
-    }
-    if (zona == 'zs') {
-      window.location.href = "zonaSul.html"
-    }
-  }
-</script>
-
-<script src="../dashboard/js/alertas.js"></script>
