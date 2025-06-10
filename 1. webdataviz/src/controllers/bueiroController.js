@@ -16,6 +16,23 @@ function buscarBueiroPorEmpresa(req, res) {
   });
 }
 
+function contarBueiro(req, res){
+  bueiroModel.contarBueiro().then(
+    function(resultado){
+      res.json(resultado)
+    }
+  ).catch(
+    function(erro){
+      console.log(erro);
+      console.log(
+        "\nHouve um erro ao obter o numero de bueiros! Erro: ",
+            erro.sqlMessage
+      )
+      res.status(500).json(erro.sqlMessage);
+    }
+  )
+}
+
 
 function cadastrar(req, res) {
   var descricao = req.body.descricao;
@@ -45,5 +62,6 @@ function cadastrar(req, res) {
 
 module.exports = {
   buscarBueiroPorEmpresa,
-  cadastrar
+  cadastrar,
+  contarBueiro
 }

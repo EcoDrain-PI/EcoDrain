@@ -16,9 +16,16 @@ function cadastrar(idEmpresa, nome) {
   return database.executar(instrucaoSql);
 }
 
+function contarBueiro(){
+  var SQL = `
+  select count(*) as 'total_bueiro' from bueiro;`
+
+  return database.executar(SQL)
+}
 
 
 module.exports = {
   buscarBueiroPorEmpresa,
-  cadastrar
+  cadastrar,
+  contarBueiro
 }
