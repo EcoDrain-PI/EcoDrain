@@ -43,6 +43,9 @@ let myChart;
     });
 
     const ctx = document.getElementById('zonaSulRP').getContext('2d');
+    const jabaquara = document.getElementById('zonaSulJabaquara').getContext('2d');
+    const capao = document.getElementById('zonaSulCapao').getContext('2d');
+    const cl = document.getElementById('zonaSulCL').getContext('2d');
 
     const config = {
       type: 'bar',
@@ -114,7 +117,7 @@ let myChart;
       }
     };
 
-    myChart = new Chart(ctx, config);
+    myChart = new Chart(ctx, jabaquara, capao, cl config);
 
     setTimeout(() => atualizarGrafico(idBueiro, dados, myChart), 5000);
   }
