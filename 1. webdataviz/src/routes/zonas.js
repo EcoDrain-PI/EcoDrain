@@ -11,6 +11,15 @@ router.get("/zonas", function (req, res) {
 router.get("/zonas", function (req, res) {
   zonaController.zonaSulRP(req, res);
 });
+router.get("/zonas", function (req, res) {
+  zonaController.zonaSulJabaquara(req, res);
+});
+router.get("/zonas", function (req, res) {
+  zonaController.zonaSulCapao(req, res);
+});
+router.get("/zonas", function (req, res) {
+  zonaController.zonaSulCL(req, res);
+});
 
 router.get("/ultimas/:idBueiro", function (req, res) {
     medidaController.buscarUltimasMedidas(req, res);
