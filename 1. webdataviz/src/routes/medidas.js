@@ -1,45 +1,35 @@
+// src/routes/medidas.js
+
 var express = require("express");
 var router = express.Router();
-const { executar } = require("../database/config");
+// const { executar } = require("../database/config"); // Não é mais necessário importar 'executar' aqui!
 
 
 var medidaController = require("../controllers/medidaController");
 
 router.get("/ultimas/:idBueiro", function (req, res) {
-  medidaController.buscarUltimasMedidas(req, res);
+    medidaController.buscarUltimasMedidas(req, res);
 });
 
 router.get("/tempo-real/:idBueiro", function (req, res) {
-  medidaController.buscarMedidasEmTempoReal(req, res);
-})
-
-
-router.get("/atencao", async (req, res) => {
-  try {
-    const resultado = await executar(`
-      SELECT 
-        COUNT(*) AS atencao
-      FROM lotacao
-      WHERE altura_lixo > 150 AND altura_lixo <= 179;`);
-    res.json(resultado[0]);
-  } catch (erro) {
-    console.error("🛑 ERRO AO CONTAR ALERTAS DE ATENÇÃO:", erro); // 👈 Aqui loga o erro real
-    res.status(500).json({ erro: "Erro ao contar alertas de atenção" });
-  }
+    medidaController.buscarMedidasEmTempoReal(req, res);
 });
 
-router.get("/risco", async (req, res) => {
-  try {
-    const resultado = await executar(
-      `SELECT COUNT(*) AS risco FROM lotacao WHERE altura_lixo >= 180;`
-    );
-    res.json(resultado[0]);
-  } catch (erro) {
-    console.error("ERRO AO CONTAR ALERTAS DE RISCO:", erro);
-    res.status(500).json({ erro: "Erro ao contar alertas de risco" });
-  }
+// Rota para o KPI de Atenção (CONTADOR TOTAL) - Agora chama o Controller
+router.get("/atencao", function (req, res) {
+    medidaController.buscarAlertasAtencaoTotal(req, res); // Chama a função no controller
 });
 
+// Rota dinâmica para o GRÁFICO DE ATENÇÃO POR PERÍODO
+router.get("/atencao/periodo/:filtro", function (req, res) {
+    medidaController.buscarAlertasAtencaoPorPeriodo(req, res);
+});
+
+// Rota para o KPI de Risco (CONTADOR TOTAL) - Agora chama o Controller
+router.get("/risco", function (req, res) {
+    medidaController.buscarAlertasRiscoTotal(req, res); // Chama a função no controller
+});
 
 
 module.exports = router;
+medidaController.js

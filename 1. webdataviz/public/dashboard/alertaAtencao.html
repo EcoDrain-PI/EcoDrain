@@ -109,7 +109,7 @@
 
       async function buscarAlertas(filtro) {
         try {
-          const resposta = await fetch(`http://localhost:8080/medidas/atencao/periodo/${filtro}`);
+          const resposta = await fetch(`http://localhost:3333/medidas/atencao/periodo/${filtro}`);
           const json = await resposta.json();
 
           if (json.atencao !== undefined) {

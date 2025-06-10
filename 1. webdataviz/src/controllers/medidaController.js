@@ -1,4 +1,3 @@
-medidaController.js
 // src/controllers/medidaController.js
 
 var medidaModel = require("../models/medidaModel");
