@@ -72,7 +72,7 @@
     <div class="container">
       <div class="container-legenda">
         <div class="div-h2-alertas">
-          <h2>Quantidade de Bueiros Monitorados: <strong>26</strong></h2>
+          <h2>Quantidade de Bueiros Monitorados: <span id="qtdBueiro"> </span> </h2>
         </div>
 
         <div class="div-3-alertas">
@@ -197,6 +197,23 @@
   setInterval(carregarContadores, 1000);
   setInterval(async () => { await atualizarDados2025() }, 1000);
 
+
+ function totalBueiro(){
+    fetch(`/bueiro/contarBueiro/`,{
+      content: "GET",
+      headers:{
+        "Content-Type": "application/json"
+      },
+    }).then(
+        function(resultado){
+        resultado.json().then(function(json){
+            console.log(json)
+            document.getElementById("qtdBueiro").innerText = json[0].total_bueiro
+      })
+ })
+
+  }totalBueiro()
+  
 </script>
 <script src="js/metricaDeBarras.js"></script>
 <script src="js/metricaDeRegistros.js"></script>
