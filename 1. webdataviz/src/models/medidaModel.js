@@ -195,7 +195,7 @@ function buscarAlertasAtencaoPorPeriodoDB(filtro) {
             instrucaoSql = `
                 SELECT COUNT(*) AS atencao
                 FROM lotacao
-                WHERE altura_lixo <= 139 AND altura_lixo > 50
+                WHERE altura_lixo >= 150 AND altura_lixo < 180
                 AND data_monitoramento >= NOW() - INTERVAL 1 HOUR;
             `;
             break;
@@ -203,7 +203,7 @@ function buscarAlertasAtencaoPorPeriodoDB(filtro) {
             instrucaoSql = `
                 SELECT COUNT(*) AS atencao
                 FROM lotacao
-                WHERE altura_lixo <= 139 AND altura_lixo > 50
+                WHERE altura_lixo >= 150 AND altura_lixo < 180
                 AND data_monitoramento >= NOW() - INTERVAL 24 HOUR;
             `;
             break;
@@ -211,7 +211,7 @@ function buscarAlertasAtencaoPorPeriodoDB(filtro) {
             instrucaoSql = `
                 SELECT COUNT(*) AS atencao
                 FROM lotacao
-                WHERE altura_lixo <= 139 AND altura_lixo > 50
+                WHERE altura_lixo >= 150 AND altura_lixo < 180
                 AND data_monitoramento >= NOW() - INTERVAL 7 DAY;
             `;
             break;
@@ -226,8 +226,7 @@ function buscarAlertasAtencaoTotalDB() {
     var instrucaoSql = `
         SELECT COUNT(*) AS atencao
         FROM lotacao
-        WHERE altura_lixo <= 139 AND altura_lixo > 50;
-    `;
+        WHERE altura_lixo >= 150 AND altura_lixo < 180    `;
     return database.executar(instrucaoSql);
 }
 
@@ -235,44 +234,44 @@ function buscarAlertasRiscoTotalDB() {
     var instrucaoSql = `
         SELECT COUNT(*) AS risco
         FROM lotacao
-        WHERE altura_lixo <= 50;
+        WHERE altura_lixo > 180;
     `;
     return database.executar(instrucaoSql);
 }
 
 function buscarAlertasRiscoPorPeriodoDB(filtro) {
-  let instrucaoSql;
+    let instrucaoSql;
 
-  switch (filtro) {
-    case '1h':
-      instrucaoSql = `
+    switch (filtro) {
+        case '1h':
+            instrucaoSql = `
         SELECT COUNT(*) AS risco
         FROM lotacao
-        WHERE altura_lixo <= 50
+        WHERE altura_lixo > 180
         AND data_monitoramento >= NOW() - INTERVAL 1 HOUR;
       `;
-      break;
-    case '24h':
-      instrucaoSql = `
+            break;
+        case '24h':
+            instrucaoSql = `
         SELECT COUNT(*) AS risco
         FROM lotacao
-        WHERE altura_lixo <= 50
+        WHERE altura_lixo > 180
         AND data_monitoramento >= NOW() - INTERVAL 24 HOUR;
       `;
-      break;
-    case '1w':
-      instrucaoSql = `
+            break;
+        case '1w':
+            instrucaoSql = `
         SELECT COUNT(*) AS risco
         FROM lotacao
-        WHERE altura_lixo <= 50
+        WHERE altura_lixo > 180
         AND data_monitoramento >= NOW() - INTERVAL 7 DAY;
       `;
-      break;
-    default:
-      return Promise.reject(new Error("Filtro inválido"));
-  }
+            break;
+        default:
+            return Promise.reject(new Error("Filtro inválido"));
+    }
 
-  return database.executar(instrucaoSql);
+    return database.executar(instrucaoSql);
 }
 
 // -------------------- EXPORTAÇÃO --------------------
