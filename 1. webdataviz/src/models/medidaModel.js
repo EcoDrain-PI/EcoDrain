@@ -69,6 +69,66 @@ function zonaSulRP() {
     return database.executar(instrucaoSql);
 }
 
+function zonaSulJabaquara() {
+    var instrucaoSql = `
+    SELECT 
+        l.altura_lixo,
+        e.bairro,
+        z.nome AS zona,
+        lg.cidade
+        FROM lotacao l
+        JOIN sensor s ON l.fkSensor = s.idSensor
+        JOIN bueiro b ON s.fkBueiro = b.idBueiro
+        JOIN endereco e ON b.fkEndereco = e.idEndereco
+        JOIN zona z ON e.fkZona = z.idZona
+        JOIN empresa em ON e.fkEmpresa = em.idEmpresa
+        JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
+        where z.nome = 'Sul' and lg.cidade = 'Jabaquara';`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function zonaSulCL() {
+    var instrucaoSql = `
+    SELECT 
+        l.altura_lixo,
+        e.bairro,
+        z.nome AS zona,
+        lg.cidade
+        FROM lotacao l
+        JOIN sensor s ON l.fkSensor = s.idSensor
+        JOIN bueiro b ON s.fkBueiro = b.idBueiro
+        JOIN endereco e ON b.fkEndereco = e.idEndereco
+        JOIN zona z ON e.fkZona = z.idZona
+        JOIN empresa em ON e.fkEmpresa = em.idEmpresa
+        JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
+        where z.nome = 'Sul' and lg.cidade = 'Campo Limpo';`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function zonaSulCapao() {
+    var instrucaoSql = `
+    SELECT 
+        l.altura_lixo,
+        e.bairro,
+        z.nome AS zona,
+        lg.cidade
+        FROM lotacao l
+        JOIN sensor s ON l.fkSensor = s.idSensor
+        JOIN bueiro b ON s.fkBueiro = b.idBueiro
+        JOIN endereco e ON b.fkEndereco = e.idEndereco
+        JOIN zona z ON e.fkZona = z.idZona
+        JOIN empresa em ON e.fkEmpresa = em.idEmpresa
+        JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
+        where z.nome = 'Sul' and lg.cidade = 'Capão Redondo';`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function zonaOeste() {
     var instrucaoSql = `
     SELECT 
