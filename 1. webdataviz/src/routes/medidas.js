@@ -30,6 +30,10 @@ router.get("/risco", function (req, res) {
     medidaController.buscarAlertasRiscoTotal(req, res); // Chama a função no controller
 });
 
+router.get("/risco/periodo/:filtro", function (req, res) {
+  medidaController.buscarAlertasRiscoPorPeriodo(req, res);
+});
+
 
 module.exports = router;
 medidaController.js
