@@ -154,5 +154,8 @@ module.exports = {
     buscarMedidasEmTempoReal,
     zonaNorte,
     zonaOeste,
-    zonaSulRP
+    zonaSulRP,
+    zonaSulJabaquara,
+    zonaSulCapao,
+    zonaSulCL
 };
