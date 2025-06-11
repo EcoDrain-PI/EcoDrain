@@ -29,7 +29,7 @@ const serial = async (
     // conexão com o banco de dados MySQL (VM)
     let poolBancoDados = mysql.createPool(
         {
-            host: '10.18.32.58',
+            host: '10.18.32.9',
             user: 'aluno',
             password: 'Sptech#2024',
             database: 'EcoDrain',
@@ -71,15 +71,14 @@ const serial = async (
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
 
-            let listaFKs = [7, 8]
+            let listaFKs = [1, 2]
 
             for (i = 0; i < listaFKs.length; i++) {
                 await poolBancoDados.execute(
-                    'INSERT INTO lotacao (fkSensor, altura_lixo, data_monitoramento) VALUES (?, ? * 10, NOW())',
-                    [listaFKs[i], sensorDigital] // 1 = ID do sensor cadastrado no banco
+                    'UPDATE lotacao set altura_lixo = ? * 10 where idLotacao = 1',
+                    [sensorDigital]
                 );
             }
-
             console.log("valores inseridos no banco: " + ", " + sensorDigital);
         }
 
