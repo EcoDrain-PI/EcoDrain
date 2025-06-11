@@ -126,3 +126,52 @@
 </script>
 <!-- <script src="js/metricaDeBarras2.js"></script> -->
 <script src="js/zonasJS/zonaLeste.js"></script>
+
+<script>
+  const zonaNorteCidadeItaquaquecetuba = document.getElementById('zonaNorteCidadeItaquaquecetuba').getContext('2d');
+
+let dadosPorAno = {
+  2025: [
+    [130, 120],
+  ]
+};
+
+// Labels para os meses (ajustado para 8 meses)
+const labels = ['Bairro 1', 'Bairro 2'];
+
+// Criação do gráfico
+const graficoNorte2 = new Chart(zonaNorteCidadeItaquaquecetuba, {
+  type: 'bar', // ou outro tipo, como 'bar'
+  data: {
+    labels: labels,
+    datasets: [
+      {
+        label: 'Nível de lixo (cm)',
+        data: dadosPorAno[2025][0],
+        borderColor: 'black',
+        backgroundColor: 'rgb(90, 245, 227)'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: { color: '#ffffff' },
+        grid: { color: 'rgba(255, 255, 255, 0.2)' }
+      },
+      x: {
+        ticks: { color: '#ffffff' },
+        grid: { color: 'rgba(255, 255, 255, 0.2)' }
+      }
+    },
+    plugins: {
+      legend: {
+        labels: { color: '#ffffff' }
+      }
+    }
+  }
+});
+
+</script>
