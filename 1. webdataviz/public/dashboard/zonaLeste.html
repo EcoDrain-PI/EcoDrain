@@ -7,6 +7,7 @@
   <title>Localização - Dashboard</title>
   <link rel="icon" href="../assets/icon/favicon.ico">
   <link rel="stylesheet" href="../css/dashboards.css">
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -163,7 +164,39 @@ const graficoNorte2 = new Chart(zonaNorteCidadeItaquaquecetuba, {
     plugins: {
       legend: {
         labels: { color: '#ffffff' }
-      }
+      },
+      annotation: {
+                    annotations: {
+                        linhaAtencao: {
+                            type: 'line',
+                            yMin: 150,
+                            yMax: 150,
+                            borderColor: 'rgb(255, 205, 86)',
+                            borderWidth: 2,
+                            label: {
+                                content: 'Atenção',
+                                position: 'center',
+                                enabled: true,
+                                font: { size: 12, weight: 'bold' },
+                                yAdjust: -10
+                            }
+                        },
+                        linhaRisco: {
+                            type: 'line',
+                            yMin: 180,
+                            yMax: 180,
+                            borderColor: 'rgb(255, 99, 132)',
+                            borderWidth: 2,
+                            label: {
+                                content: 'Risco',
+                                position: 'center',
+                                enabled: true,
+                                font: { size: 12, weight: 'bold' },
+                                yAdjust: -10
+                            }
+                        }
+                    }
+                }
     }
   }
 });

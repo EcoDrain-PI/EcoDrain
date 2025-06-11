@@ -21,6 +21,8 @@ let myChart;
   // Função para plotar o gráfico com os dados
   function plotarGrafico(dados, idBueiro) {
 
+    
+
     if (myChart) {
       myChart.destroy();
     }

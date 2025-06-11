@@ -193,3 +193,5 @@ const graficoNorte2 = new Chart(zonaNorteCidadeItaquaquecetuba, {
     }
   }
 });
+
+
