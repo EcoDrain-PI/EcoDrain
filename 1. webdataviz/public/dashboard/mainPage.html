@@ -171,6 +171,7 @@
 
 <script>
   function redirecionar() {
+    // funcao para redirecionamento da sidebar 
     var zona = zonas.value;
     if (zona == "zn") window.location.href = "zonaNorte.html";
     if (zona == "zl") window.location.href = "zonaLeste.html";
@@ -179,6 +180,7 @@
   }
 
   async function carregarContadores() {
+    // funcao assincrona para obtencao de dados dos alertas e depois atualiza o innerText da div que os alertas estao inseridos
     try {
       const respostaAtencao = await fetch("/medidas/atencao");
       const dadosAtencao = await respostaAtencao.json();
@@ -194,11 +196,12 @@
     }
   }
 
-  setInterval(carregarContadores, 1000);
+  setInterval(carregarContadores, 1000); // atualizacao dos alertas
   setInterval(async () => { await atualizarDados2025() }, 1000);
 
 
  function totalBueiro(){
+  // fetch para buscar o numero totaol de bueiros registrados
     fetch(`/bueiro/contarBueiro/`,{
       content: "GET",
       headers:{
@@ -208,7 +211,7 @@
         function(resultado){
         resultado.json().then(function(json){
             console.log(json)
-            document.getElementById("qtdBueiro").innerText = json[0].total_bueiro
+            document.getElementById("qtdBueiro").innerText = json[0].total_bueiro // o resultado vem em um json, que tem o nome json, por isso essa forma de exibicao
       })
  })
 
