@@ -4,16 +4,21 @@ var database = require("../database/config");
 
 // -------------------- FUNÇÕES PARA DASHBOARD GERAL --------------------
 
-function buscarUltimasMedidas(idBueiro, limite_linhas) {
+function buscarUltimasMedidas(idBueiro) {
     var instrucaoSql = `
-        SELECT b.idBueiro, l.altura_lixo, l.data_monitoramento, e.bairro, z.nome as zonasGrafico
+ SELECT 
+        l.altura_lixo,
+        e.bairro,
+        z.nome AS zonasGrafico,
+        lg.cidade
         FROM lotacao l
-        INNER JOIN sensor s ON l.fkSensor = s.idSensor
-        INNER JOIN bueiro b ON s.fkBueiro = b.idBueiro
-        INNER JOIN endereco e ON b.fkEndereco = e.idEndereco
-        INNER JOIN zona z ON e.fkZona = z.idZona
-        WHERE b.idBueiro = ${idBueiro}
-        ORDER BY l.data_monitoramento DESC;
+        JOIN sensor s ON l.fkSensor = s.idSensor
+        JOIN bueiro b ON s.fkBueiro = b.idBueiro
+        JOIN endereco e ON b.fkEndereco = e.idEndereco
+        JOIN zona z ON e.fkZona = z.idZona
+        JOIN empresa em ON e.fkEmpresa = em.idEmpresa
+        JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
+        LIMIT 8;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

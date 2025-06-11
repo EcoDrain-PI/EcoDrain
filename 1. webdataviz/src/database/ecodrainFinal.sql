@@ -33,8 +33,8 @@ CREATE TABLE endereco (
   bairro VARCHAR(45) NOT NULL,
   fkZona INT NOT NULL,
   PRIMARY KEY (idEndereco),
-  CONSTRAINT fk_endereco_empresa1 FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa), 
-CONSTRAINT fk_endereco_zona1 FOREIGN KEY (fkZona) REFERENCES zona (idZona)
+  CONSTRAINT fk_endereco_empresa1 FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa),
+  CONSTRAINT fk_endereco_zona1 FOREIGN KEY (fkZona) REFERENCES zona (idZona)
 );
 
 CREATE TABLE bueiro (
@@ -60,8 +60,7 @@ CREATE TABLE lotacao (
   data_monitoramento TIMESTAMP NOT NULL,
   PRIMARY KEY (idLotacao, fkSensor),
   CONSTRAINT lotacao_ibfk_1
-    FOREIGN KEY (fkSensor)
-    REFERENCES sensor (idSensor)
+  FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
 );
 
 CREATE TABLE usuario (
@@ -72,8 +71,7 @@ CREATE TABLE usuario (
   fkEmpresa INT NOT NULL,
   PRIMARY KEY (idUsuario),
   CONSTRAINT usuario_ibfk_1
-    FOREIGN KEY (fkEmpresa)
-    REFERENCES empresa (idEmpresa)
+  FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa)
 );
 
 
@@ -84,8 +82,8 @@ CREATE TABLE alerta (
   fkSensor INT NOT NULL,
   PRIMARY KEY (idalerta, fkLotacao, fkSensor),
   CONSTRAINT fk_alerta_lotacao1
-    FOREIGN KEY (fkLotacao , fkSensor)
-    REFERENCES lotacao (idLotacao , fkSensor)
+  FOREIGN KEY (fkLotacao , fkSensor)
+  REFERENCES lotacao (idLotacao , fkSensor)
 );
 
 
@@ -93,7 +91,7 @@ INSERT INTO logradouro (idlogradouro, estado, cidade)
 VALUES (1, 'SP', 'São Paulo');
 
 INSERT INTO empresa (idEmpresa, nome, cnpj, email, fklogradouro)
-VALUES (1, 'EcoLimpeza', '12345678000195', 'contato@ecolimpeza.com', 1);
+VALUES (1, 'Sabesp', '12345678000195', 'contato@ecolimpeza.com', 1);
 
 INSERT INTO zona (idZona, nome)
 VALUES 
@@ -104,25 +102,46 @@ VALUES
   
 INSERT INTO endereco (idEndereco, fkEmpresa, cep, rua, bairro, fkZona)
 VALUES 
-  (1, 1, '01001000', 'Av. Paulista', 'Bela Vista', 2),
-  (2, 1, '02468000', 'Rua das Flores', 'Santana', 1);
-
+  (1, 1, '01001000', 'Avenida Jacu Pêssego', 'Itaquera', 3),
+  (2, 1, '02468000', 'Rua Dr. José de Porciúncula', 'Jardim Helena', 3),
+  (3, 1, '01001000', 'Rua das Flores', 'Santana', 1),
+  (4, 1, '02468000', 'Avenida Tucuruvi', 'Tucuruvi', 1),
+  (5, 1, '02468000', 'Avenida Dona Belmira Marin', 'Grajaú', 2),
+  (6, 1, '02468000', 'Rua Iguatemi', 'Morumbi', 4),
+  (7, 1, '03010000', 'Rua das Palmeiras', 'Mooca', 3),
+  (8, 1, '04050000', 'Avenida Jabaquara', 'Saúde', 2);
+  
 INSERT INTO bueiro (idBueiro, tamanho, fkEndereco)
 VALUES 
-  (1, 35.50, 1),
-  (2, 42.75, 2);
-
-
+  (1, 200, 1),
+  (2, 200, 2),
+  (3, 200, 3),
+  (4, 200, 4),
+  (5, 200, 5),
+  (6, 200, 6),
+  (7, 200, 7),
+  (8, 200, 8);
+  
 INSERT INTO sensor (idSensor, data_instalacao, fkBueiro)
 VALUES 
   (1, '2025-05-01', 1),
-  (2, '2025-05-02', 2);
-
+  (2, '2025-05-02', 2),
+  (3, '2025-05-02', 3),
+  (4, '2025-05-02', 4),
+  (5, '2025-05-02', 5),
+  (6, '2025-05-02', 6),
+  (7, '2025-05-03', 7),
+  (8, '2025-05-03', 8);
+  
 INSERT INTO lotacao (idLotacao, fkSensor, altura_lixo, data_monitoramento)
 VALUES 
-  (1, 1, 15.25, '2025-06-01 10:00:00'),
-  (2, 2, 30.00, '2025-06-01 11:00:00');
-
+  (1, 1, 191.20, '2025-06-01 10:00:00'),
+  (2, 2, 181.00, '2025-06-01 11:00:00'),
+  (3, 3, 166.40, '2025-06-01 11:00:00'),
+  (4, 4, 158.45, '2025-06-01 11:00:00'),
+  (5, 5, 80.45, '2025-06-01 11:00:00'),
+  (6, 6, 110.13, '2025-06-01 11:00:00');
+  
 INSERT INTO usuario (idUsuario, nome, senha, email, fkEmpresa)
 VALUES 
   (1, 'João Silva', 'senha123', 'joao@ecolimpeza.com', 1),
@@ -133,16 +152,18 @@ VALUES
   (1, 'ALTO', 2, 2),
   (2, 'MÉDIO', 1, 1);
 
+-- select do gráfico de nível de lotação por bairro
+SELECT l.altura_lixo, e.bairro, z.nome AS zonasGrafico, lg.cidade
+FROM lotacao l
+JOIN sensor s ON l.fkSensor = s.idSensor
+JOIN bueiro b ON s.fkBueiro = b.idBueiro
+JOIN endereco e ON b.fkEndereco = e.idEndereco
+JOIN zona z ON e.fkZona = z.idZona
+JOIN empresa em ON e.fkEmpresa = em.idEmpresa
+JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
+LIMIT 8;
 
-SELECT 
-        l.altura_lixo,
-        e.bairro,
-        z.nome AS zona,
-        lg.cidade
-        FROM lotacao l
-        JOIN sensor s ON l.fkSensor = s.idSensor
-        JOIN bueiro b ON s.fkBueiro = b.idBueiro
-        JOIN endereco e ON b.fkEndereco = e.idEndereco
-        JOIN zona z ON e.fkZona = z.idZona
-        JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro;
+-- desativa a foreing key e dá um truncate na tabela
+SET foreign_key_checks = 0;
+truncate lotacao;
+SET foreign_key_checks = 1;
