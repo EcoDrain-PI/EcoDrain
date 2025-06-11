@@ -42,7 +42,7 @@ let myChart;
         return nivel >= 180 ? 'rgb(220, 20, 60)' : nivel >= 150 ? 'rgb(255, 200, 0)' : 'rgb(62, 225, 120)'; // Vermelho para > 180, azul para <= 180
     });
 
-    const ctx = document.getElementById('zonaNorteBairroSantana').getContext('2d');
+    const ctx = document.getElementById('zonaNorteCidadeSantana').getContext('2d');
 
     const config = {
       type: 'bar',
@@ -152,21 +152,15 @@ let myChart;
 
 
   // zonaNorteBairroTucuruvi
-const ctx = document.getElementById('zonaNorteBairroTucuruvi').getContext('2d');
+const zonaNorteCidadeItaquaquecetuba = document.getElementById('zonaNorteCidadeItaquaquecetuba').getContext('2d');
 
 
-  // Novo formato de dados com múltiplos bairros
-let dadosPorAno = {
-  2025: [
-    [200, 190, 150, 170,],
-  ]
-};
 
 // Labels para os meses (ajustado para 8 meses)
-const labels = ['Mai', 'Jun', 'Jul', 'Ago'];
+const labels = ['Bairro 1', 'Bairro 2'];
 
 // Criação do gráfico
-const grafico = new Chart(ctx, {
+const graficoNorte2 = new Chart(zonaNorteCidadeItaquaquecetuba, {
   type: 'bar', // ou outro tipo, como 'bar'
   data: {
     labels: labels,
