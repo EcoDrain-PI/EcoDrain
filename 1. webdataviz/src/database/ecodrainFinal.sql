@@ -1,11 +1,11 @@
 create database EcoDrain;
 use EcoDrain;
 
-CREATE TABLE logradouro (
-  idlogradouro INT NOT NULL,
+CREATE TABLE EstadoCidade (
+  idEstadoCidade INT NOT NULL,
   estado CHAR(2) NOT NULL,
   cidade VARCHAR(25) NOT NULL,
-  PRIMARY KEY (idlogradouro)
+  PRIMARY KEY (idEstadoCidade)
 );
 
 CREATE TABLE empresa (
@@ -13,9 +13,9 @@ CREATE TABLE empresa (
   nome VARCHAR(45) NOT NULL,
   cnpj CHAR(14) NOT NULL,
   email VARCHAR(64) NOT NULL,
-  fklogradouro INT NOT NULL,
+  fkEstadoCidade INT NOT NULL,
   PRIMARY KEY (idEmpresa),
-  CONSTRAINT fk_empresa_logradouro1 FOREIGN KEY (fklogradouro) REFERENCES logradouro (idlogradouro)
+  CONSTRAINT fk_empresa_EstadoCidade1 FOREIGN KEY (fkEstadoCidade) REFERENCES EstadoCidade (idEstadoCidade)
 );
 
 CREATE TABLE zona (
@@ -87,10 +87,10 @@ CREATE TABLE alerta (
 );
 
 
-INSERT INTO logradouro (idlogradouro, estado, cidade)
+INSERT INTO EstadoCidade (idEstadoCidade, estado, cidade)
 VALUES (1, 'SP', 'São Paulo');
 
-INSERT INTO empresa (idEmpresa, nome, cnpj, email, fklogradouro)
+INSERT INTO empresa (idEmpresa, nome, cnpj, email, fkEstadoCidade)
 VALUES (1, 'Sabesp', '12345678000195', 'contato@ecolimpeza.com', 1);
 
 INSERT INTO zona (idZona, nome)
@@ -160,10 +160,10 @@ JOIN bueiro b ON s.fkBueiro = b.idBueiro
 JOIN endereco e ON b.fkEndereco = e.idEndereco
 JOIN zona z ON e.fkZona = z.idZona
 JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
+JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
 LIMIT 8;
 
 -- desativa a foreing key e dá um truncate na tabela
-SET foreign_key_checks = 0;
-truncate lotacao;
-SET foreign_key_checks = 1;
+-- SET foreign_key_checks = 0;
+-- truncate lotacao;
+-- SET foreign_key_checks = 1;

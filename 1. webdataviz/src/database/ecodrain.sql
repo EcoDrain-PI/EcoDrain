@@ -1,11 +1,11 @@
 create database EcoDrain;
 use EcoDrain;
 
-CREATE TABLE logradouro (
-	idLogradouro INT NOT NULL ,
+CREATE TABLE EstadoCidade (
+	idEstadoCidade INT NOT NULL ,
     estado CHAR(2) NOT NULL ,
     cidade VARCHAR(50) NOT NULL ,
-    PRIMARY KEY (idlogradouro));
+    PRIMARY KEY (idEstadoCidade));
 
 CREATE TABLE empresa (
     idEmpresa INT NOT NULL  AUTO_INCREMENT,
@@ -14,9 +14,9 @@ CREATE TABLE empresa (
     email VARCHAR(64)   ,
     num_tel CHAR(11)   ,
     num_cel CHAR(11)   ,
-    fklogradouro INT NOT NULL ,
+    fkEstadoCidade INT NOT NULL ,
     PRIMARY KEY (idEmpresa),
-    FOREIGN KEY (fklogradouro) REFERENCES logradouro (idlogradouro)
+    FOREIGN KEY (fkEstadoCidade) REFERENCES EstadoCidade (idEstadoCidade)
   );
 
 CREATE TABLE endereco (
@@ -84,15 +84,15 @@ INNER JOIN bueiro b ON s.fkBueiro = b.idBueiro
 INNER JOIN endereco e ON b.fkEndereco = e.idEndereco;
 
 -- INSERTS PARA TESTE
--- Inserindo dados na tabela logradouro
-INSERT INTO logradouro (idLogradouro, estado, cidade) VALUES
+-- Inserindo dados na tabela EstadoCidade
+INSERT INTO EstadoCidade (idEstadoCidade, estado, cidade) VALUES
 (1, 'SP', 'São Paulo'),
 (2, 'RJ', 'Rio de Janeiro'),
 (3, 'MG', 'Belo Horizonte'),
 (4, 'RS', 'Porto Alegre');
 
 -- Inserindo dados na tabela empresa
-INSERT INTO empresa (idEmpresa, nome, cnpj, email, num_tel, num_cel, fklogradouro) VALUES
+INSERT INTO empresa (idEmpresa, nome, cnpj, email, num_tel, num_cel, fkEstadoCidade) VALUES
 (1, 'Empresa A', '12345678000100', 'contato@empresaa.com', '1123456789', '11987654321', 1),
 (2, 'Empresa B', '98765432000100', 'contato@empresab.com', '2134567890', '21987654321', 2),
 (3, 'Empresa C', '45678912000100', 'contato@empresac.com', '3134567890', '31987654321', 3);

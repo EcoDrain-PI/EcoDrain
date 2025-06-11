@@ -2,11 +2,11 @@
 create database EcoDrain;
 use EcoDrain;
 
-CREATE TABLE logradouro (
-  idlogradouro INT NOT NULL,
+CREATE TABLE EstadoCidade (
+  idEstadoCidade INT NOT NULL,
   estado CHAR(2) NOT NULL,
   cidade VARCHAR(25) NOT NULL,
-  PRIMARY KEY (idlogradouro)
+  PRIMARY KEY (idEstadoCidade)
 );
 
 CREATE TABLE empresa (
@@ -14,9 +14,9 @@ CREATE TABLE empresa (
   nome VARCHAR(45) NOT NULL,
   cnpj CHAR(14) NOT NULL,
   email VARCHAR(64) NOT NULL,
-  fklogradouro INT NOT NULL,
+  fkEstadoCidade INT NOT NULL,
   PRIMARY KEY (idEmpresa),
-  CONSTRAINT fk_empresa_logradouro1 FOREIGN KEY (fklogradouro) REFERENCES logradouro (idlogradouro)
+  CONSTRAINT fk_empresa_EstadoCidade1 FOREIGN KEY (fkEstadoCidade) REFERENCES EstadoCidade (idEstadoCidade)
 );
 
 CREATE TABLE zona (
@@ -89,7 +89,7 @@ CREATE TABLE alerta (
     REFERENCES lotacao (idLotacao , fkSensor)
 );
 
-INSERT INTO logradouro (idlogradouro, estado, cidade) VALUES
+INSERT INTO EstadoCidade (idEstadoCidade, estado, cidade) VALUES
 -- Zona Leste: 
 (1, 'SP', 'São Paulo'),
 (2, 'SP', 'Mogi das Cruzes'),
@@ -111,7 +111,7 @@ INSERT INTO logradouro (idlogradouro, estado, cidade) VALUES
 (16, 'SP', 'Cananéia');
 
 -- Inserindo empresa
-INSERT INTO empresa (idEmpresa, nome, cnpj, email, fklogradouro)
+INSERT INTO empresa (idEmpresa, nome, cnpj, email, fkEstadoCidade)
 VALUES (1, 'EcoLimpeza', '12345678000195', 'contato@ecolimpeza.com', 1);
 
 
@@ -173,12 +173,12 @@ INSERT INTO lotacao (fkSensor, altura_lixo, data_monitoramento) VALUES
 (2, 160.60, '2025-05-05 14:00:00');
 
 
--- Novos logradouros (cidades novas de cada zona do estado)
+-- Novos EstadoCidades (cidades novas de cada zona do estado)
 
 
 select * from endereco;
 
--- Novos endereços (um por cidade/logradouro diferente), ligados à empresa 1
+-- Novos endereços (um por cidade/EstadoCidade diferente), ligados à empresa 1
 INSERT INTO endereco (idEndereco, fkEmpresa, cep, rua, bairro, fkZona) VALUES
 (3, 1, '08710000', 'Rua Ipiranga', 'Jundiapeba', 3),  -- Mogi das Cruzes, Leste
 (4, 1, '08690000', 'Av. Brasil', 'Jardim Monte Cristo', 3), -- Suzano, Leste
@@ -248,7 +248,7 @@ SELECT
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro;
+        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade;
         
         
         

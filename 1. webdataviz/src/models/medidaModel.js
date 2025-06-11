@@ -17,7 +17,7 @@ function buscarUltimasMedidas(idBueiro) {
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
+        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
         LIMIT 8;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -49,7 +49,7 @@ function zonaNorte() {
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
+        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
         WHERE z.nome = 'Norte';
     `;
     return database.executar(instrucaoSql);
@@ -64,7 +64,7 @@ function zonaSulRP() {
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
+        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
         WHERE z.nome = 'Sul';
     `;
     return database.executar(instrucaoSql);
@@ -79,7 +79,7 @@ function zonaSulJabaquara() {
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
+        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
         WHERE z.nome = 'Sul';
     `;
     return database.executar(instrucaoSql);
@@ -94,7 +94,7 @@ function zonaSulCL() {
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
+        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
         WHERE z.nome = 'Sul';
     `;
     return database.executar(instrucaoSql);
@@ -109,7 +109,7 @@ function zonaSulCapao() {
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
+        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
         WHERE z.nome = 'Sul';
     `;
     return database.executar(instrucaoSql);
@@ -124,7 +124,7 @@ function zonaLesteItaquera() {
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
+        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
         WHERE z.nome = 'Leste';
     `;
     return database.executar(instrucaoSql);
@@ -139,7 +139,7 @@ function zonaLesteMooca() {
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
+        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
         WHERE z.nome = 'Leste';
     `;
     return database.executar(instrucaoSql);
@@ -154,7 +154,7 @@ function zonaLestePenha() {
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
+        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
         WHERE z.nome = 'Leste';
     `;
     return database.executar(instrucaoSql);
@@ -169,7 +169,7 @@ function zonaLesteTatuape() {
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
+        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
         WHERE z.nome = 'Leste';
     `;
     return database.executar(instrucaoSql);
@@ -184,7 +184,7 @@ function zonaOeste() {
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
+        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
         WHERE z.nome = 'Oeste';
     `;
     return database.executar(instrucaoSql);
