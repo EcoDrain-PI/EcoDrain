@@ -11,11 +11,11 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body onload="obterDadosZN()">
+<body onload="obterDadosRio()">
 
   <div class="div-pai">
-     <!-- Sidebar -->
-     <div class="div-sidebar">
+    <!-- Sidebar -->
+    <div class="div-sidebar">
       <div class="div-img">
         <img src="../assets/img/ecoDrain-letrabranca-removebg-preview.png" alt="Logomarca da EcoDrain">
       </div>
@@ -40,8 +40,8 @@
         </div>
         <a href="https://ecodrain.atlassian.net/servicedesk/customer/portal/1" target="_blank">
           <div class="div-btComImg">
-            <img src="../assets/img/help.svg" alt="Imagem do ícone de Suporte" >
-          <button>Suporte</button>
+            <img src="../assets/img/help.svg" alt="Imagem do ícone de Suporte">
+            <button>Suporte</button>
           </div>
         </a>
       </div>
@@ -49,7 +49,7 @@
     <!-- Cabeçalho -->
     <header>
       <div class="header-container">
-        <h2>TELA DA ZONA LESTE</h2>
+        <h2>TELA DA ZONA NORTE</h2>
 
         <div class="div-pai-perfil">
           <div class="div-linha"></div>
@@ -71,54 +71,134 @@
 
       <div class="metricas-secundarias">
         <div class="metrica-secun">
-            <!-- Cabeçalho -->
-            <div class="div-head-metricas">
-              <div class="div-texto">
-                Santana
-              </div>
-              <!-- MÉTRICA PRINCIPAL -->
+          <!-- Cabeçalho -->
+          <div class="div-head-metricas">
+            <div class="div-texto">
+              São Miguel
             </div>
-            <canvas id="zonaNorteCidadeSantana"></canvas>
+            <!-- MÉTRICA PRINCIPAL -->
           </div>
-      
+          <canvas id="zonaLesteItaquera"></canvas>
+        </div>
+
 
         <div class="metrica-secun">
-            <!-- Cabeçalho -->
-            <div class="div-head-metricas">
-              <div class="div-texto" style="text-align: center;">
-                Itaquaquecetuba 
-              </div>
-              <!-- MÉTRICA PRINCIPAL -->
+          <!-- Cabeçalho -->
+          <div class="div-head-metricas">
+            <div class="div-texto">
+              Itaquaquecetuba
             </div>
-            <h1 style="text-align: center;">Sem adições</h1>
-            <canvas id="zonaNorteCidadeItaquaquecetuba"></canvas>
+            <!-- MÉTRICA PRINCIPAL -->
           </div>
+          <canvas id="zonaNorteCidadeItaquaquecetuba"></canvas>
+        </div>
 
-          
+
+      </div>
+
     </div>
+
   </div>
-
-</div>
-
 </body>
 
 </html>
 <script>
-  function redirecionar(){
+  function redirecionar() {
     var zona = zonas.value
-    if(zona == 'zn'){
+    if (zona == 'zl') {
       window.location.href = "zonaLeste.html"
     }
-    if(zona == 'zl'){
+    if (zona == 'zn') {
       window.location.href = "zonaNorte.html"
     }
-    if(zona == 'zo'){
+    if (zona == 'zo') {
       window.location.href = "zonaOeste.html"
     }
-    if(zona == 'zs'){
+    if (zona == 'zs') {
       window.location.href = "zonaSul.html"
     }
   }
 </script>
 <!-- <script src="js/metricaDeBarras2.js"></script> -->
-<script src="js/zonasJS/zonaNorte.js"></script>
+<script src="js/zonasJS/zonaLeste.js"></script>
+
+<script>
+  const zonaNorteCidadeItaquaquecetuba = document.getElementById('zonaNorteCidadeItaquaquecetuba').getContext('2d');
+
+  let dadosPorAno = {
+    2025: [
+      [130, 120],
+    ]
+  };
+
+  // Labels para os meses (ajustado para 8 meses)
+  const labels = ['Bairro 1', 'Bairro 2'];
+
+  // Criação do gráfico
+  const graficoNorte2 = new Chart(zonaNorteCidadeItaquaquecetuba, {
+    type: 'bar', // ou outro tipo, como 'bar'
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Nível de lixo (cm)',
+          data: dadosPorAno[2025][0],
+          borderColor: 'black',
+          backgroundColor: 'rgb(90, 245, 227)'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: { color: '#ffffff' },
+          grid: { color: 'rgba(255, 255, 255, 0.2)' }
+        },
+        x: {
+          ticks: { color: '#ffffff' },
+          grid: { color: 'rgba(255, 255, 255, 0.2)' }
+        }
+      },
+      plugins: {
+        legend: {
+          labels: { color: '#ffffff' }
+        },
+        annotation: {
+          annotations: {
+            linhaAtencao: {
+              type: 'line',
+              yMin: 150,
+              yMax: 150,
+              borderColor: 'rgb(255, 205, 86)',
+              borderWidth: 2,
+              label: {
+                content: 'Atenção',
+                position: 'center',
+                enabled: true,
+                font: { size: 12, weight: 'bold' },
+                yAdjust: -10
+              }
+            },
+            linhaRisco: {
+              type: 'line',
+              yMin: 180,
+              yMax: 180,
+              borderColor: 'rgb(255, 99, 132)',
+              borderWidth: 2,
+              label: {
+                content: 'Risco',
+                position: 'center',
+                enabled: true,
+                font: { size: 12, weight: 'bold' },
+                yAdjust: -10
+              }
+            }
+          }
+        }
+      }
+    }
+  });
+
+</script>
