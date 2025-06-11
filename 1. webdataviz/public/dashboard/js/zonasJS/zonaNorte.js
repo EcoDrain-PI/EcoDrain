@@ -39,7 +39,7 @@ let myChart;
 
     // Definindo a cor das barras com base no nível do lixo
     const backgroundColors = dadosGrafico.map(nivel => {
-      return nivel > 180 ? 'rgba(255, 99, 132, 0.7)' : 'rgba(54, 162, 235, 0.7)';  // Vermelho para > 180, azul para <= 180
+        return nivel >= 180 ? 'rgb(220, 20, 60)' : nivel >= 150 ? 'rgb(255, 200, 0)' : 'rgb(62, 225, 120)'; // Vermelho para > 180, azul para <= 180
     });
 
     const ctx = document.getElementById('zonaNorteBairroSantana').getContext('2d');
@@ -72,11 +72,7 @@ let myChart;
         plugins: {
           legend: { labels: { color: '#ffffff' } },
           tooltip: {
-            callbacks: {
-              afterLabel: function (context) {
-                return 'Zona: ' + zonas[context.dataIndex];
-              }
-            }
+            callbacks: {}
           },
           annotation: {
             annotations: {
@@ -153,3 +149,53 @@ let myChart;
         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
       });
   }
+
+
+  // zonaNorteBairroTucuruvi
+const ctx = document.getElementById('zonaNorteBairroTucuruvi').getContext('2d');
+
+
+  // Novo formato de dados com múltiplos bairros
+let dadosPorAno = {
+  2025: [
+    [200, 190, 150, 170,],
+  ]
+};
+
+// Labels para os meses (ajustado para 8 meses)
+const labels = ['Mai', 'Jun', 'Jul', 'Ago'];
+
+// Criação do gráfico
+const grafico = new Chart(ctx, {
+  type: 'bar', // ou outro tipo, como 'bar'
+  data: {
+    labels: labels,
+    datasets: [
+      {
+        label: 'Nível de lixo (cm)',
+        data: dadosPorAno[2025][0],
+        borderColor: 'black',
+        backgroundColor: 'rgb(90, 245, 227)'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: { color: '#ffffff' },
+        grid: { color: 'rgba(255, 255, 255, 0.2)' }
+      },
+      x: {
+        ticks: { color: '#ffffff' },
+        grid: { color: 'rgba(255, 255, 255, 0.2)' }
+      }
+    },
+    plugins: {
+      legend: {
+        labels: { color: '#ffffff' }
+      }
+    }
+  }
+});

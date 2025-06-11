@@ -65,7 +65,7 @@ function zonaSulRP() {
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
         JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
-        WHERE z.nome = 'Sul' AND lg.cidade = 'Rio Preto';
+        WHERE z.nome = 'Sul';
     `;
     return database.executar(instrucaoSql);
 }
@@ -80,7 +80,7 @@ function zonaSulJabaquara() {
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
         JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
-        WHERE z.nome = 'Sul' AND lg.cidade = 'Jabaquara';
+        WHERE z.nome = 'Sul';
     `;
     return database.executar(instrucaoSql);
 }
@@ -95,7 +95,7 @@ function zonaSulCL() {
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
         JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
-        WHERE z.nome = 'Sul' AND lg.cidade = 'Campo Limpo';
+        WHERE z.nome = 'Sul';
     `;
     return database.executar(instrucaoSql);
 }
@@ -110,7 +110,7 @@ function zonaSulCapao() {
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
         JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
-        WHERE z.nome = 'Sul' AND lg.cidade = 'Capão Redondo';
+        WHERE z.nome = 'Sul';
     `;
     return database.executar(instrucaoSql);
 }
@@ -125,7 +125,7 @@ function zonaLesteItaquera() {
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
         JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
-        WHERE z.nome = 'Leste' AND lg.cidade = 'Itaquera';
+        WHERE z.nome = 'Leste';
     `;
     return database.executar(instrucaoSql);
 }
@@ -140,7 +140,7 @@ function zonaLesteMooca() {
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
         JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
-        WHERE z.nome = 'Leste' AND lg.cidade = 'Mooca';
+        WHERE z.nome = 'Leste';
     `;
     return database.executar(instrucaoSql);
 }
@@ -155,7 +155,7 @@ function zonaLestePenha() {
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
         JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
-        WHERE z.nome = 'Leste' AND lg.cidade = 'Penha';
+        WHERE z.nome = 'Leste';
     `;
     return database.executar(instrucaoSql);
 }
@@ -170,7 +170,7 @@ function zonaLesteTatuape() {
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
         JOIN logradouro lg ON em.fklogradouro = lg.idlogradouro
-        WHERE z.nome = 'Leste' AND lg.cidade = 'Tatuapé';
+        WHERE z.nome = 'Leste';
     `;
     return database.executar(instrucaoSql);
 }
