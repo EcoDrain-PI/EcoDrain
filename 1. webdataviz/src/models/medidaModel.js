@@ -19,7 +19,8 @@ function buscarUltimasMedidas(idBueiro) {
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade;
+        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
+        LIMIT 8;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
