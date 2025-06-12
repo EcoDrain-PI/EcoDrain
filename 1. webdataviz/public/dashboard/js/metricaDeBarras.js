@@ -29,12 +29,16 @@ function plotarGrafico(dados, idBueiro) {
     let labels = [];
     let dadosGrafico = [];
     let zonas = [];
+    let bueiro = [];
+    let ruas = [];
 
     // Processando os dados
     for (let i = 0; i < dados.length; i++) {
         labels.push(dados[i].bairro);
         dadosGrafico.push(dados[i].altura_lixo);
         zonas.push(dados[i].zonasGrafico);
+        bueiro.push("Bueiro " + dados[i].idBueiro);
+        ruas.push(dados[i].rua);
     }
 
     // Definindo a cor das barras com base no nível do lixo
@@ -47,7 +51,7 @@ function plotarGrafico(dados, idBueiro) {
     const config = {
         type: 'bar',
         data: {
-            labels: labels,
+            labels: ruas,
             datasets: [{
                 label: 'Nível do Lixo (cm)',
                 data: dadosGrafico,
@@ -70,14 +74,17 @@ function plotarGrafico(dados, idBueiro) {
                 }
             },
             plugins: {
-                legend: { labels: { color: '#ffffff' } },
+                legend: {
+                    display: false
+                },
                 tooltip: {
                     callbacks: {
                         afterLabel: function (context) {
-                            return 'Zona: ' + zonas[context.dataIndex];
+                            return `Zona: ${zonas[context.dataIndex]}\nID Do Bueiro: ${bueiro[context.dataIndex]} \nBairro: ${labels[context.dataIndex]}`;
                         }
                     }
                 },
+
                 annotation: {
                     annotations: {
                         linhaAtencao: {

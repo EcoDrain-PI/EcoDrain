@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../css/dashboards.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 </head>
 
 <body onload="obterDadosGrafico(1)">
@@ -145,26 +146,6 @@
           </div>
         </div>
       </div>
-
-      <div id="coordenadas-bolha" class="div-coordenadas-graf-bolha">
-        <h2 class="h2-coordenadas">Coordenadas do gráfico de bolhas</h2>
-        <p>Legenda das coordenadas | Bairros com sensores instalados</p>
-        <div class="div-coordenadas-bairro">
-          <h3>Coordenadas | Bairro</h3>
-          <ul>
-            <li>x: 24, y: 22 | Itaquera</li>
-            <li>x: 25, y: 20 | Tatuapé</li>
-            <li>x: 15, y: 15 | Penha</li>
-            <li>x: 20, y: 20 | São Matheus</li>
-            <li>x: 16, y: 20 | Brás</li>
-            <li>x: 22, y: 30 | Guaianases</li>
-            <li>x: 12, y: 18 | Mooca</li>
-            <li>x: 14, y: 25 | Vila Formosa</li>
-            <li>x: 10, y: 20 | Vila Prudente</li>
-            <li>x: 16, y: 22 | Carrão</li>
-          </ul>
-        </div>
-      </div>
     </div>
   </div>
 </body>
@@ -200,26 +181,26 @@
   setInterval(async () => { await atualizarDados2025() }, 1000);
 
 
- function totalBueiro(){
-  // fetch para buscar o numero totaol de bueiros registrados
-    fetch(`/bueiro/contarBueiro/`,{
+  function totalBueiro() {
+    // fetch para buscar o numero totaol de bueiros registrados
+    fetch(`/bueiro/contarBueiro/`, {
       content: "GET",
-      headers:{
+      headers: {
         "Content-Type": "application/json"
       },
     }).then(
-        function(resultado){
-        resultado.json().then(function(json){
-            console.log(json)
-            document.getElementById("qtdBueiro").innerText = json[0].total_bueiro // o resultado vem em um json, que tem o nome json, por isso essa forma de exibicao
+      function (resultado) {
+        resultado.json().then(function (json) {
+          console.log(json)
+          document.getElementById("qtdBueiro").innerText = json[0].total_bueiro // o resultado vem em um json, que tem o nome json, por isso essa forma de exibicao
+        })
       })
- })
 
-  }totalBueiro()
-  
+  } totalBueiro()
+
 </script>
 <script src="js/metricaDeBarras.js"></script>
 <script src="js/metricaDeRegistros.js"></script>
- <script src="js/codigosFront.js"></script> 
+<script src="js/codigosFront.js"></script>
 
 </html>

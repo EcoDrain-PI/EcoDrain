@@ -10,15 +10,16 @@ function buscarUltimasMedidas(idBueiro) {
         l.altura_lixo,
         e.bairro,
         z.nome AS zonasGrafico,
-        lg.cidade
+        lg.cidade,
+        b.idBueiro,
+        e.rua
         FROM lotacao l
         JOIN sensor s ON l.fkSensor = s.idSensor
         JOIN bueiro b ON s.fkBueiro = b.idBueiro
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
-        LIMIT 8;
+        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -231,7 +232,7 @@ function buscarAlertasAtencaoTotalDB() {
     var instrucaoSql = `
         SELECT COUNT(*) AS atencao
         FROM lotacao
-        WHERE altura_lixo >= 150 AND altura_lixo < 180    `;
+        WHERE altura_lixo >= 150 AND altura_lixo < 180`;
     return database.executar(instrucaoSql);
 }
 
