@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alertas de Risco</title>
   <link rel="stylesheet" href="../css/dashboards.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -51,6 +52,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="div-pai">
     <div class="div-sidebar">
@@ -79,7 +81,7 @@
         </div>
         <a href="https://ecodrain.atlassian.net/servicedesk/customer/portal/1" target="_blank">
           <div class="div-btComImg">
-            <img src="../assets/img/help.svg" alt="Imagem do ícone de Suporte" >
+            <img src="../assets/img/help.svg" alt="Imagem do ícone de Suporte">
             <button>Suporte</button>
           </div>
         </a>
@@ -129,8 +131,8 @@
   <script>
     function redirecionar() {
       var zona = zonas.value;
-      if (zona == 'zn') window.location.href = "zonaLeste.html";
-      if (zona == 'zl') window.location.href = "zonaNorte.html";
+      if (zona == 'zn') window.location.href = "zonaNorte.html";
+      if (zona == 'zl') window.location.href = "zonaLeste.html";
       if (zona == 'zo') window.location.href = "zonaOeste.html";
       if (zona == 'zs') window.location.href = "zonaSul.html";
     }
@@ -167,9 +169,9 @@
         if (chart) chart.destroy();
 
         let labelPeriodo = filtro === "1h" ? "Última hora"
-                          : filtro === "24h" ? "Últimas 24 horas"
-                          : filtro === "1w" ? "Última semana"
-                          : filtro;
+          : filtro === "24h" ? "Últimas 24 horas"
+            : filtro === "1w" ? "Última semana"
+              : filtro;
 
         chart = new Chart(ctx, {
           type: 'bar',
@@ -211,4 +213,5 @@
     });
   </script>
 </body>
+
 </html>

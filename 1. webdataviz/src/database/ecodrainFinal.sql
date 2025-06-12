@@ -1,5 +1,6 @@
 create database EcoDrain;
 use EcoDrain;
+-- drop database EcoDrain;
 
 CREATE TABLE EstadoCidade (
   idEstadoCidade INT NOT NULL,
@@ -15,7 +16,7 @@ CREATE TABLE empresa (
   email VARCHAR(64) NOT NULL,
   fkEstadoCidade INT NOT NULL,
   PRIMARY KEY (idEmpresa),
-  CONSTRAINT fk_empresa_EstadoCidade1 FOREIGN KEY (fkEstadoCidade) REFERENCES EstadoCidade (idEstadoCidade)
+  FOREIGN KEY (fkEstadoCidade) REFERENCES EstadoCidade (idEstadoCidade)
 );
 
 CREATE TABLE zona (
@@ -33,16 +34,16 @@ CREATE TABLE endereco (
   bairro VARCHAR(45) NOT NULL,
   fkZona INT NOT NULL,
   PRIMARY KEY (idEndereco),
-  CONSTRAINT fk_endereco_empresa1 FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa),
-  CONSTRAINT fk_endereco_zona1 FOREIGN KEY (fkZona) REFERENCES zona (idZona)
+  FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa),
+  FOREIGN KEY (fkZona) REFERENCES zona (idZona)
 );
-
+select * from endereco;
 CREATE TABLE bueiro (
   idBueiro INT NOT NULL AUTO_INCREMENT,
   tamanho DECIMAL(5,2) NOT NULL,
   fkEndereco INT NOT NULL,
   PRIMARY KEY (idBueiro, fkEndereco),
-  CONSTRAINT fk_bueiro_endereco1 FOREIGN KEY (fkEndereco) REFERENCES endereco (idEndereco)
+  FOREIGN KEY (fkEndereco) REFERENCES endereco (idEndereco)
 );
 
 CREATE TABLE sensor (
@@ -50,7 +51,7 @@ CREATE TABLE sensor (
   data_instalacao DATE NOT NULL,
   fkBueiro INT NOT NULL,
   PRIMARY KEY (idSensor, fkBueiro),
-  CONSTRAINT fk_sensor_bueiro1 FOREIGN KEY (fkBueiro) REFERENCES bueiro (idBueiro)
+  FOREIGN KEY (fkBueiro) REFERENCES bueiro (idBueiro)
 );
 
 CREATE TABLE lotacao (
@@ -59,7 +60,6 @@ CREATE TABLE lotacao (
   altura_lixo DECIMAL(10,2) NOT NULL,
   data_monitoramento TIMESTAMP NOT NULL,
   PRIMARY KEY (idLotacao, fkSensor),
-  CONSTRAINT lotacao_ibfk_1
   FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
 );
 
@@ -70,7 +70,6 @@ CREATE TABLE usuario (
   email VARCHAR(64) NOT NULL,
   fkEmpresa INT NOT NULL,
   PRIMARY KEY (idUsuario),
-  CONSTRAINT usuario_ibfk_1
   FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa)
 );
 
@@ -81,9 +80,7 @@ CREATE TABLE alerta (
   fkLotacao INT NOT NULL,
   fkSensor INT NOT NULL,
   PRIMARY KEY (idalerta, fkLotacao, fkSensor),
-  CONSTRAINT fk_alerta_lotacao1
-  FOREIGN KEY (fkLotacao , fkSensor)
-  REFERENCES lotacao (idLotacao , fkSensor)
+  FOREIGN KEY (fkLotacao , fkSensor) REFERENCES lotacao (idLotacao , fkSensor)
 );
 
 
@@ -153,17 +150,24 @@ VALUES
   (2, 'MÉDIO', 1, 1);
 
 -- select do gráfico de nível de lotação por bairro
-SELECT l.altura_lixo, e.bairro, z.nome AS zonasGrafico, lg.cidade
+SELECT l.altura_lixo, e.bairro, z.nome AS zonasGrafico, lg.cidade, b.idBueiro, e.rua
 FROM lotacao l
 JOIN sensor s ON l.fkSensor = s.idSensor
 JOIN bueiro b ON s.fkBueiro = b.idBueiro
 JOIN endereco e ON b.fkEndereco = e.idEndereco
 JOIN zona z ON e.fkZona = z.idZona
 JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
-LIMIT 8;
+JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade;
 
 -- desativa a foreing key e dá um truncate na tabela
 -- SET foreign_key_checks = 0;
 -- truncate lotacao;
 -- SET foreign_key_checks = 1;
+
+-- Atualiza os registros da tabela lotacao para datas nas últimas 24 horas
+UPDATE lotacao SET data_monitoramento = NOW() - INTERVAL 23 HOUR WHERE idLotacao = 1;
+UPDATE lotacao SET data_monitoramento = NOW() - INTERVAL 20 HOUR WHERE idLotacao = 2;
+UPDATE lotacao SET data_monitoramento = NOW() - INTERVAL 17 HOUR WHERE idLotacao = 3;
+UPDATE lotacao SET data_monitoramento = NOW() - INTERVAL 14 HOUR WHERE idLotacao = 4;
+UPDATE lotacao SET data_monitoramento = NOW() - INTERVAL 10 HOUR WHERE idLotacao = 5;
+UPDATE lotacao SET data_monitoramento = NOW() - INTERVAL 5 HOUR WHERE idLotacao = 6;
