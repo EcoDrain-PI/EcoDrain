@@ -1,4 +1,5 @@
 let myChart;
+
 // Função chamada ao carregar a página para obter e processar os dados
 function obterDadosZN() {
   fetch(`/zonas/zonas`, { cache: 'no-store' }).then(function (response) {
@@ -29,12 +30,13 @@ function plotarGrafico(dados, idBueiro) {
   let labels = [];
   let dadosGrafico = [];
   let zonas = [];
-
+  let rua = [];
   // Processando os dados
   for (let i = 0; i < dados.length; i++) {
     labels.push(dados[i].bairro);
     dadosGrafico.push(dados[i].altura_lixo);
     zonas.push(dados[i].zonas);
+    rua.push(dados[i].rua);
   }
 
   // Definindo a cor das barras com base no nível do lixo
@@ -42,12 +44,12 @@ function plotarGrafico(dados, idBueiro) {
     return nivel >= 180 ? 'rgb(220, 20, 60)' : nivel >= 150 ? 'rgb(255, 200, 0)' : 'rgb(62, 225, 120)'; // Vermelho para > 180, azul para <= 180
   });
 
-  const ctx = document.getElementById('zonaNorteCidadeSantana').getContext('2d');
+  const ctx = document.getElementById('zonaLestePrincipal').getContext('2d');
 
   const config = {
     type: 'bar',
     data: {
-      labels: labels,
+      labels: rua,
       datasets: [{
         label: 'Nível do Lixo (cm)',
         data: dadosGrafico,
@@ -150,31 +152,53 @@ function atualizarGrafico(idBueiro, dados, myChart) {
     });
 }
 
+function zonaNorteMock() {
+  // Gráfico 1 - Itaquaquecetuba
+  const ctx1 = document.getElementById('zonaLesteMock1');
+  let ruas1 = ['Parque Viviane', 'Rua do Cravo', 'São Sebastião'];
+  let niveis1 = [110, 90, 83];
+  renderizarGrafico(ctx1, ruas1, niveis1);
 
-// zonaNorteBairroTucuruvi
-const zonaNorteCidadeItaquaquecetuba = document.getElementById('zonaNorteCidadeItaquaquecetuba').getContext('2d');
+  // Gráfico 2 - Guaianases
+  const ctx2 = document.getElementById('zonaLesteMock2');
+  let ruas2 = ['Rua Arraial dos Ourives', 'Rua Serra Dourada', 'Rua Tapajós'];
+  let niveis2 = [130, 155, 123];
+  renderizarGrafico(ctx2, ruas2, niveis2);
 
+  // Gráfico 3 - Tatuapé
+  const ctx3 = document.getElementById('zonaLesteMock3');
+  let ruas3 = ['Rua Apucarana', 'Rua Coelho Lisboa', 'Rua Serra de Bragança'];
+  let niveis3 = [95, 80, 165];
+  renderizarGrafico(ctx3, ruas3, niveis3);
+}
 
+// Função para criar gráfico com base em labels e dados
+function renderizarGrafico(ctx, labels, dados) {
+  const backgroundColors = dados.map(nivel => {
+    return nivel >= 180 ? 'rgb(220, 20, 60)' :
+      nivel >= 150 ? 'rgb(255, 200, 0)' :
+        'rgb(62, 225, 120)';
+  });
 
-// Labels para os meses (ajustado para 8 meses)
-const labels = ['Bairro 1', 'Bairro 2'];
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Nível do Lixo',
+        data: dados,
+        backgroundColor: backgroundColors,
+        borderColor: backgroundColors.map(c => c.replace('0.7', '1')),
+        borderWidth: 1
+      }]
+    },
+    options: getChartOptions()
+  });
+}
 
-// Criação do gráfico
-const graficoNorte2 = new Chart(zonaNorteCidadeItaquaquecetuba, {
-  type: 'bar', // ou outro tipo, como 'bar'
-  data: {
-    labels: labels,
-    datasets: [
-      {
-        label: 'Nível de lixo (cm)',
-        data: dadosPorAno[2025][0],
-        borderColor: 'black',
-        backgroundColor: 'rgb(90, 245, 227)'
-      }
-    ]
-  },
-  options: {
-    responsive: true,
+// Opções reutilizáveis
+function getChartOptions() {
+  return {
     scales: {
       y: {
         beginAtZero: true,
@@ -187,11 +211,40 @@ const graficoNorte2 = new Chart(zonaNorteCidadeItaquaquecetuba, {
       }
     },
     plugins: {
-      legend: {
-        labels: { color: '#ffffff' }
+      legend: { labels: { color: '#ffffff' } },
+      tooltip: { callbacks: {} },
+      annotation: {
+        annotations: {
+          linhaAtencao: {
+            type: 'line',
+            yMin: 150,
+            yMax: 150,
+            borderColor: 'rgba(255, 205, 86, 0.7)',
+            borderWidth: 2,
+            label: {
+              content: 'Atenção',
+              position: 'center',
+              enabled: true,
+              font: { size: 12, weight: 'bold' },
+              yAdjust: -10
+            }
+          },
+          linhaRisco: {
+            type: 'line',
+            yMin: 180,
+            yMax: 180,
+            borderColor: 'rgba(255, 99, 132, 0.7)',
+            borderWidth: 2,
+            label: {
+              content: 'Risco',
+              position: 'center',
+              enabled: true,
+              font: { size: 12, weight: 'bold' },
+              yAdjust: -10
+            }
+          }
+        }
       }
     }
-  }
-});
-
-
+  };
+}

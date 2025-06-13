@@ -11,7 +11,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
 </head>
 
-<body onload="obterDadosZN()">
+<body onload="obterDadosZL(), zonaLesteMock()">
 
   <div class="div-pai">
     <!-- Sidebar -->
@@ -74,11 +74,11 @@
           <!-- Cabeçalho -->
           <div class="div-head-metricas">
             <div class="div-texto">
-              Santana
+              Jardim Helena
             </div>
             <!-- MÉTRICA PRINCIPAL -->
           </div>
-          <canvas id="zonaNorteCidadeSantana"></canvas>
+          <canvas id="zonaLestePrincipal"></canvas>
         </div>
 
 
@@ -88,15 +88,32 @@
             <div class="div-texto" style="text-align: center;">
               Itaquaquecetuba
             </div>
-            <!-- MÉTRICA PRINCIPAL -->
           </div>
-          <canvas id="zonaNorteCidadeItaquaquecetuba"></canvas>
+          <canvas id="zonaLesteMock1"></canvas>
         </div>
 
+        <div class="metrica-secun">
+          <!-- Cabeçalho -->
+          <div class="div-head-metricas">
+            <div class="div-texto" style="text-align: center;">
+              Guaianases
+            </div>
+          </div>
+          <canvas id="zonaLesteMock2"></canvas>
+        </div>
+
+        <div class="metrica-secun">
+          <!-- Cabeçalho -->
+          <div class="div-head-metricas">
+            <div class="div-texto" style="text-align: center;">
+              Tatuapé
+            </div>
+          </div>
+          <canvas id="zonaLesteMock3"></canvas>
+        </div>
 
       </div>
     </div>
-
   </div>
 
 </body>
@@ -119,5 +136,4 @@
     }
   }
 </script>
-<!-- <script src="js/metricaDeBarras2.js"></script> -->
-<script src="js/zonasJS/zonaNorte.js"></script>
+<script src="js/zonasJS/zonaLeste.js"></script>

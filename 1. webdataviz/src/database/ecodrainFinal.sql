@@ -37,7 +37,7 @@ CREATE TABLE endereco (
   FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa),
   FOREIGN KEY (fkZona) REFERENCES zona (idZona)
 );
-select * from endereco;
+
 CREATE TABLE bueiro (
   idBueiro INT NOT NULL AUTO_INCREMENT,
   tamanho DECIMAL(5,2) NOT NULL,
@@ -107,6 +107,18 @@ VALUES
   (6, 1, '02468000', 'Rua Iguatemi', 'Morumbi', 4),
   (7, 1, '03010000', 'Rua das Palmeiras', 'Mooca', 3),
   (8, 1, '04050000', 'Avenida Jabaquara', 'Saúde', 2);
+
+-- MAIS 8 ENDEREÇOS SEM LOTACÃO
+INSERT INTO endereco (fkEmpresa, cep, rua, bairro, fkZona)
+VALUES 
+  (1, '05502000', 'Rua Alvarenga', 'Butantã', 4),
+  (1, '03102000', 'Rua da Mooca', 'Mooca', 3),
+  (1, '04101000', 'Rua Domingos de Morais', 'Vila Mariana', 2),
+  (1, '05001000', 'Rua Clélia', 'Lapa', 4),
+  (1, '02202000', 'Avenida Água Fria', 'Tucuruvi', 1),
+  (1, '08032000', 'Rua São Teodoro', 'Itaquera', 3),
+  (1, '04404000', 'Avenida Interlagos', 'Interlagos', 2),
+  (1, '01153000', 'Rua Guaicurus', 'Lapa', 4);
   
 INSERT INTO bueiro (idBueiro, tamanho, fkEndereco)
 VALUES 
@@ -117,8 +129,16 @@ VALUES
   (5, 200, 5),
   (6, 200, 6),
   (7, 200, 7),
-  (8, 200, 8);
-  
+  (8, 200, 8),
+  (9, 200, 9),
+  (10, 200, 10),
+  (11, 200, 11),
+  (12, 200, 12),
+  (13, 200, 13),
+  (14, 200, 14),
+  (15, 200, 15),
+  (16, 200, 16);
+
 INSERT INTO sensor (idSensor, data_instalacao, fkBueiro)
 VALUES 
   (1, '2025-05-01', 1),
@@ -128,7 +148,15 @@ VALUES
   (5, '2025-05-02', 5),
   (6, '2025-05-02', 6),
   (7, '2025-05-03', 7),
-  (8, '2025-05-03', 8);
+  (8, '2025-05-03', 8),
+  (9, '2025-05-04', 9),
+  (10, '2025-05-04', 10),
+  (11, '2025-05-04', 11),
+  (12, '2025-05-05', 12),
+  (13, '2025-05-05', 13),
+  (14, '2025-05-05', 14),
+  (15, '2025-05-06', 15),
+  (16, '2025-05-06', 16);
   
 INSERT INTO lotacao (idLotacao, fkSensor, altura_lixo, data_monitoramento)
 VALUES 
@@ -157,7 +185,9 @@ JOIN bueiro b ON s.fkBueiro = b.idBueiro
 JOIN endereco e ON b.fkEndereco = e.idEndereco
 JOIN zona z ON e.fkZona = z.idZona
 JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade;
+JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
+ORDER BY idBueiro
+LIMIT 8;
 
 -- desativa a foreing key e dá um truncate na tabela
 -- SET foreign_key_checks = 0;

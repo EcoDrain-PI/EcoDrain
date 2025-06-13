@@ -26,6 +26,7 @@ function buscarUltimasMedidas(idBueiro) {
     return database.executar(instrucaoSql);
 }
 
+// ESSE AQUI ESTÁ PEGANDO DA 
 function buscarMedidasEmTempoReal(idBueiro) {
     var instrucaoSql = `
         SELECT b.idBueiro, l.altura_lixo, l.data_monitoramento
@@ -33,7 +34,6 @@ function buscarMedidasEmTempoReal(idBueiro) {
         INNER JOIN sensor s ON l.fkSensor = s.idSensor
         INNER JOIN bueiro b ON s.fkBueiro = b.idBueiro
         INNER JOIN endereco e ON b.fkEndereco = e.idEndereco
-        WHERE b.idBueiro = ${idBueiro}
         ORDER BY l.data_monitoramento DESC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -44,7 +44,7 @@ function buscarMedidasEmTempoReal(idBueiro) {
 
 function zonaNorte() {
     var instrucaoSql = `
-        SELECT l.altura_lixo, e.bairro, z.nome AS zona, lg.cidade
+        SELECT l.altura_lixo, e.bairro, z.nome AS zona, lg.cidade, e.rua
         FROM lotacao l
         JOIN sensor s ON l.fkSensor = s.idSensor
         JOIN bueiro b ON s.fkBueiro = b.idBueiro
@@ -52,7 +52,7 @@ function zonaNorte() {
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
         JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
-        WHERE z.nome = 'Norte';
+        WHERE z.nome = 'Leste';
     `;
     return database.executar(instrucaoSql);
 }
