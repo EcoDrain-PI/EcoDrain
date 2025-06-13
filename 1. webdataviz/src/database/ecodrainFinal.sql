@@ -68,7 +68,7 @@ CREATE TABLE usuario (
   nome VARCHAR(50) NOT NULL,
   senha VARCHAR(12) NOT NULL,
   email VARCHAR(64) NOT NULL,
-  fkEmpresa INT NOT NULL,
+  fkEmpresa INT NOT NULL DEFAULT 1,
   PRIMARY KEY (idUsuario),
   FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa)
 );
