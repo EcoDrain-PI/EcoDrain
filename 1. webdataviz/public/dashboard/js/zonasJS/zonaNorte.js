@@ -2,7 +2,7 @@ let myChart;
 
 // Função chamada ao carregar a página para obter e processar os dados
 function obterDadosZN() {
-  fetch(`/zonas/zonas`, { cache: 'no-store' }).then(function (response) {
+  fetch(`/zonas/zonaNorte`, { cache: 'no-store' }).then(function (response) {
     if (response.ok) {
       response.json().then(function (resposta) {
         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -44,7 +44,7 @@ function plotarGrafico(dados, idBueiro) {
     return nivel >= 180 ? 'rgb(220, 20, 60)' : nivel >= 150 ? 'rgb(255, 200, 0)' : 'rgb(62, 225, 120)'; // Vermelho para > 180, azul para <= 180
   });
 
-  const ctx = document.getElementById('zonaLestePrincipal').getContext('2d');
+  const ctx = document.getElementById('zonaNortePrincipal').getContext('2d');
 
   const config = {
     type: 'bar',
@@ -154,19 +154,19 @@ function atualizarGrafico(idBueiro, dados, myChart) {
 
 function zonaNorteMock() {
   // Gráfico 1 - Itaquaquecetuba
-  const ctx1 = document.getElementById('zonaLesteMock1');
+  const ctx1 = document.getElementById('zonaNorteMock');
   let ruas1 = ['Parque Viviane', 'Rua do Cravo', 'São Sebastião'];
   let niveis1 = [110, 90, 83];
   renderizarGrafico(ctx1, ruas1, niveis1);
 
   // Gráfico 2 - Guaianases
-  const ctx2 = document.getElementById('zonaLesteMock2');
+  const ctx2 = document.getElementById('zonaNorteMock2');
   let ruas2 = ['Rua Arraial dos Ourives', 'Rua Serra Dourada', 'Rua Tapajós'];
   let niveis2 = [130, 155, 123];
   renderizarGrafico(ctx2, ruas2, niveis2);
 
   // Gráfico 3 - Tatuapé
-  const ctx3 = document.getElementById('zonaLesteMock3');
+  const ctx3 = document.getElementById('zonaNorteMock3');
   let ruas3 = ['Rua Apucarana', 'Rua Coelho Lisboa', 'Rua Serra de Bragança'];
   let niveis3 = [95, 80, 165];
   renderizarGrafico(ctx3, ruas3, niveis3);

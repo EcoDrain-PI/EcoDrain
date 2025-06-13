@@ -7,8 +7,8 @@
   <title>Localização - Dashboard</title>
   <link rel="icon" href="../assets/icon/favicon.ico">
   <link rel="stylesheet" href="../css/dashboards.css">
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
 </head>
 
 <body onload="obterDadosZN(), zonaNorteMock()">
@@ -74,31 +74,48 @@
           <!-- Cabeçalho -->
           <div class="div-head-metricas">
             <div class="div-texto">
-              São Miguel
+              Vila Guilherme
             </div>
             <!-- MÉTRICA PRINCIPAL -->
           </div>
-          <canvas id="zonaLesteItaquera"></canvas>
+          <canvas id="zonaNortePrincipal"></canvas>
         </div>
 
 
         <div class="metrica-secun">
           <!-- Cabeçalho -->
           <div class="div-head-metricas">
-            <div class="div-texto">
-              Itaquaquecetuba
+            <div class="div-texto" style="text-align: center;">
+              Santana
             </div>
-            <!-- MÉTRICA PRINCIPAL -->
           </div>
-          <canvas id="zonaNorteCidadeItaquaquecetuba"></canvas>
+          <canvas id="zonaNorteMock"></canvas>
         </div>
 
+        <div class="metrica-secun">
+          <!-- Cabeçalho -->
+          <div class="div-head-metricas">
+            <div class="div-texto" style="text-align: center;">
+              Tucuruvi
+            </div>
+          </div>
+          <canvas id="zonaNorteMock2"></canvas>
+        </div>
+
+        <div class="metrica-secun">
+          <!-- Cabeçalho -->
+          <div class="div-head-metricas">
+            <div class="div-texto" style="text-align: center;">
+              Vila Maria
+            </div>
+          </div>
+          <canvas id="zonaNorteMock3"></canvas>
+        </div>
 
       </div>
-
     </div>
-
   </div>
+
 </body>
 
 </html>

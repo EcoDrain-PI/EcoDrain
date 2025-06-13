@@ -42,7 +42,7 @@ function buscarMedidasEmTempoReal(idBueiro) {
 
 // -------------------- FUNÇÕES DE FILTRO POR ZONA --------------------
 
-function zonaNorte() {
+function zonaLeste() {
     var instrucaoSql = `
         SELECT l.altura_lixo, e.bairro, z.nome AS zona, lg.cidade, e.rua
         FROM lotacao l
@@ -57,9 +57,9 @@ function zonaNorte() {
     return database.executar(instrucaoSql);
 }
 
-function zonaSulRP() {
+function zonaNorte() {
     var instrucaoSql = `
-        SELECT l.altura_lixo, e.bairro, z.nome AS zona, lg.cidade
+        SELECT l.altura_lixo, e.bairro, z.nome AS zona, lg.cidade, e.rua
         FROM lotacao l
         JOIN sensor s ON l.fkSensor = s.idSensor
         JOIN bueiro b ON s.fkBueiro = b.idBueiro
@@ -67,119 +67,14 @@ function zonaSulRP() {
         JOIN zona z ON e.fkZona = z.idZona
         JOIN empresa em ON e.fkEmpresa = em.idEmpresa
         JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
-        WHERE z.nome = 'Sul';
-    `;
-    return database.executar(instrucaoSql);
-}
-
-function zonaSulJabaquara() {
-    var instrucaoSql = `
-        SELECT l.altura_lixo, e.bairro, z.nome AS zona, lg.cidade
-        FROM lotacao l
-        JOIN sensor s ON l.fkSensor = s.idSensor
-        JOIN bueiro b ON s.fkBueiro = b.idBueiro
-        JOIN endereco e ON b.fkEndereco = e.idEndereco
-        JOIN zona z ON e.fkZona = z.idZona
-        JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
-        WHERE z.nome = 'Sul';
-    `;
-    return database.executar(instrucaoSql);
-}
-
-function zonaSulCL() {
-    var instrucaoSql = `
-        SELECT l.altura_lixo, e.bairro, z.nome AS zona, lg.cidade
-        FROM lotacao l
-        JOIN sensor s ON l.fkSensor = s.idSensor
-        JOIN bueiro b ON s.fkBueiro = b.idBueiro
-        JOIN endereco e ON b.fkEndereco = e.idEndereco
-        JOIN zona z ON e.fkZona = z.idZona
-        JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
-        WHERE z.nome = 'Sul';
-    `;
-    return database.executar(instrucaoSql);
-}
-
-function zonaSulCapao() {
-    var instrucaoSql = `
-        SELECT l.altura_lixo, e.bairro, z.nome AS zona, lg.cidade
-        FROM lotacao l
-        JOIN sensor s ON l.fkSensor = s.idSensor
-        JOIN bueiro b ON s.fkBueiro = b.idBueiro
-        JOIN endereco e ON b.fkEndereco = e.idEndereco
-        JOIN zona z ON e.fkZona = z.idZona
-        JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
-        WHERE z.nome = 'Sul';
-    `;
-    return database.executar(instrucaoSql);
-}
-
-function zonaLesteItaquera() {
-    var instrucaoSql = `
-        SELECT l.altura_lixo, e.bairro, z.nome AS zona, lg.cidade
-        FROM lotacao l
-        JOIN sensor s ON l.fkSensor = s.idSensor
-        JOIN bueiro b ON s.fkBueiro = b.idBueiro
-        JOIN endereco e ON b.fkEndereco = e.idEndereco
-        JOIN zona z ON e.fkZona = z.idZona
-        JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
-        WHERE z.nome = 'Leste';
-    `;
-    return database.executar(instrucaoSql);
-}
-
-function zonaLesteMooca() {
-    var instrucaoSql = `
-        SELECT l.altura_lixo, e.bairro, z.nome AS zona, lg.cidade
-        FROM lotacao l
-        JOIN sensor s ON l.fkSensor = s.idSensor
-        JOIN bueiro b ON s.fkBueiro = b.idBueiro
-        JOIN endereco e ON b.fkEndereco = e.idEndereco
-        JOIN zona z ON e.fkZona = z.idZona
-        JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
-        WHERE z.nome = 'Leste';
-    `;
-    return database.executar(instrucaoSql);
-}
-
-function zonaLestePenha() {
-    var instrucaoSql = `
-        SELECT l.altura_lixo, e.bairro, z.nome AS zona, lg.cidade
-        FROM lotacao l
-        JOIN sensor s ON l.fkSensor = s.idSensor
-        JOIN bueiro b ON s.fkBueiro = b.idBueiro
-        JOIN endereco e ON b.fkEndereco = e.idEndereco
-        JOIN zona z ON e.fkZona = z.idZona
-        JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
-        WHERE z.nome = 'Leste';
-    `;
-    return database.executar(instrucaoSql);
-}
-
-function zonaLesteTatuape() {
-    var instrucaoSql = `
-        SELECT l.altura_lixo, e.bairro, z.nome AS zona, lg.cidade
-        FROM lotacao l
-        JOIN sensor s ON l.fkSensor = s.idSensor
-        JOIN bueiro b ON s.fkBueiro = b.idBueiro
-        JOIN endereco e ON b.fkEndereco = e.idEndereco
-        JOIN zona z ON e.fkZona = z.idZona
-        JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
-        WHERE z.nome = 'Leste';
+        WHERE z.nome = 'Norte';
     `;
     return database.executar(instrucaoSql);
 }
 
 function zonaOeste() {
     var instrucaoSql = `
-        SELECT l.altura_lixo, e.bairro, z.nome AS zona, lg.cidade
+        SELECT l.altura_lixo, e.bairro, z.nome AS zona, lg.cidade, e.rua
         FROM lotacao l
         JOIN sensor s ON l.fkSensor = s.idSensor
         JOIN bueiro b ON s.fkBueiro = b.idBueiro
@@ -192,6 +87,20 @@ function zonaOeste() {
     return database.executar(instrucaoSql);
 }
 
+function zonaSul() {
+    var instrucaoSql = `
+        SELECT l.altura_lixo, e.bairro, z.nome AS zona, lg.cidade, e.rua
+        FROM lotacao l
+        JOIN sensor s ON l.fkSensor = s.idSensor
+        JOIN bueiro b ON s.fkBueiro = b.idBueiro
+        JOIN endereco e ON b.fkEndereco = e.idEndereco
+        JOIN zona z ON e.fkZona = z.idZona
+        JOIN empresa em ON e.fkEmpresa = em.idEmpresa
+        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
+        WHERE z.nome = 'Sul';
+    `;
+    return database.executar(instrucaoSql);
+}
 // -------------------- FUNÇÕES DE KPI / ALERTAS --------------------
 
 function buscarAlertasAtencaoPorPeriodoDB(filtro) {
@@ -289,15 +198,9 @@ module.exports = {
     buscarAlertasAtencaoPorPeriodoDB,
     buscarAlertasAtencaoTotalDB,
     buscarAlertasRiscoTotalDB,
+    zonaLeste,
     zonaNorte,
-    zonaSulRP,
-    zonaSulJabaquara,
-    zonaSulCL,
-    zonaSulCapao,
-    zonaLesteItaquera,
-    zonaLesteMooca,
-    zonaLestePenha,
-    zonaLesteTatuape,
     zonaOeste,
+    zonaSul,
     buscarAlertasRiscoPorPeriodoDB
 };

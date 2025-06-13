@@ -7,11 +7,11 @@
   <title>Localização - Dashboard</title>
   <link rel="icon" href="../assets/icon/favicon.ico">
   <link rel="stylesheet" href="../css/dashboards.css">
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
 </head>
 
-<body onload="obterDadosRio()">
+<body onload="obterDadosZS(), zonaOesteMock()">
 
   <div class="div-pai">
     <!-- Sidebar -->
@@ -40,8 +40,8 @@
         </div>
         <a href="https://ecodrain.atlassian.net/servicedesk/customer/portal/1" target="_blank">
           <div class="div-btComImg">
-            <img src="../assets/img/help.svg" alt="Imagem do ícone de Suporte" >
-          <button>Suporte</button>
+            <img src="../assets/img/help.svg" alt="Imagem do ícone de Suporte">
+            <button>Suporte</button>
           </div>
         </a>
       </div>
@@ -69,32 +69,53 @@
     </header>
     <div class="container">
 
-        <div class="div-metrica-principal">
-            <!-- Cabeçalho -->
-            <div class="div-head-metricas">
-              <div class="div-texto">
-                Níveis de lotação nos bueiros da Zona Sul
-              </div>
-              <div class="div-select">
-                <select id="selectAnoBarraPrincipalZL">
-                  <option value="2025">Ano de 2025</option>
-                  <option value="2024">Ano de 2024</option>
-                  <option value="2023">Ano de 2023</option>
-                </select>
-              </div>
-              <!-- MÉTRICA PRINCIPAL -->
+      <div class="metricas-secundarias">
+        <div class="metrica-secun">
+          <!-- Cabeçalho -->
+          <div class="div-head-metricas">
+            <div class="div-texto">
+              Grajaú
             </div>
-            <canvas id="zonaSulRP"></canvas>
-            <canvas id="zonaSulJabaquara"></canvas>
-            <canvas id="zonaSulCapao"></canvas>
-            <canvas id="zonaSulCL"></canvas>
+            <!-- MÉTRICA PRINCIPAL -->
           </div>
+          <canvas id="zonaSulPrincipal"></canvas>
+        </div>
 
+
+        <div class="metrica-secun">
+          <!-- Cabeçalho -->
+          <div class="div-head-metricas">
+            <div class="div-texto" style="text-align: center;">
+              Santo Amaro
+            </div>
+          </div>
+          <canvas id="zonaNorteMock"></canvas>
+        </div>
+
+        <div class="metrica-secun">
+          <!-- Cabeçalho -->
+          <div class="div-head-metricas">
+            <div class="div-texto" style="text-align: center;">
+              Brooklin
+            </div>
+          </div>
+          <canvas id="zonaNorteMock2"></canvas>
+        </div>
+
+        <div class="metrica-secun">
+          <!-- Cabeçalho -->
+          <div class="div-head-metricas">
+            <div class="div-texto" style="text-align: center;">
+              Morumbi
+            </div>
+          </div>
+          <canvas id="zonaNorteMock3"></canvas>
+        </div>
+
+      </div>
     </div>
-
   </div>
 
-  </div>
 </body>
 
 </html>
@@ -115,5 +136,4 @@
     }
   }
 </script>
-<script src="js/metricaDeBarras2.js"></script>
 <script src="js/zonasJS/zonaSul.js"></script>

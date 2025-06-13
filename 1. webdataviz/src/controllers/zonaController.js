@@ -1,6 +1,17 @@
 var medidaModel = require("../models/medidaModel");
 
 
+function zonaLeste(req, res) {
+    medidaModel.zonaLeste(req)
+        .then(resultado => {
+            res.status(200).json(resultado);
+        })
+        .catch(erro => {
+            console.error(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 function zonaNorte(req, res) {
     medidaModel.zonaNorte(req)
         .then(resultado => {
@@ -12,10 +23,8 @@ function zonaNorte(req, res) {
         });
 }
 
-// Zona Sul
-
-function zonaSulRP(req, res) {
-    medidaModel.zonaSulRP(req)
+function zonaOeste(req, res) {
+    medidaModel.zonaOeste(req)
         .then(resultado => {
             res.status(200).json(resultado);
         })
@@ -25,76 +34,8 @@ function zonaSulRP(req, res) {
         });
 }
 
-function zonaSulJabaquara(req, res) {
-    medidaModel.zonaSulJabaquara(req)
-        .then(resultado => {
-            res.status(200).json(resultado);
-        })
-        .catch(erro => {
-            console.error(erro);
-            res.status(500).json(erro.sqlMessage);
-        });
-}
-
-function zonaSulCapao(req, res) {
-    medidaModel.zonaSulCapao(req)
-        .then(resultado => {
-            res.status(200).json(resultado);
-        })
-        .catch(erro => {
-            console.error(erro);
-            res.status(500).json(erro.sqlMessage);
-        });
-}
-
-function zonaSulCL(req, res) {
-    medidaModel.zonaSulCampoLimpo(req)
-        .then(resultado => {
-            res.status(200).json(resultado);
-        })
-        .catch(erro => {
-            console.error(erro);
-            res.status(500).json(erro.sqlMessage);
-        });
-}
-
-// Zona Leste
-
-function zonaLesteItaquera(req, res) {
-    medidaModel.zonaLesteItaquera(req)
-        .then(resultado => {
-            res.status(200).json(resultado);
-        })
-        .catch(erro => {
-            console.error(erro);
-            res.status(500).json(erro.sqlMessage);
-        });
-}
-
-function zonaLesteMooca(req, res) {
-    medidaModel.zonaLesteMooca(req)
-        .then(resultado => {
-            res.status(200).json(resultado);
-        })
-        .catch(erro => {
-            console.error(erro);
-            res.status(500).json(erro.sqlMessage);
-        });
-}
-
-function zonaLestePenha(req, res) {
-    medidaModel.zonaLestePenha(req)
-        .then(resultado => {
-            res.status(200).json(resultado);
-        })
-        .catch(erro => {
-            console.error(erro);
-            res.status(500).json(erro.sqlMessage);
-        });
-}
-
-function zonaLesteTatuape(req, res) {
-    medidaModel.zonaLesteTatuape(req)
+function zonaSul(req, res) {
+    medidaModel.zonaSul(req)
         .then(resultado => {
             res.status(200).json(resultado);
         })
@@ -127,13 +68,8 @@ function buscarMedidasEmTempoReal(req, res) {
 
 module.exports = {
     buscarMedidasEmTempoReal,
+    zonaLeste,
     zonaNorte,
-    zonaSulRP,
-    zonaSulJabaquara,
-    zonaSulCapao,
-    zonaSulCL,
-    zonaLesteItaquera,
-    zonaLesteMooca,
-    zonaLestePenha,
-    zonaLesteTatuape
+    zonaOeste,
+    zonaSul
 }

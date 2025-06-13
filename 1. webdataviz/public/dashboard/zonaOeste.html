@@ -7,16 +7,15 @@
   <title>Localização - Dashboard</title>
   <link rel="icon" href="../assets/icon/favicon.ico">
   <link rel="stylesheet" href="../css/dashboards.css">
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
 </head>
 
-<body>
+<body onload="obterDadosZO(), zonaOesteMock()">
 
   <div class="div-pai">
     <!-- Sidebar -->
-     <!-- Sidebar -->
-     <div class="div-sidebar">
+    <div class="div-sidebar">
       <div class="div-img">
         <img src="../assets/img/ecoDrain-letrabranca-removebg-preview.png" alt="Logomarca da EcoDrain">
       </div>
@@ -41,8 +40,8 @@
         </div>
         <a href="https://ecodrain.atlassian.net/servicedesk/customer/portal/1" target="_blank">
           <div class="div-btComImg">
-            <img src="../assets/img/help.svg" alt="Imagem do ícone de Suporte" >
-          <button>Suporte</button>
+            <img src="../assets/img/help.svg" alt="Imagem do ícone de Suporte">
+            <button>Suporte</button>
           </div>
         </a>
       </div>
@@ -70,29 +69,53 @@
     </header>
     <div class="container">
 
-        <div class="div-metrica-principal">
-            <!-- Cabeçalho -->
-            <div class="div-head-metricas">
-              <div class="div-texto">
-                Níveis de lotação nos bueiros da Zona Oeste
-              </div>
-              <div class="div-select">
-                <select id="selectAnoBarraPrincipalZL">
-                  <option value="2025">Ano de 2025</option>
-                  <option value="2024">Ano de 2024</option>
-                  <option value="2023">Ano de 2023</option>
-                </select>
-              </div>
-              <!-- MÉTRICA PRINCIPAL -->
+      <div class="metricas-secundarias">
+        <div class="metrica-secun">
+          <!-- Cabeçalho -->
+          <div class="div-head-metricas">
+            <div class="div-texto">
+              Vila Madalena
             </div>
-            <canvas id="metricaPrincipalZL"></canvas>
+            <!-- MÉTRICA PRINCIPAL -->
           </div>
+          <canvas id="zonaOestePrincipal"></canvas>
+        </div>
 
+
+        <div class="metrica-secun">
+          <!-- Cabeçalho -->
+          <div class="div-head-metricas">
+            <div class="div-texto" style="text-align: center;">
+              Sumaré
+            </div>
+          </div>
+          <canvas id="zonaNorteMock"></canvas>
+        </div>
+
+        <div class="metrica-secun">
+          <!-- Cabeçalho -->
+          <div class="div-head-metricas">
+            <div class="div-texto" style="text-align: center;">
+              Consolação
+            </div>
+          </div>
+          <canvas id="zonaNorteMock2"></canvas>
+        </div>
+
+        <div class="metrica-secun">
+          <!-- Cabeçalho -->
+          <div class="div-head-metricas">
+            <div class="div-texto" style="text-align: center;">
+              Palmeiras-Barra Funda
+            </div>
+          </div>
+          <canvas id="zonaNorteMock3"></canvas>
+        </div>
+
+      </div>
     </div>
-
   </div>
 
-  </div>
 </body>
 
 </html>
@@ -113,5 +136,4 @@
     }
   }
 </script>
-<script src="js/metricaDeBarras2.js"></script>
-<script src="js/zonasJS/zonaLeste.js"></script>
+<script src="js/zonasJS/zonaOeste.js"></script>
