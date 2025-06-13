@@ -6,22 +6,15 @@ var database = require("../database/config");
 
 function buscarUltimasMedidas(idBueiro) {
     var instrucaoSql = `
- SELECT 
-        l.altura_lixo,
-        e.bairro,
-        z.nome AS zonasGrafico,
-        lg.cidade,
-        b.idBueiro,
-        e.rua
+ SELECT l.altura_lixo, e.bairro, z.nome AS zonasGrafico, b.idBueiro, e.rua
         FROM lotacao l
         JOIN sensor s ON l.fkSensor = s.idSensor
         JOIN bueiro b ON s.fkBueiro = b.idBueiro
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
-        JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
         LIMIT 8;
-    `;
+        `;
+
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -44,14 +37,12 @@ function buscarMedidasEmTempoReal(idBueiro) {
 
 function zonaLeste() {
     var instrucaoSql = `
-        SELECT l.altura_lixo, e.bairro, z.nome AS zona, lg.cidade, e.rua
+        SELECT l.altura_lixo, e.bairro, z.nome AS zona, e.rua
         FROM lotacao l
         JOIN sensor s ON l.fkSensor = s.idSensor
         JOIN bueiro b ON s.fkBueiro = b.idBueiro
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
-        JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
         WHERE z.nome = 'Leste';
     `;
     return database.executar(instrucaoSql);
@@ -59,14 +50,12 @@ function zonaLeste() {
 
 function zonaNorte() {
     var instrucaoSql = `
-        SELECT l.altura_lixo, e.bairro, z.nome AS zona, lg.cidade, e.rua
+        SELECT l.altura_lixo, e.bairro, z.nome AS zona, e.rua
         FROM lotacao l
         JOIN sensor s ON l.fkSensor = s.idSensor
         JOIN bueiro b ON s.fkBueiro = b.idBueiro
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
-        JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
         WHERE z.nome = 'Norte';
     `;
     return database.executar(instrucaoSql);
@@ -74,14 +63,12 @@ function zonaNorte() {
 
 function zonaOeste() {
     var instrucaoSql = `
-        SELECT l.altura_lixo, e.bairro, z.nome AS zona, lg.cidade, e.rua
+        SELECT l.altura_lixo, e.bairro, z.nome AS zona, e.rua
         FROM lotacao l
         JOIN sensor s ON l.fkSensor = s.idSensor
         JOIN bueiro b ON s.fkBueiro = b.idBueiro
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
-        JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
         WHERE z.nome = 'Oeste';
     `;
     return database.executar(instrucaoSql);
@@ -89,14 +76,12 @@ function zonaOeste() {
 
 function zonaSul() {
     var instrucaoSql = `
-        SELECT l.altura_lixo, e.bairro, z.nome AS zona, lg.cidade, e.rua
+        SELECT l.altura_lixo, e.bairro, z.nome AS zona, e.rua
         FROM lotacao l
         JOIN sensor s ON l.fkSensor = s.idSensor
         JOIN bueiro b ON s.fkBueiro = b.idBueiro
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
-        JOIN empresa em ON e.fkEmpresa = em.idEmpresa
-        JOIN EstadoCidade lg ON em.fkEstadoCidade = lg.idEstadoCidade
         WHERE z.nome = 'Sul';
     `;
     return database.executar(instrucaoSql);
