@@ -25,4 +25,5 @@ router.get("/ultimas/:idBueiro", function (req, res) {
     medidaController.buscarUltimasMedidas(req, res);
 });
 
+
 module.exports = router;

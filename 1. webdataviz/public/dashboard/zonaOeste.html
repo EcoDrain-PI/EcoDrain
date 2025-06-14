@@ -11,10 +11,8 @@
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
 </head>
 
-<body onload="obterDadosZO(), zonaOesteMock()">
-
+<body onload="obterDadosZO()">
   <div class="div-pai">
-    <!-- Sidebar -->
     <div class="div-sidebar">
       <div class="div-img">
         <img src="../assets/img/ecoDrain-letrabranca-removebg-preview.png" alt="Logomarca da EcoDrain">
@@ -29,7 +27,8 @@
         </a>
         <div class="div-restricoes">
           <div class="div-zonas">
-            <img src="../assets/img/setaDireita.png" alt=""><select id="zonas" onchange="redirecionar()">
+            <img src="../assets/img/setaDireita.png" alt="">
+            <select id="zonas" onchange="redirecionar()">
               <option value="#">Zonas</option>
               <option value="zn">Zona Norte</option>
               <option value="zl">Zona Leste</option>
@@ -46,11 +45,10 @@
         </a>
       </div>
     </div>
-    <!-- Cabeçalho -->
+
     <header>
       <div class="header-container">
         <h2>TELA DA ZONA OESTE</h2>
-
         <div class="div-pai-perfil">
           <div class="div-linha"></div>
           <div class="div-todo-perfil">
@@ -67,73 +65,49 @@
         </div>
       </div>
     </header>
-    <div class="container">
 
+    <div class="container">
       <div class="metricas-secundarias">
         <div class="metrica-secun">
-          <!-- Cabeçalho -->
           <div class="div-head-metricas">
-            <div class="div-texto">
-              Vila Madalena
-            </div>
-            <!-- MÉTRICA PRINCIPAL -->
+            <div class="div-texto">Morumbi</div>
           </div>
           <canvas id="zonaOestePrincipal"></canvas>
         </div>
 
-
         <div class="metrica-secun">
-          <!-- Cabeçalho -->
           <div class="div-head-metricas">
-            <div class="div-texto" style="text-align: center;">
-              Sumaré
-            </div>
+            <div class="div-texto" style="text-align: center;">Sumaré</div>
           </div>
-          <canvas id="zonaNorteMock"></canvas>
+          <canvas id="zonaOesteMock"></canvas>
         </div>
 
         <div class="metrica-secun">
-          <!-- Cabeçalho -->
           <div class="div-head-metricas">
-            <div class="div-texto" style="text-align: center;">
-              Consolação
-            </div>
+            <div class="div-texto" style="text-align: center;">Consolação</div>
           </div>
-          <canvas id="zonaNorteMock2"></canvas>
+          <canvas id="zonaOesteMock2"></canvas>
         </div>
 
         <div class="metrica-secun">
-          <!-- Cabeçalho -->
           <div class="div-head-metricas">
-            <div class="div-texto" style="text-align: center;">
-              Palmeiras-Barra Funda
-            </div>
+            <div class="div-texto" style="text-align: center;">Palmeiras-Barra Funda</div>
           </div>
-          <canvas id="zonaNorteMock3"></canvas>
+          <canvas id="zonaOesteMock3"></canvas>
         </div>
-
       </div>
     </div>
   </div>
-
 </body>
 
 </html>
 <script>
   function redirecionar() {
-    var zona = zonas.value
-    if (zona == 'zl') {
-      window.location.href = "zonaLeste.html"
-    }
-    if (zona == 'zn') {
-      window.location.href = "zonaNorte.html"
-    }
-    if (zona == 'zo') {
-      window.location.href = "zonaOeste.html"
-    }
-    if (zona == 'zs') {
-      window.location.href = "zonaSul.html"
-    }
+    var zona = zonas.value;
+    if (zona == 'zl') window.location.href = "zonaLeste.html";
+    if (zona == 'zn') window.location.href = "zonaNorte.html";
+    if (zona == 'zo') window.location.href = "zonaOeste.html";
+    if (zona == 'zs') window.location.href = "zonaSul.html";
   }
 </script>
 <script src="js/zonasJS/zonaOeste.js"></script>

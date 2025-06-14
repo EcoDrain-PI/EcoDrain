@@ -1,25 +1,20 @@
-// src/models/medidaModel.js
-
 var database = require("../database/config");
 
 // -------------------- FUNÇÕES PARA DASHBOARD GERAL --------------------
 
 function buscarUltimasMedidas(idBueiro) {
     var instrucaoSql = `
- SELECT l.altura_lixo, e.bairro, z.nome AS zonasGrafico, b.idBueiro, e.rua
+        SELECT l.altura_lixo, e.bairro, z.nome AS zonasGrafico, b.idBueiro, e.rua
         FROM lotacao l
         JOIN sensor s ON l.fkSensor = s.idSensor
         JOIN bueiro b ON s.fkBueiro = b.idBueiro
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
         LIMIT 8;
-        `;
-
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    `;
     return database.executar(instrucaoSql);
 }
 
-// ESSE AQUI ESTÁ PEGANDO DA 
 function buscarMedidasEmTempoReal(idBueiro) {
     var instrucaoSql = `
         SELECT b.idBueiro, l.altura_lixo, l.data_monitoramento
@@ -29,11 +24,10 @@ function buscarMedidasEmTempoReal(idBueiro) {
         INNER JOIN endereco e ON b.fkEndereco = e.idEndereco
         ORDER BY l.data_monitoramento DESC;
     `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-// -------------------- FUNÇÕES DE FILTRO POR ZONA --------------------
+// -------------------- FUNÇÕES POR ZONA --------------------
 
 function zonaLeste() {
     var instrucaoSql = `
@@ -86,7 +80,8 @@ function zonaSul() {
     `;
     return database.executar(instrucaoSql);
 }
-// -------------------- FUNÇÕES DE KPI / ALERTAS --------------------
+
+// -------------------- KPI ALERTAS --------------------
 
 function buscarAlertasAtencaoPorPeriodoDB(filtro) {
     let instrucaoSql;
@@ -127,7 +122,8 @@ function buscarAlertasAtencaoTotalDB() {
     var instrucaoSql = `
         SELECT COUNT(*) AS atencao
         FROM lotacao
-        WHERE altura_lixo >= 150 AND altura_lixo < 180`;
+        WHERE altura_lixo >= 150 AND altura_lixo < 180;
+    `;
     return database.executar(instrucaoSql);
 }
 
@@ -146,27 +142,27 @@ function buscarAlertasRiscoPorPeriodoDB(filtro) {
     switch (filtro) {
         case '1h':
             instrucaoSql = `
-        SELECT COUNT(*) AS risco
-        FROM lotacao
-        WHERE altura_lixo > 180
-        AND data_monitoramento >= NOW() - INTERVAL 1 HOUR;
-      `;
+                SELECT COUNT(*) AS risco
+                FROM lotacao
+                WHERE altura_lixo > 180
+                AND data_monitoramento >= NOW() - INTERVAL 1 HOUR;
+            `;
             break;
         case '24h':
             instrucaoSql = `
-        SELECT COUNT(*) AS risco
-        FROM lotacao
-        WHERE altura_lixo > 180
-        AND data_monitoramento >= NOW() - INTERVAL 24 HOUR;
-      `;
+                SELECT COUNT(*) AS risco
+                FROM lotacao
+                WHERE altura_lixo > 180
+                AND data_monitoramento >= NOW() - INTERVAL 24 HOUR;
+            `;
             break;
         case '1w':
             instrucaoSql = `
-        SELECT COUNT(*) AS risco
-        FROM lotacao
-        WHERE altura_lixo > 180
-        AND data_monitoramento >= NOW() - INTERVAL 7 DAY;
-      `;
+                SELECT COUNT(*) AS risco
+                FROM lotacao
+                WHERE altura_lixo > 180
+                AND data_monitoramento >= NOW() - INTERVAL 7 DAY;
+            `;
             break;
         default:
             return Promise.reject(new Error("Filtro inválido"));
@@ -180,12 +176,12 @@ function buscarAlertasRiscoPorPeriodoDB(filtro) {
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
-    buscarAlertasAtencaoPorPeriodoDB,
-    buscarAlertasAtencaoTotalDB,
-    buscarAlertasRiscoTotalDB,
     zonaLeste,
     zonaNorte,
     zonaOeste,
     zonaSul,
+    buscarAlertasAtencaoPorPeriodoDB,
+    buscarAlertasAtencaoTotalDB,
+    buscarAlertasRiscoTotalDB,
     buscarAlertasRiscoPorPeriodoDB
 };

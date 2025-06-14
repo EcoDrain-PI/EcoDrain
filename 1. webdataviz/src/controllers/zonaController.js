@@ -2,47 +2,39 @@ var medidaModel = require("../models/medidaModel");
 
 
 function zonaLeste(req, res) {
-    medidaModel.zonaLeste(req)
-        .then(resultado => {
-            res.status(200).json(resultado);
-        })
-        .catch(erro => {
-            console.error(erro);
-            res.status(500).json(erro.sqlMessage);
-        });
+  medidaModel.zonaLeste()
+    .then(resultado => res.status(200).json(resultado))
+    .catch(erro => {
+      console.error("Erro ao buscar dados da Zona Leste:", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 function zonaNorte(req, res) {
-    medidaModel.zonaNorte(req)
-        .then(resultado => {
-            res.status(200).json(resultado);
-        })
-        .catch(erro => {
-            console.error(erro);
-            res.status(500).json(erro.sqlMessage);
-        });
+  medidaModel.zonaNorte()
+    .then(resultado => res.status(200).json(resultado))
+    .catch(erro => {
+      console.error("Erro ao buscar dados da Zona Norte:", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 function zonaOeste(req, res) {
-    medidaModel.zonaOeste(req)
-        .then(resultado => {
-            res.status(200).json(resultado);
-        })
-        .catch(erro => {
-            console.error(erro);
-            res.status(500).json(erro.sqlMessage);
-        });
+  medidaModel.zonaOeste()
+    .then(resultado => res.status(200).json(resultado))
+    .catch(erro => {
+      console.error("Erro ao buscar dados da Zona Oeste:", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 function zonaSul(req, res) {
-    medidaModel.zonaSul(req)
-        .then(resultado => {
-            res.status(200).json(resultado);
-        })
-        .catch(erro => {
-            console.error(erro);
-            res.status(500).json(erro.sqlMessage);
-        });
+  medidaModel.zonaSul()
+    .then(resultado => res.status(200).json(resultado))
+    .catch(erro => {
+      console.error("Erro ao buscar dados da Zona Sul:", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 function buscarMedidasEmTempoReal(req, res) {
