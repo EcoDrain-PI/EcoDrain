@@ -10,7 +10,8 @@ function buscarUltimasMedidas(idBueiro) {
         JOIN bueiro b ON s.fkBueiro = b.idBueiro
         JOIN endereco e ON b.fkEndereco = e.idEndereco
         JOIN zona z ON e.fkZona = z.idZona
-        LIMIT 8;
+        WHERE l.altura_lixo >= 150
+        LIMIT 9;
     `;
     return database.executar(instrucaoSql);
 }
@@ -131,7 +132,7 @@ function buscarAlertasRiscoTotalDB() {
     var instrucaoSql = `
         SELECT COUNT(*) AS risco
         FROM lotacao
-        WHERE altura_lixo > 180;
+        WHERE altura_lixo >= 180;
     `;
     return database.executar(instrucaoSql);
 }
@@ -144,7 +145,7 @@ function buscarAlertasRiscoPorPeriodoDB(filtro) {
             instrucaoSql = `
                 SELECT COUNT(*) AS risco
                 FROM lotacao
-                WHERE altura_lixo > 180
+                WHERE altura_lixo >= 180
                 AND data_monitoramento >= NOW() - INTERVAL 1 HOUR;
             `;
             break;
@@ -152,7 +153,7 @@ function buscarAlertasRiscoPorPeriodoDB(filtro) {
             instrucaoSql = `
                 SELECT COUNT(*) AS risco
                 FROM lotacao
-                WHERE altura_lixo > 180
+                WHERE altura_lixo >= 180
                 AND data_monitoramento >= NOW() - INTERVAL 24 HOUR;
             `;
             break;
@@ -160,7 +161,7 @@ function buscarAlertasRiscoPorPeriodoDB(filtro) {
             instrucaoSql = `
                 SELECT COUNT(*) AS risco
                 FROM lotacao
-                WHERE altura_lixo > 180
+                WHERE altura_lixo >= 180
                 AND data_monitoramento >= NOW() - INTERVAL 7 DAY;
             `;
             break;

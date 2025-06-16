@@ -110,3 +110,5 @@ function getChartOptions() {
     }
   };
 }
+
+setInterval(obterDadosZO, 5000);

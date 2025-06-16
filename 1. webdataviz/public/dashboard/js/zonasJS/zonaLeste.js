@@ -35,8 +35,8 @@ function atualizarGraficos(dados) {
       const niveis = grupo.map(d => d.altura_lixo);
       const cores = niveis.map(n =>
         n >= 180 ? 'rgb(220, 20, 60)' :
-        n >= 150 ? 'rgb(255, 200, 0)' :
-        'rgb(62, 225, 120)'
+          n >= 150 ? 'rgb(255, 200, 0)' :
+            'rgb(62, 225, 120)'
       );
 
       const grafico = new Chart(ctx, {
@@ -117,3 +117,5 @@ function agruparPorBairro(dados) {
   });
   return Object.values(grupos).slice(0, 4);
 }
+
+setInterval(obterDadosZL, 5000);

@@ -113,3 +113,5 @@ function getChartOptions() {
     }
   };
 }
+
+setInterval(obterDadosZN, 5000);

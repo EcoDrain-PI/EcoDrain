@@ -25,7 +25,6 @@ CREATE TABLE zona (
   PRIMARY KEY (idZona)
 );
 
-
 CREATE TABLE endereco (
   idEndereco INT NOT NULL AUTO_INCREMENT,
   fkEmpresa INT NOT NULL,
@@ -157,7 +156,7 @@ VALUES
   (14, '2025-05-05', 14),
   (15, '2025-05-06', 15),
   (16, '2025-05-06', 16);
-  
+
 INSERT INTO lotacao (idLotacao, fkSensor, altura_lixo, data_monitoramento)
 VALUES 
   (1, 1, 191.20, '2025-06-01 10:00:00'),
@@ -201,3 +200,135 @@ UPDATE lotacao SET data_monitoramento = NOW() - INTERVAL 17 HOUR WHERE idLotacao
 UPDATE lotacao SET data_monitoramento = NOW() - INTERVAL 14 HOUR WHERE idLotacao = 4;
 UPDATE lotacao SET data_monitoramento = NOW() - INTERVAL 10 HOUR WHERE idLotacao = 5;
 UPDATE lotacao SET data_monitoramento = NOW() - INTERVAL 5 HOUR WHERE idLotacao = 6;
+
+-- Inserção das novas ruas na Zona Leste
+INSERT INTO endereco (fkEmpresa, cep, rua, bairro, fkZona)
+VALUES 
+  (1, '08567000', 'Rua das Violetas', 'Jardim Helena', 3),
+  (1, '08544000', 'Rua Rio das Pedras', 'Itaquaquecetuba', 3),
+  (1, '08430000', 'Rua do Sol', 'Guaianases', 3),
+  (1, '03345000', 'Rua São José', 'Itaquera', 3),
+  (1, '08550000', 'Rua das Orquídeas', 'Itaquera', 3);
+  
+-- Inserção de bueiros para os novos endereços
+INSERT INTO bueiro (idBueiro, tamanho, fkEndereco)
+VALUES 
+  (17, 200, 17),
+  (18, 200, 18),
+  (19, 200, 19),
+  (20, 200, 20),
+  (21, 200, 21);
+  
+-- Inserção de sensores para os novos bueiros
+INSERT INTO sensor (idSensor, data_instalacao, fkBueiro)
+VALUES 
+  (17, '2025-06-10', 17),
+  (18, '2025-06-11', 18),
+  (19, '2025-06-12', 19),
+  (20, '2025-06-13', 20),
+  (21, '2025-06-14', 21);
+  
+-- Inserção de lotação (altura de lixo) para os novos sensores
+INSERT INTO lotacao (idLotacao, fkSensor, altura_lixo, data_monitoramento)
+VALUES 
+  (7, 17, 100.00, now()),
+  (8, 18, 110.50, now()),
+  (9, 19, 120.75, now()),
+  (10, 20, 180.00, now()),
+  (11, 21, 190.00, now());
+  
+-- Inserção de endereços para a Zona Norte (Altura de lixo abaixo de 150)
+INSERT INTO endereco (fkEmpresa, cep, rua, bairro, fkZona)
+VALUES 
+  (1, '02368000', 'Rua Bernardo Guimarães', 'Vila Mazzei', 1),
+  (1, '02369000', 'Rua Itapeti', 'Vila Galvão', 1),
+  (1, '02368000', 'Rua Vicente de Carvalho', 'Vila Progredior', 1),
+  (1, '02368000', 'Rua João Barglini', 'Jardim São Paulo', 1);
+
+-- Inserção de bueiros para os novos endereços da Zona Norte
+INSERT INTO bueiro (idBueiro, tamanho, fkEndereco)
+VALUES 
+  (22, 200, 22),
+  (23, 200, 23),
+  (24, 200, 24),
+  (25, 200, 25);
+
+-- Inserção de sensores para os novos bueiros da Zona Norte
+INSERT INTO sensor (idSensor, data_instalacao, fkBueiro)
+VALUES 
+  (22, '2025-06-15', 22),
+  (23, '2025-06-16', 23),
+  (24, '2025-06-17', 24),
+  (25, '2025-06-18', 25);
+
+-- Inserção de lotação (altura de lixo abaixo de 150) para os novos sensores da Zona Norte
+INSERT INTO lotacao (idLotacao, fkSensor, altura_lixo, data_monitoramento)
+VALUES 
+  (12, 22, 120.00, now()),
+  (13, 23, 130.00, now()),
+  (14, 24, 140.00, now()),
+  (15, 25, 135.00, now());
+
+-- Inserção de endereços para a Zona Sul (Altura de lixo abaixo de 150)
+INSERT INTO endereco (fkEmpresa, cep, rua, bairro, fkZona)
+VALUES 
+  (1, '04849000', 'Rua Cândido Motta', 'Campo Limpo', 2),
+  (1, '04849000', 'Rua Trajano', 'Vila Progresso', 2),
+  (1, '04718000', 'Rua Frei Caneca', 'Jardim São Luiz', 2),
+  (1, '04287000', 'Rua Joaquim Pimentel', 'Saúde', 2);
+
+-- Inserção de bueiros para os novos endereços da Zona Sul
+INSERT INTO bueiro (idBueiro, tamanho, fkEndereco)
+VALUES 
+  (26, 200, 26),
+  (27, 200, 27),
+  (28, 200, 28),
+  (29, 200, 29);
+
+-- Inserção de sensores para os novos bueiros da Zona Sul
+INSERT INTO sensor (idSensor, data_instalacao, fkBueiro)
+VALUES 
+  (26, '2025-06-19', 26),
+  (27, '2025-06-20', 27),
+  (28, '2025-06-21', 28),
+  (29, '2025-06-22', 29);
+
+-- Inserção de lotação (altura de lixo abaixo de 150) para os novos sensores da Zona Sul
+INSERT INTO lotacao (idLotacao, fkSensor, altura_lixo, data_monitoramento)
+VALUES 
+  (16, 26, 120.50, now()),
+  (17, 27, 110.00, now()),
+  (18, 28, 130.00, now()),
+  (19, 29, 140.00, now());
+
+-- Inserção de endereços para a Zona Oeste (Altura de lixo abaixo de 150)
+INSERT INTO endereco (fkEmpresa, cep, rua, bairro, fkZona)
+VALUES 
+  (1, '05065000', 'Rua Francisco Teles', 'Lapa', 4),
+  (1, '05110000', 'Rua do Manifesto', 'Vila Progredior', 4),
+  (1, '05354000', 'Rua João Leme', 'Vila Leopoldina', 4),
+  (1, '05137000', 'Rua Alexandre Dumas', 'Vila Progredior', 4);
+
+-- Inserção de bueiros para os novos endereços da Zona Oeste
+INSERT INTO bueiro (idBueiro, tamanho, fkEndereco)
+VALUES 
+  (30, 200, 30),
+  (31, 200, 31),
+  (32, 200, 32),
+  (33, 200, 33);
+
+-- Inserção de sensores para os novos bueiros da Zona Oeste
+INSERT INTO sensor (idSensor, data_instalacao, fkBueiro)
+VALUES 
+  (30, '2025-06-23', 30),
+  (31, '2025-06-24', 31),
+  (32, '2025-06-25', 32),
+  (33, '2025-06-26', 33);
+
+-- Inserção de lotação (altura de lixo abaixo de 150) para os novos sensores da Zona Oeste
+INSERT INTO lotacao (idLotacao, fkSensor, altura_lixo, data_monitoramento)
+VALUES 
+  (20, 30, 120.75, now()),
+  (21, 31, 130.00, now()),
+  (22, 32, 140.25, now()),
+  (23, 33, 145.50, now());

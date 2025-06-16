@@ -122,3 +122,5 @@ function atualizarGraficos(grupos) {
     charts.push(grafico);
   });
 }
+
+setInterval(obterDadosZS, 5000);
