@@ -8,7 +8,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     .card-alerta {
-  background-color: #2c3e50; /* era #1f2a33 */
+  background-color: #264F4A; /* era #1f2a33 */
   color: #ffffff;
   border-radius: 16px;
   padding: 30px;
@@ -112,7 +112,6 @@
         <div class="card-alerta-header">
           <select id="filtro-alerta">
             <option value="">Selecione o período</option>
-            <option value="1h">Última hora</option>
             <option value="24h">Últimas 24 horas</option>
             <option value="1w">Última semana</option>
           </select>
@@ -144,7 +143,7 @@
 
       async function buscarAlertas(filtro) {
         try {
-          const resposta = await fetch(`http://localhost:3333/medidas/atencao/periodo/${filtro}`);
+          const resposta = await fetch(`/medidas/atencao/periodo/${filtro}`);
           const json = await resposta.json();
 
           if (json.atencao !== undefined) {
@@ -189,7 +188,22 @@
             scales: {
               y: {
                 beginAtZero: true,
-                precision: 0
+                precision: 0,
+                ticks: { color: '#ffffff' },
+                grid: { color: 'rgba(255, 255, 255, 0.2)' }
+              },
+              x: {
+                beginAtZero: true,
+                precision: 0,
+                ticks: { color: '#ffffff' },
+                grid: { color: 'rgba(255, 255, 255, 0.2)' }
+              }
+            },
+            plugins: {
+              legend: {
+                labels: {
+                  color: '#ffffff',
+                }
               }
             }
           }
